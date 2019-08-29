@@ -1,0 +1,32 @@
+platform :ios, '10.3'
+
+# ignore all warnings from all pods
+inhibit_all_warnings!
+
+def bachelorthesis_pods
+  pod 'OpenCV2', '~> 4.1.0'
+  pod 'GPUImage2', :podspec => './Podspecs/GPUImage2.podspec'
+
+  pod 'SwiftLint'
+  pod 'R.swift', '~> 5.0.0'
+end
+
+
+target 'bachelorthesis' do
+  bachelorthesis_pods
+end
+
+
+# enable bitcode
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      next if config.name.downcase.include? 'debug'
+      config.build_settings['ENABLE_BITCODE'] = 'YES'
+      cflags = config.build_settings['OTHER_CFLAGS'] || ['$(inherited)']
+      cflags << '-fembed-bitcode'
+      config.build_settings['OTHER_CFLAGS'] = cflags
+    end
+  end
+end

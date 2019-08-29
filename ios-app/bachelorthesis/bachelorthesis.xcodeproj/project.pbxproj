@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BBCC2DAF30560D7A483B8B98 /* libPods-bachelorthesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BDD4054BE435C75D4C0CCA3A /* libPods-bachelorthesis.a */; };
 		BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566B23181424007C18BA /* AppDelegate.swift */; };
 		BE8C566E23181424007C18BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566D23181424007C18BA /* ViewController.swift */; };
 		BE8C567123181424007C18BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE8C566F23181424007C18BA /* Main.storyboard */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3122CDEE8CF9876C1A06561B /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
+		BDD4054BE435C75D4C0CCA3A /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8C566823181424007C18BA /* bachelorthesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bachelorthesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8C566B23181424007C18BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE8C566D23181424007C18BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		BE8C567223181425007C18BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE8C567523181425007C18BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE8C567723181425007C18BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF5ECE4D4439B5EC7FADABED /* Pods-bachelorthesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.release.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBCC2DAF30560D7A483B8B98 /* libPods-bachelorthesis.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D739B47A8B2B807B396CCCB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3122CDEE8CF9876C1A06561B /* Pods-bachelorthesis.debug.xcconfig */,
+				FF5ECE4D4439B5EC7FADABED /* Pods-bachelorthesis.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		83B5E62335AA4788DB01C8B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BDD4054BE435C75D4C0CCA3A /* libPods-bachelorthesis.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BE8C565F23181424007C18BA = {
 			isa = PBXGroup;
 			children = (
 				BE8C566A23181424007C18BA /* bachelorthesis */,
 				BE8C566923181424007C18BA /* Products */,
+				7D739B47A8B2B807B396CCCB /* Pods */,
+				83B5E62335AA4788DB01C8B4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +96,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE8C567A23181425007C18BA /* Build configuration list for PBXNativeTarget "bachelorthesis" */;
 			buildPhases = (
+				33EF8CBBBE28A145E77409AE /* [CP] Check Pods Manifest.lock */,
 				BE8C566423181424007C18BA /* Sources */,
 				BE8C566523181424007C18BA /* Frameworks */,
 				BE8C566623181424007C18BA /* Resources */,
+				8C44DF327982BFBB60B535FC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,6 +156,527 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		33EF8CBBBE28A145E77409AE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-bachelorthesis-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C44DF327982BFBB60B535FC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis-resources.sh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/AdaptiveThreshold_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/AdaptiveThreshold_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/AddBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/AddBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/AlphaBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/AlphaBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/AlphaTest_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/AlphaTest_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/AverageColor_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/AverageColor_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/AverageLuminance_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/AverageLuminance_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/BilateralBlur_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/BilateralBlur_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Brightness_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Brightness_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/BulgeDistortion_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/BulgeDistortion_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/CGAColorspace_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/CGAColorspace_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ChromaKeyBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ChromaKeyBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ChromaKey_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ChromaKey_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Circle_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Circle_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColorBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColorBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColorBurnBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColorBurnBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColorDodgeBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColorDodgeBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColorInvert_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColorInvert_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColorLocalBinaryPattern_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColorLocalBinaryPattern_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColorMatrix_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColorMatrix_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColorSwizzling_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColorSwizzling_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColourFASTDecriptor_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ColourFASTDecriptor_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Contrast_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Contrast_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Convolution3x3_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Convolution3x3_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Crosshair_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Crosshair_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Crosshatch_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Crosshatch_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/DarkenBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/DarkenBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/DifferenceBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/DifferenceBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Dilation1_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Dilation1_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Dilation2_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Dilation2_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Dilation3_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Dilation3_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Dilation4_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Dilation4_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/DirectionalNonMaximumSuppression_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/DirectionalNonMaximumSuppression_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/DirectionalSobelEdgeDetection_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/DirectionalSobelEdgeDetection_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/DissolveBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/DissolveBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/DivideBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/DivideBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Erosion1_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Erosion1_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Erosion2_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Erosion2_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Erosion3_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Erosion3_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Erosion4_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Erosion4_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ExclusionBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ExclusionBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Exposure_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Exposure_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/FalseColor_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/FalseColor_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Gamma_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Gamma_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/GlassSphere_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/GlassSphere_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Halftone_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Halftone_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HardLightBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HardLightBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HarrisCornerDetector_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HarrisCornerDetector_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Haze_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Haze_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HighlightShadowTint_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HighlightShadowTint_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HighlightShadow_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HighlightShadow_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HistogramAccumulation_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HistogramAccumulation_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HistogramDisplay_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HistogramDisplay_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HistogramEqualizationBlue_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HistogramEqualizationBlue_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HistogramEqualizationGreen_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HistogramEqualizationGreen_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HistogramEqualizationLuminance_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HistogramEqualizationLuminance_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HistogramEqualizationRed_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HistogramEqualizationRed_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HistogramEqualizationRGB_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HistogramEqualizationRGB_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HueBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/HueBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Hue_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Hue_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/KuwaharaRadius3_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/KuwaharaRadius3_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Kuwahara_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Kuwahara_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/LanczosResampling_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/LanczosResampling_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Laplacian_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Laplacian_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Levels_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Levels_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/LightenBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/LightenBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/LinearBurnBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/LinearBurnBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Line_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Line_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/LocalBinaryPattern_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/LocalBinaryPattern_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Lookup_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Lookup_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/LuminanceRange_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/LuminanceRange_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/LuminanceThreshold_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/LuminanceThreshold_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Luminance_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Luminance_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/LuminosityBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/LuminosityBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Median_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Median_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Monochrome_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Monochrome_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/MotionBlur_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/MotionBlur_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/MotionComparison_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/MotionComparison_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/MultiplyBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/MultiplyBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/NobleCornerDetector_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/NobleCornerDetector_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/NormalBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/NormalBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Opacity_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Opacity_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/OverlayBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/OverlayBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Passthrough_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Passthrough_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/PinchDistortion_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/PinchDistortion_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Pixellate_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Pixellate_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/PolarPixellate_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/PolarPixellate_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/PolkaDot_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/PolkaDot_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Posterize_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Posterize_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/PrewittEdgeDetection_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/PrewittEdgeDetection_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/RGBAdjustment_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/RGBAdjustment_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/SaturationBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/SaturationBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Saturation_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Saturation_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ScreenBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ScreenBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Sharpen_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Sharpen_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ShiTomasiFeatureDetector_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ShiTomasiFeatureDetector_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Sketch_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Sketch_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/SobelEdgeDetection_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/SobelEdgeDetection_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/SoftLightBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/SoftLightBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Solarize_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Solarize_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/SourceOverBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/SourceOverBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/SphereRefraction_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/SphereRefraction_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/StretchDistortion_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/StretchDistortion_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/SubtractBlend_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/SubtractBlend_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Swirl_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Swirl_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ThresholdEdgeDetection_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ThresholdEdgeDetection_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ThresholdedNonMaximumSuppression_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ThresholdedNonMaximumSuppression_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ThresholdSketch_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ThresholdSketch_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/TiltShift_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/TiltShift_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Toon_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Toon_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/UnsharpMask_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/UnsharpMask_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Vibrance_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Vibrance_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Vignette_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/Vignette_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/WeakPixelInclusion_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/WeakPixelInclusion_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/WhiteBalance_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/WhiteBalance_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/XYDerivative_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/XYDerivative_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/YUVConversionFullRangeUVPlanar_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/YUVConversionFullRangeUVPlanar_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/YUVConversionFullRange_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/YUVConversionFullRange_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/YUVConversionVideoRange_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/YUVConversionVideoRange_GLES.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ZoomBlur_GL.fsh",
+				"${PODS_ROOT}/GPUImage2/framework/Source/Operations/Shaders/ZoomBlur_GLES.fsh",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AdaptiveThreshold_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AdaptiveThreshold_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AddBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AddBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlphaBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlphaBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlphaTest_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlphaTest_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AverageColor_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AverageColor_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AverageLuminance_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AverageLuminance_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BilateralBlur_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BilateralBlur_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Brightness_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Brightness_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BulgeDistortion_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BulgeDistortion_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CGAColorspace_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CGAColorspace_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ChromaKeyBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ChromaKeyBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ChromaKey_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ChromaKey_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Circle_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Circle_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColorBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColorBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColorBurnBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColorBurnBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColorDodgeBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColorDodgeBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColorInvert_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColorInvert_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColorLocalBinaryPattern_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColorLocalBinaryPattern_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColorMatrix_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColorMatrix_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColorSwizzling_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColorSwizzling_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColourFASTDecriptor_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ColourFASTDecriptor_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Contrast_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Contrast_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Convolution3x3_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Convolution3x3_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Crosshair_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Crosshair_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Crosshatch_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Crosshatch_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DarkenBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DarkenBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DifferenceBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DifferenceBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Dilation1_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Dilation1_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Dilation2_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Dilation2_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Dilation3_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Dilation3_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Dilation4_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Dilation4_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DirectionalNonMaximumSuppression_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DirectionalNonMaximumSuppression_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DirectionalSobelEdgeDetection_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DirectionalSobelEdgeDetection_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DissolveBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DissolveBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DivideBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DivideBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Erosion1_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Erosion1_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Erosion2_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Erosion2_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Erosion3_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Erosion3_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Erosion4_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Erosion4_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExclusionBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExclusionBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Exposure_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Exposure_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FalseColor_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FalseColor_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Gamma_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Gamma_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GlassSphere_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GlassSphere_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Halftone_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Halftone_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HardLightBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HardLightBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HarrisCornerDetector_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HarrisCornerDetector_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Haze_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Haze_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HighlightShadowTint_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HighlightShadowTint_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HighlightShadow_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HighlightShadow_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HistogramAccumulation_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HistogramAccumulation_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HistogramDisplay_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HistogramDisplay_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HistogramEqualizationBlue_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HistogramEqualizationBlue_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HistogramEqualizationGreen_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HistogramEqualizationGreen_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HistogramEqualizationLuminance_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HistogramEqualizationLuminance_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HistogramEqualizationRed_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HistogramEqualizationRed_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HistogramEqualizationRGB_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HistogramEqualizationRGB_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HueBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HueBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Hue_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Hue_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/KuwaharaRadius3_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/KuwaharaRadius3_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Kuwahara_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Kuwahara_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LanczosResampling_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LanczosResampling_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Laplacian_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Laplacian_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Levels_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Levels_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LightenBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LightenBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LinearBurnBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LinearBurnBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Line_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Line_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LocalBinaryPattern_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LocalBinaryPattern_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Lookup_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Lookup_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LuminanceRange_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LuminanceRange_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LuminanceThreshold_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LuminanceThreshold_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Luminance_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Luminance_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LuminosityBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LuminosityBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Median_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Median_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Monochrome_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Monochrome_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MotionBlur_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MotionBlur_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MotionComparison_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MotionComparison_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MultiplyBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MultiplyBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NobleCornerDetector_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NobleCornerDetector_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NormalBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/NormalBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Opacity_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Opacity_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/OverlayBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/OverlayBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Passthrough_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Passthrough_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PinchDistortion_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PinchDistortion_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Pixellate_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Pixellate_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PolarPixellate_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PolarPixellate_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PolkaDot_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PolkaDot_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Posterize_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Posterize_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PrewittEdgeDetection_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PrewittEdgeDetection_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RGBAdjustment_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RGBAdjustment_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SaturationBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SaturationBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Saturation_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Saturation_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ScreenBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ScreenBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Sharpen_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Sharpen_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ShiTomasiFeatureDetector_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ShiTomasiFeatureDetector_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Sketch_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Sketch_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SobelEdgeDetection_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SobelEdgeDetection_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SoftLightBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SoftLightBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Solarize_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Solarize_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SourceOverBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SourceOverBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SphereRefraction_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SphereRefraction_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StretchDistortion_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StretchDistortion_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SubtractBlend_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SubtractBlend_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Swirl_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Swirl_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ThresholdEdgeDetection_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ThresholdEdgeDetection_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ThresholdedNonMaximumSuppression_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ThresholdedNonMaximumSuppression_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ThresholdSketch_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ThresholdSketch_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TiltShift_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TiltShift_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Toon_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Toon_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UnsharpMask_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UnsharpMask_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Vibrance_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Vibrance_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Vignette_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Vignette_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeakPixelInclusion_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeakPixelInclusion_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WhiteBalance_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WhiteBalance_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/XYDerivative_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/XYDerivative_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YUVConversionFullRangeUVPlanar_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YUVConversionFullRangeUVPlanar_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YUVConversionFullRange_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YUVConversionFullRange_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YUVConversionVideoRange_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YUVConversionVideoRange_GLES.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZoomBlur_GL.fsh",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZoomBlur_GLES.fsh",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BE8C566423181424007C18BA /* Sources */ = {
@@ -282,6 +830,7 @@
 		};
 		BE8C567B23181425007C18BA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3122CDEE8CF9876C1A06561B /* Pods-bachelorthesis.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -301,6 +850,7 @@
 		};
 		BE8C567C23181425007C18BA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF5ECE4D4439B5EC7FADABED /* Pods-bachelorthesis.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
