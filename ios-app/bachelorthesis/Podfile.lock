@@ -1,5 +1,5 @@
 PODS:
-  - GPUImage2 (0.0.1)
+  - GPUImage (0.1.7)
   - OpenCV2 (4.1.0)
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
@@ -7,34 +7,26 @@ PODS:
   - SwiftLint (0.32.0)
 
 DEPENDENCIES:
-  - GPUImage2 (from `./Podspecs/GPUImage2.podspec`)
-  - OpenCV2
+  - GPUImage (~> 0.1.7)
+  - OpenCV2 (~> 4.1.0)
   - R.swift (~> 5.0.0)
   - SwiftLint
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - GPUImage
     - OpenCV2
     - R.swift
     - R.swift.Library
     - SwiftLint
 
-EXTERNAL SOURCES:
-  GPUImage2:
-    :podspec: "./Podspecs/GPUImage2.podspec"
-
-CHECKOUT OPTIONS:
-  GPUImage2:
-    :commit: 3a2275e48716a6ebdab0d4098bd7d90321ef4143
-    :git: https://github.com/BradLarson/GPUImage2.git
-
 SPEC CHECKSUMS:
-  GPUImage2: 25a6385f8f140d134039ab63b18acf318bc76770
+  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   OpenCV2: 13c3defa743793c87a4a2541b325509e878e5534
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
 
-PODFILE CHECKSUM: da5e414484654af637085e69867730170103abec
+PODFILE CHECKSUM: f0b377e44711f89c71454e85994b8852497e00ca
 
 COCOAPODS: 1.6.1

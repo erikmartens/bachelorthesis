@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  bachelorthesis
+
+  Created by  Erik Maximilian Martens on 30.08.19.
+  Copyright © 2019  Erik Maximilian Martens. All rights reserved.
+*/
+
+"select_a_library" = "Wähle eine Bibliothek";
