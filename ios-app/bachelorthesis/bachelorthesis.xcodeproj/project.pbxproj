@@ -9,11 +9,16 @@
 /* Begin PBXBuildFile section */
 		2E28E9503A8FA1AFACF3EE10 /* libPods-bachelorthesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26ECCC2B927977348C5142B6 /* libPods-bachelorthesis.a */; };
 		BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566B23181424007C18BA /* AppDelegate.swift */; };
-		BE8C566E23181424007C18BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566D23181424007C18BA /* ViewController.swift */; };
+		BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566D23181424007C18BA /* MainTableViewController.swift */; };
 		BE8C567123181424007C18BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE8C566F23181424007C18BA /* Main.storyboard */; };
 		BE8C567323181425007C18BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8C567223181425007C18BA /* Assets.xcassets */; };
 		BE8C567623181425007C18BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE8C567423181425007C18BA /* LaunchScreen.storyboard */; };
 		BEDB8F7B2319093600C71D71 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BEDB8F7D2319093600C71D71 /* Localizable.strings */; };
+		BEDB8F8523191F7400C71D71 /* AvailableScanners.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F8423191F7400C71D71 /* AvailableScanners.swift */; };
+		BEDB8F87231921BC00C71D71 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F86231921BB00C71D71 /* R.generated.swift */; };
+		BEDB8F892319226D00C71D71 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F882319226D00C71D71 /* MainTableViewCell.swift */; };
+		BEDB8F8D2319264500C71D71 /* UIViewController+PresentSafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F8C2319264500C71D71 /* UIViewController+PresentSafariViewController.swift */; };
+		BEDB8F8F231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F8E231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,7 +26,7 @@
 		AE68F3E1AB810CE00D7D6D99 /* Pods-bachelorthesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.release.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.release.xcconfig"; sourceTree = "<group>"; };
 		BE8C566823181424007C18BA /* bachelorthesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bachelorthesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8C566B23181424007C18BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BE8C566D23181424007C18BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BE8C566D23181424007C18BA /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		BE8C567023181424007C18BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BE8C567223181425007C18BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE8C567523181425007C18BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -30,6 +35,11 @@
 		BEDB8F7A2319092E00C71D71 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		BEDB8F7C2319093600C71D71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BEDB8F7E2319093E00C71D71 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BEDB8F8423191F7400C71D71 /* AvailableScanners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableScanners.swift; sourceTree = "<group>"; };
+		BEDB8F86231921BB00C71D71 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		BEDB8F882319226D00C71D71 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		BEDB8F8C2319264500C71D71 /* UIViewController+PresentSafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentSafariViewController.swift"; sourceTree = "<group>"; };
+		BEDB8F8E231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentUIAlertController.swift"; sourceTree = "<group>"; };
 		C29B85E95E5FFF7332097F6A /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,6 +67,7 @@
 		BE8C565F23181424007C18BA = {
 			isa = PBXGroup;
 			children = (
+				BEDB8F86231921BB00C71D71 /* R.generated.swift */,
 				BE8C566A23181424007C18BA /* bachelorthesis */,
 				BE8C566923181424007C18BA /* Products */,
 				7D739B47A8B2B807B396CCCB /* Pods */,
@@ -81,6 +92,8 @@
 				BEDB8F762319086E00C71D71 /* Main */,
 				BEDB8F7523181F3C00C71D71 /* Launch Scene */,
 				BEDB8F7423181EEC00C71D71 /* Main Scene */,
+				BEDB8F8323191F4F00C71D71 /* Resources */,
+				BEDB8F8A2319260200C71D71 /* Helpers */,
 			);
 			path = bachelorthesis;
 			sourceTree = "<group>";
@@ -88,8 +101,9 @@
 		BEDB8F7423181EEC00C71D71 /* Main Scene */ = {
 			isa = PBXGroup;
 			children = (
-				BE8C566D23181424007C18BA /* ViewController.swift */,
+				BE8C566D23181424007C18BA /* MainTableViewController.swift */,
 				BE8C566F23181424007C18BA /* Main.storyboard */,
+				BEDB8F882319226D00C71D71 /* MainTableViewCell.swift */,
 			);
 			path = "Main Scene";
 			sourceTree = "<group>";
@@ -108,6 +122,31 @@
 				BE8C566B23181424007C18BA /* AppDelegate.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		BEDB8F8323191F4F00C71D71 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB8F8423191F7400C71D71 /* AvailableScanners.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BEDB8F8A2319260200C71D71 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB8F8B2319261000C71D71 /* Extensions */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		BEDB8F8B2319261000C71D71 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB8F8C2319264500C71D71 /* UIViewController+PresentSafariViewController.swift */,
+				BEDB8F8E231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D4650AE85F218C7875DE9E51 /* Frameworks */ = {
@@ -288,8 +327,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE8C566E23181424007C18BA /* ViewController.swift in Sources */,
+				BEDB8F8523191F7400C71D71 /* AvailableScanners.swift in Sources */,
+				BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */,
+				BEDB8F8F231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift in Sources */,
 				BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */,
+				BEDB8F87231921BC00C71D71 /* R.generated.swift in Sources */,
+				BEDB8F892319226D00C71D71 /* MainTableViewCell.swift in Sources */,
+				BEDB8F8D2319264500C71D71 /* UIViewController+PresentSafariViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

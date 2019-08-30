@@ -16,6 +16,14 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  struct reuseIdentifier {
+    /// Reuse identifier `MainTableViewCell`.
+    static let mainTableViewCell: Rswift.ReuseIdentifier<MainTableViewCell> = Rswift.ReuseIdentifier(identifier: "MainTableViewCell")
+    
+    fileprivate init() {}
+  }
+  
   /// This `R.storyboard` struct is generated, and contains static references to 2 storyboards.
   struct storyboard {
     /// Storyboard `LaunchScreen`.
@@ -43,18 +51,51 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 1 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 4 localization keys.
     struct localizable {
+      /// en translation: Cancel
+      /// 
+      /// Locales: en, de
+      static let cancel = Rswift.StringResource(key: "cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: GitHub
+      /// 
+      /// Locales: en, de
+      static let github = Rswift.StringResource(key: "github", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Select a Library
       /// 
       /// Locales: en, de
       static let select_a_library = Rswift.StringResource(key: "select_a_library", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Website
+      /// 
+      /// Locales: en, de
+      static let website = Rswift.StringResource(key: "website", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      
+      /// en translation: Cancel
+      /// 
+      /// Locales: en, de
+      static func cancel(_: Void = ()) -> String {
+        return NSLocalizedString("cancel", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: GitHub
+      /// 
+      /// Locales: en, de
+      static func github(_: Void = ()) -> String {
+        return NSLocalizedString("github", bundle: R.hostingBundle, comment: "")
+      }
       
       /// en translation: Select a Library
       /// 
       /// Locales: en, de
       static func select_a_library(_: Void = ()) -> String {
         return NSLocalizedString("select_a_library", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Website
+      /// 
+      /// Locales: en, de
+      static func website(_: Void = ()) -> String {
+        return NSLocalizedString("website", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}
@@ -107,7 +148,7 @@ struct _R: Rswift.Validatable {
     }
     
     struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = ViewController
+      typealias InitialController = UIKit.UINavigationController
       
       let bundle = R.hostingBundle
       let name = "Main"
