@@ -21,7 +21,7 @@ class MainTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    // TODO
+    presentCameraViewController()
   }
   
   override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
@@ -42,7 +42,8 @@ class MainTableViewController: UITableViewController {
     presentAlertViewController(withTitle: nil,
                                message: nil,
                                actions: actions,
-                               addDefaultCancelAction: true)
+                               addDefaultCancelAction: true,
+                               style: .actionSheet)
   }
   
   // MARK: - TableView Data Source
@@ -56,8 +57,31 @@ class MainTableViewController: UITableViewController {
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.mainTableViewCell, for: indexPath) as! MainTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: R.reuseIdentifier.mainTableViewCell, for: indexPath)!
     cell.titleLabel.text = availableScanners[indexPath.row].title
     return cell
+  }
+  
+  // MARK: - Functions
+  
+  private func presentCameraViewController() {
+    let viewController = R.storyboard.camera().instantiateInitialViewController() as! CameraViewController
+    viewController.scannerDelegate = self
+    present(viewController, animated: true, completion: nil)
+  }
+}
+
+extension MainTableViewController: ScannerDelegate {
+  
+  func didCancelScanning() {
+    navigationController?.presentedViewController?.dismiss(animated: true, completion: nil)
+  }
+  
+  func didFinishScanning() {
+    
+  }
+  
+  func useImageGallery() {
+    
   }
 }

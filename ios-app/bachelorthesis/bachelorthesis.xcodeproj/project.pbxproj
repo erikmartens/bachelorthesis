@@ -19,6 +19,9 @@
 		BEDB8F892319226D00C71D71 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F882319226D00C71D71 /* MainTableViewCell.swift */; };
 		BEDB8F8D2319264500C71D71 /* UIViewController+PresentSafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F8C2319264500C71D71 /* UIViewController+PresentSafariViewController.swift */; };
 		BEDB8F8F231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F8E231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift */; };
+		BEDB8F9223192F6300C71D71 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F9123192F6300C71D71 /* CameraViewController.swift */; };
+		BEDB8F9423192F7900C71D71 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDB8F9323192F7900C71D71 /* Camera.storyboard */; };
+		BEDB8F96231BC7FD00C71D71 /* CameraScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		BEDB8F882319226D00C71D71 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		BEDB8F8C2319264500C71D71 /* UIViewController+PresentSafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentSafariViewController.swift"; sourceTree = "<group>"; };
 		BEDB8F8E231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentUIAlertController.swift"; sourceTree = "<group>"; };
+		BEDB8F9123192F6300C71D71 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		BEDB8F9323192F7900C71D71 /* Camera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
+		BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanner.swift; sourceTree = "<group>"; };
 		C29B85E95E5FFF7332097F6A /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +98,7 @@
 				BEDB8F762319086E00C71D71 /* Main */,
 				BEDB8F7523181F3C00C71D71 /* Launch Scene */,
 				BEDB8F7423181EEC00C71D71 /* Main Scene */,
+				BEDB8F9023192F3F00C71D71 /* Camera Scene */,
 				BEDB8F8323191F4F00C71D71 /* Resources */,
 				BEDB8F8A2319260200C71D71 /* Helpers */,
 			);
@@ -147,6 +154,16 @@
 				BEDB8F8E231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BEDB8F9023192F3F00C71D71 /* Camera Scene */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB8F9123192F6300C71D71 /* CameraViewController.swift */,
+				BEDB8F9323192F7900C71D71 /* Camera.storyboard */,
+				BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */,
+			);
+			path = "Camera Scene";
 			sourceTree = "<group>";
 		};
 		D4650AE85F218C7875DE9E51 /* Frameworks */ = {
@@ -224,6 +241,7 @@
 				BEDB8F7B2319093600C71D71 /* Localizable.strings in Resources */,
 				BE8C567323181425007C18BA /* Assets.xcassets in Resources */,
 				BE8C567123181424007C18BA /* Main.storyboard in Resources */,
+				BEDB8F9423192F7900C71D71 /* Camera.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,10 +348,12 @@
 				BEDB8F8523191F7400C71D71 /* AvailableScanners.swift in Sources */,
 				BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */,
 				BEDB8F8F231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift in Sources */,
+				BEDB8F9223192F6300C71D71 /* CameraViewController.swift in Sources */,
 				BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */,
 				BEDB8F87231921BC00C71D71 /* R.generated.swift in Sources */,
 				BEDB8F892319226D00C71D71 /* MainTableViewCell.swift in Sources */,
 				BEDB8F8D2319264500C71D71 /* UIViewController+PresentSafariViewController.swift in Sources */,
+				BEDB8F96231BC7FD00C71D71 /* CameraScanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

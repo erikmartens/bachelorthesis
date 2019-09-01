@@ -10,10 +10,10 @@ import UIKit
 
 extension UIViewController {
   
-  func presentAlertViewController(withTitle title: String?, message: String?, actions: [String: ((UIAlertAction) -> Void)], addDefaultCancelAction: Bool) {
+  func presentAlertViewController(withTitle title: String?, message: String?, actions: [String: ((UIAlertAction) -> Void)], addDefaultCancelAction: Bool, style: UIAlertController.Style) {
     let alertController = UIAlertController(title: title,
                                             message: message,
-                                            preferredStyle: .alert)
+                                            preferredStyle: style)
     
     actions.keys.forEach { key in
       let action = UIAlertAction(title: key,
@@ -23,7 +23,7 @@ extension UIViewController {
     }
     
     if addDefaultCancelAction {
-      let cancelAction = UIAlertAction(title: R.string.localizable.cancel(), style: .default) { _ in
+      let cancelAction = UIAlertAction(title: R.string.localizable.cancel(), style: .cancel) { _ in
         // nothing to do here, closes itself
       }
       alertController.addAction(cancelAction)
