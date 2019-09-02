@@ -78,6 +78,7 @@
     
     cv::Mat grayImage;
     cv::cvtColor(image, grayImage, cv::COLOR_RGBA2GRAY);
+    cv::GaussianBlur(grayImage, grayImage, cv::Size(5,5), 1.2);
     
     cv::Mat edges;
     cv::Canny(grayImage, edges, 0, 50);
