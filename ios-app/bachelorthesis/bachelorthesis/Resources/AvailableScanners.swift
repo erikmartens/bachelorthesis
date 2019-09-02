@@ -12,16 +12,20 @@ struct ScannerDTO {
   let title: String
   let website: URL?
   let github: URL?
+  let scannerLibrary: ScannerLibrary
 }
 
 let availableScanners = [
   ScannerDTO(title: "Metal",
              website: URL(string: "https://developer.apple.com/metal/"),
-             github: nil),
+             github: nil,
+             scannerLibrary: .metal),
   ScannerDTO(title: "GPUImage",
              website: URL(string: "http://www.sunsetlakesoftware.com/"),
-             github: URL(string: "https://github.com/BradLarson/GPUImage")),
+             github: URL(string: "https://github.com/BradLarson/GPUImage"),
+             scannerLibrary: .gpuImage),
   ScannerDTO(title: "OpenCV",
              website: URL(string: "https://opencv.org/"),
-             github: URL(string: "https://github.com/opencv"))
+             github: URL(string: "https://github.com/opencv"),
+             scannerLibrary: .openCV)
 ]

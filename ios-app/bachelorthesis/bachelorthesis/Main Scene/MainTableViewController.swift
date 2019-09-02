@@ -21,7 +21,7 @@ class MainTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    presentCameraViewController()
+    presentCameraViewController(for: availableScanners[indexPath.row].scannerLibrary)
   }
   
   override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
@@ -39,7 +39,7 @@ class MainTableViewController: UITableViewController {
       }
     }
 
-    presentAlertViewController(withTitle: nil,
+    presentAlertViewController(withTitle: R.string.localizable.additional_information(),
                                message: nil,
                                actions: actions,
                                addDefaultCancelAction: true,
@@ -64,8 +64,9 @@ class MainTableViewController: UITableViewController {
   
   // MARK: - Functions
   
-  private func presentCameraViewController() {
+  private func presentCameraViewController(for scannerLibrary: ScannerLibrary) {
     let viewController = R.storyboard.camera().instantiateInitialViewController() as! CameraViewController
+    viewController.selectedScannerLibrary = scannerLibrary
     viewController.scannerDelegate = self
     present(viewController, animated: true, completion: nil)
   }

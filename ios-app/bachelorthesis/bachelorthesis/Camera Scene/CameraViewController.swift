@@ -27,7 +27,8 @@ class CameraViewController: UIViewController {
   
   // MARK: - Properties
   
-  weak var scannerDelegate: ScannerDelegate?
+  weak var scannerDelegate: ScannerDelegate!
+  var selectedScannerLibrary: ScannerLibrary!
   
   private var cameraScanner: CameraScanner!
   
@@ -51,7 +52,7 @@ class CameraViewController: UIViewController {
     
     versionLabel.text = OpenCVWrapper.openCVVersionString()
     
-    cameraScanner = CameraScanner(frame: cameraView.frame)
+    cameraScanner = CameraScanner(frame: cameraView.frame, scannerLibrary: selectedScannerLibrary)
     cameraView.layer.addSublayer(cameraScanner.videoPreviewLayer!)
     cameraScanner.startCaptureSessession()
   }

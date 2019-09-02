@@ -9,21 +9,30 @@
 import Foundation
 import AVFoundation
 
+enum ScannerLibrary {
+  case metal
+  case gpuImage
+  case openCV
+}
+
 class CameraScanner {
   
   // MARK: - Properties
   
-  private var videoCaptureDevice: AVCaptureDevice?
+  private var scannerLibrary: ScannerLibrary
   
+  private var videoCaptureDevice: AVCaptureDevice?
   private let videoCaptureSession = AVCaptureSession()
   private let output = AVCaptureVideoDataOutput()
-  private var input: AVCaptureDeviceInput? = nil
+  private var input: AVCaptureDeviceInput?
   
   var videoPreviewLayer: AVCaptureVideoPreviewLayer?
   
   // MARK: - Initialization
   
-  init(frame: CGRect) {
+  init(frame: CGRect, scannerLibrary: ScannerLibrary) {
+    self.scannerLibrary = scannerLibrary
+    
     videoCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video)
     
     videoCaptureSession.sessionPreset = AVCaptureSession.Preset.photo

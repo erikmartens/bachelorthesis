@@ -58,8 +58,12 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 5 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 6 localization keys.
     struct localizable {
+      /// en translation: Additional Information
+      /// 
+      /// Locales: en, de
+      static let additional_information = Rswift.StringResource(key: "additional_information", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Cancel
       /// 
       /// Locales: en, de
@@ -80,6 +84,13 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let website = Rswift.StringResource(key: "website", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      
+      /// en translation: Additional Information
+      /// 
+      /// Locales: en, de
+      static func additional_information(_: Void = ()) -> String {
+        return NSLocalizedString("additional_information", bundle: R.hostingBundle, comment: "")
+      }
       
       /// en translation: Cancel
       /// 
