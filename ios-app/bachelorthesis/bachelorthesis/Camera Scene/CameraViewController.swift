@@ -75,6 +75,8 @@ class CameraViewController: UIViewController {
                           for: UIControl.State())
     galleryButton.setTitle(R.string.localizable.picture_from_gallery(),
                           for: UIControl.State())
+    overlayButton.setTitle(R.string.localizable.overlay(),
+                           for: UIControl.State())
     
     versionLabel.text = OpenCVScannerBridge.openCVVersionString()
     overlayImageView.layer.opacity = 0.5
