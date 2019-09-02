@@ -32,7 +32,65 @@
                                     <constraint firstAttribute="width" secondItem="qdh-pU-4Dd" secondAttribute="height" multiplier="3:4" id="Ycj-nv-cbI"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wM2-HQ-de1">
+                            <stackView opaque="NO" contentMode="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gcf-BS-GrP">
+                                <rect key="frame" x="16" y="740" width="382" height="36"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YV8-bT-zvc" customClass="FramedButton" customModule="bachelorthesis" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="79.5" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="dQK-Ad-elf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="accentColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didPressCancelButton:" destination="EA3-IU-CYe" eventType="touchUpInside" id="GSD-An-fQk"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rgr-zW-oXj" customClass="FramedButton" customModule="bachelorthesis" customModuleProvider="target">
+                                        <rect key="frame" x="87.5" y="0.0" width="207" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="x95-yf-TMt"/>
+                                        </constraints>
+                                        <state key="normal" title="Button">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="accentColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMg-TU-61w" customClass="FramedButton" customModule="bachelorthesis" customModuleProvider="target">
+                                        <rect key="frame" x="302.5" y="0.0" width="79.5" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="Taa-U5-juD"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Overlay">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="accentColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="overlayButtonPressed:" destination="EA3-IU-CYe" eventType="touchUpInside" id="9tU-Wb-WQv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="YV8-bT-zvc" firstAttribute="width" secondItem="TMg-TU-61w" secondAttribute="width" id="h54-wb-fsk"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wM2-HQ-de1">
                                 <rect key="frame" x="16" y="96" width="382" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="93M-nh-1zl"/>
@@ -41,58 +99,23 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YV8-bT-zvc" customClass="FramedButton" customModule="bachelorthesis" customModuleProvider="target">
-                                <rect key="frame" x="16" y="44" width="56" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="dQK-Ad-elf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="accentColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="didPressCancelButton:" destination="EA3-IU-CYe" eventType="touchUpInside" id="GSD-An-fQk"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rgr-zW-oXj" customClass="FramedButton" customModule="bachelorthesis" customModuleProvider="target">
-                                <rect key="frame" x="184" y="826" width="46" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="x95-yf-TMt"/>
-                                </constraints>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="accentColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="fmM-G2-jX7" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YV8-bT-zvc" secondAttribute="trailing" id="4nB-31-1i4"/>
+                            <constraint firstItem="fmM-G2-jX7" firstAttribute="trailing" secondItem="gcf-BS-GrP" secondAttribute="trailing" constant="16" id="2tU-uQ-a5B"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aMc-9y-p2L" secondAttribute="bottom" id="9UK-w4-bYe"/>
                             <constraint firstItem="aMc-9y-p2L" firstAttribute="centerY" secondItem="FeO-eR-wIQ" secondAttribute="centerY" id="BJS-OL-TAw"/>
                             <constraint firstItem="qdh-pU-4Dd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FeO-eR-wIQ" secondAttribute="top" id="Bei-4M-wcH"/>
                             <constraint firstItem="qdh-pU-4Dd" firstAttribute="trailing" secondItem="FeO-eR-wIQ" secondAttribute="trailing" id="ICs-8Y-jeB"/>
-                            <constraint firstItem="Rgr-zW-oXj" firstAttribute="centerX" secondItem="FeO-eR-wIQ" secondAttribute="centerX" id="LJ7-U6-E85"/>
-                            <constraint firstItem="YV8-bT-zvc" firstAttribute="top" secondItem="FeO-eR-wIQ" secondAttribute="top" constant="44" id="RLC-L7-ZZV"/>
-                            <constraint firstItem="wM2-HQ-de1" firstAttribute="top" secondItem="YV8-bT-zvc" secondAttribute="bottom" constant="16" id="SaO-QP-JNK"/>
-                            <constraint firstItem="fmM-G2-jX7" firstAttribute="bottom" secondItem="Rgr-zW-oXj" secondAttribute="bottom" id="VDC-6i-akW"/>
+                            <constraint firstItem="gcf-BS-GrP" firstAttribute="leading" secondItem="fmM-G2-jX7" secondAttribute="leading" constant="16" id="Jp7-zP-q9L"/>
                             <constraint firstItem="aMc-9y-p2L" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FeO-eR-wIQ" secondAttribute="top" id="WAl-yH-fgU"/>
                             <constraint firstItem="wM2-HQ-de1" firstAttribute="leading" secondItem="fmM-G2-jX7" secondAttribute="leading" constant="16" id="WQw-4i-kgb"/>
                             <constraint firstItem="fmM-G2-jX7" firstAttribute="trailing" secondItem="wM2-HQ-de1" secondAttribute="trailing" constant="16" id="XVY-hL-afw"/>
                             <constraint firstAttribute="trailing" secondItem="aMc-9y-p2L" secondAttribute="trailing" id="Zsc-gQ-LO5"/>
+                            <constraint firstItem="fmM-G2-jX7" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gcf-BS-GrP" secondAttribute="bottom" constant="16" id="b3R-gL-nBv"/>
                             <constraint firstItem="qdh-pU-4Dd" firstAttribute="leading" secondItem="FeO-eR-wIQ" secondAttribute="leading" id="gaM-y6-g56"/>
-                            <constraint firstItem="Rgr-zW-oXj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fmM-G2-jX7" secondAttribute="leading" id="hcO-Gd-rd6"/>
-                            <constraint firstItem="fmM-G2-jX7" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Rgr-zW-oXj" secondAttribute="trailing" id="k6l-Dd-QfO"/>
-                            <constraint firstItem="YV8-bT-zvc" firstAttribute="leading" secondItem="fmM-G2-jX7" secondAttribute="leading" constant="16" id="lV5-jD-fNN"/>
+                            <constraint firstItem="gcf-BS-GrP" firstAttribute="top" secondItem="aMc-9y-p2L" secondAttribute="bottom" constant="16" id="sbK-lH-qBz"/>
+                            <constraint firstItem="Rgr-zW-oXj" firstAttribute="width" secondItem="FeO-eR-wIQ" secondAttribute="width" multiplier="1/2" id="tfM-PA-slI"/>
                             <constraint firstItem="aMc-9y-p2L" firstAttribute="leading" secondItem="FeO-eR-wIQ" secondAttribute="leading" id="wQe-dO-bqS"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qdh-pU-4Dd" secondAttribute="bottom" id="yMN-Nd-qTy"/>
                             <constraint firstItem="qdh-pU-4Dd" firstAttribute="centerY" secondItem="FeO-eR-wIQ" secondAttribute="centerY" id="yph-9h-bY9"/>
@@ -102,7 +125,8 @@
                     <connections>
                         <outlet property="cameraView" destination="aMc-9y-p2L" id="pmx-rm-GDd"/>
                         <outlet property="cancelButton" destination="YV8-bT-zvc" id="yGa-Qk-zf4"/>
-                        <outlet property="gallerButton" destination="Rgr-zW-oXj" id="SrI-91-r7l"/>
+                        <outlet property="galleryButton" destination="Rgr-zW-oXj" id="SrI-91-r7l"/>
+                        <outlet property="overlayButton" destination="TMg-TU-61w" id="nU9-Om-chC"/>
                         <outlet property="overlayImageView" destination="qdh-pU-4Dd" id="eCo-eN-7T4"/>
                         <outlet property="versionLabel" destination="wM2-HQ-de1" id="emH-6F-ye0"/>
                     </connections>

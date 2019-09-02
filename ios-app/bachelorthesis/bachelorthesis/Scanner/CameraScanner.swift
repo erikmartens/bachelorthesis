@@ -36,6 +36,7 @@ class CameraScanner: NSObject {
   private var openCvScanner: OpenCVScannerBridge?
   
   var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+  var shouldProcessEdges: Bool = true
   
   // MARK: - Initialization
   
@@ -83,7 +84,7 @@ class CameraScanner: NSObject {
   
   // MARK: - Private Functions
   
-  private func precoessOutput(_ sampleBuffer: CMSampleBuffer) {
+  private func processEdges(_ sampleBuffer: CMSampleBuffer) {
     switch scannerLibrary {
     case .metal:
       break
@@ -103,7 +104,9 @@ class CameraScanner: NSObject {
 extension CameraScanner: AVCaptureVideoDataOutputSampleBufferDelegate {
   
   func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-    precoessOutput(sampleBuffer)
+    if shouldProcessEdges {
+      processEdges(sampleBuffer)
+    }
   }
   
   func captureOutput(_ captureOutput: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {

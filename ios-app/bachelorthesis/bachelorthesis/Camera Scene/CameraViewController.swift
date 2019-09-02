@@ -20,7 +20,8 @@ class CameraViewController: UIViewController {
   // MARK: - IBOutlets
   
   @IBOutlet weak var cancelButton: FramedButton!
-  @IBOutlet weak var gallerButton: FramedButton!
+  @IBOutlet weak var galleryButton: FramedButton!
+  @IBOutlet weak var overlayButton: FramedButton!
   @IBOutlet weak var cameraView: UIView!
   @IBOutlet weak var overlayImageView: UIImageView!
   @IBOutlet weak var versionLabel: UILabel!
@@ -31,6 +32,13 @@ class CameraViewController: UIViewController {
   var selectedScannerLibrary: ScannerLibrary!
   
   private var cameraScanner: CameraScanner!
+  
+  private var overlayVisible: Bool = true {
+    didSet {
+      overlayImageView.isHidden = !overlayVisible
+      cameraScanner.shouldProcessEdges = overlayVisible
+    }
+  }
   
   // MARK: - ViewController Life Cycle
   
@@ -56,12 +64,16 @@ class CameraViewController: UIViewController {
     scannerDelegate?.didCancelScanning()
   }
   
+  @IBAction func overlayButtonPressed(_ sender: FramedButton) {
+    overlayVisible = !overlayVisible
+  }
+  
   // MARK: - Private Functions
   
   private func setupUserInterface() {
     cancelButton.setTitle(R.string.localizable.cancel().capitalized,
                           for: UIControl.State())
-    gallerButton.setTitle(R.string.localizable.picture_from_gallery(),
+    galleryButton.setTitle(R.string.localizable.picture_from_gallery(),
                           for: UIControl.State())
     
     versionLabel.text = OpenCVScannerBridge.openCVVersionString()
