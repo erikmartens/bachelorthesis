@@ -14,12 +14,12 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface OpenCVScannerBridge : NSObject
-  
+
 + (NSString * _Nonnull)openCVVersionString;
-  
+
 - (UIImage * _Nonnull)extractSquaresFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation;
 - (UIImage * _Nonnull)extractEdgesFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation;
-  
+
 @end
 
 #endif /* OpenCVScannerBridge_h */
