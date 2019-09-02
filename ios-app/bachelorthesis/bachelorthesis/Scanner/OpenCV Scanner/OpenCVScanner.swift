@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol OpenCvScannerProtocol {
-  func processImage(image: UIImage) -> CGPath
-}
-
-class OpenCvScanner {
-  
-}
-
-extension OpenCvScanner: OpenCvScannerProtocol {
-  
-}
+//protocol OpenCvScannerProtocol {
+//  func processImage(image: UIImage) -> CGPath
+//}
+//
+//class OpenCvScanner {
+//  
+//}
+//
+//extension OpenCvScanner: OpenCvScannerProtocol {
+//  
+//}

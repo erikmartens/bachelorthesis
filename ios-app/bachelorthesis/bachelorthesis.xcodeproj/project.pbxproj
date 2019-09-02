@@ -23,7 +23,7 @@
 		BEDB8F9423192F7900C71D71 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDB8F9323192F7900C71D71 /* Camera.storyboard */; };
 		BEDB8F96231BC7FD00C71D71 /* CameraScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */; };
 		BEDB8F99231BD3A100C71D71 /* FramedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F98231BD3A100C71D71 /* FramedButton.swift */; };
-		BEDB8F9F231D0B9200C71D71 /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F9E231D0B9200C71D71 /* OpenCVWrapper.mm */; };
+		BEDB8F9F231D0B9200C71D71 /* OpenCVScannerBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */; };
 		BEDB8FA2231D18B700C71D71 /* OpenCVScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA1231D18B700C71D71 /* OpenCVScanner.swift */; };
 		BEDB8FA4231D190F00C71D71 /* CameraScannerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */; };
 /* End PBXBuildFile section */
@@ -52,8 +52,8 @@
 		BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanner.swift; sourceTree = "<group>"; };
 		BEDB8F98231BD3A100C71D71 /* FramedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FramedButton.swift; sourceTree = "<group>"; };
 		BEDB8F9C231D0B9100C71D71 /* bachelorthesis-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bachelorthesis-Bridging-Header.h"; sourceTree = "<group>"; };
-		BEDB8F9D231D0B9200C71D71 /* OpenCVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
-		BEDB8F9E231D0B9200C71D71 /* OpenCVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
+		BEDB8F9D231D0B9200C71D71 /* OpenCVScannerBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVScannerBridge.h; sourceTree = "<group>"; };
+		BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVScannerBridge.mm; sourceTree = "<group>"; };
 		BEDB8FA0231D0C1600C71D71 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		BEDB8FA1231D18B700C71D71 /* OpenCVScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCVScanner.swift; sourceTree = "<group>"; };
 		BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScannerProtocol.swift; sourceTree = "<group>"; };
@@ -201,8 +201,8 @@
 		BEDB8F9B231D096F00C71D71 /* OpenCV Scanner */ = {
 			isa = PBXGroup;
 			children = (
-				BEDB8F9D231D0B9200C71D71 /* OpenCVWrapper.h */,
-				BEDB8F9E231D0B9200C71D71 /* OpenCVWrapper.mm */,
+				BEDB8F9D231D0B9200C71D71 /* OpenCVScannerBridge.h */,
+				BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */,
 				BEDB8FA1231D18B700C71D71 /* OpenCVScanner.swift */,
 			);
 			path = "OpenCV Scanner";
@@ -397,7 +397,7 @@
 				BEDB8F87231921BC00C71D71 /* R.generated.swift in Sources */,
 				BEDB8FA2231D18B700C71D71 /* OpenCVScanner.swift in Sources */,
 				BEDB8F892319226D00C71D71 /* MainTableViewCell.swift in Sources */,
-				BEDB8F9F231D0B9200C71D71 /* OpenCVWrapper.mm in Sources */,
+				BEDB8F9F231D0B9200C71D71 /* OpenCVScannerBridge.mm in Sources */,
 				BEDB8FA4231D190F00C71D71 /* CameraScannerProtocol.swift in Sources */,
 				BEDB8F8D2319264500C71D71 /* UIViewController+PresentSafariViewController.swift in Sources */,
 				BEDB8F96231BC7FD00C71D71 /* CameraScanner.swift in Sources */,

@@ -50,7 +50,7 @@ class CameraViewController: UIViewController {
     gallerButton.setTitle(R.string.localizable.picture_from_gallery(),
                           for: UIControl.State())
     
-    versionLabel.text = OpenCVWrapper.openCVVersionString()
+    versionLabel.text = OpenCVScannerBridge.openCVVersionString()
     
     cameraScanner = CameraScanner(frame: cameraView.frame, scannerLibrary: selectedScannerLibrary)
     cameraView.layer.addSublayer(cameraScanner.videoPreviewLayer!)

@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OpenCVWrapper : NSObject
+@interface OpenCVScannerBridge : NSObject
   
 + (NSString *)openCVVersionString;
   

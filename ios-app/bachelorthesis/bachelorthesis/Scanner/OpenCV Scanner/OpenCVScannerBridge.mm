@@ -7,9 +7,9 @@
 //
 
 #import <opencv2/opencv.hpp>
-#import "OpenCVWrapper.h"
+#import "OpenCVScannerBridge.h"
 
-@implementation OpenCVWrapper
+@implementation OpenCVScannerBridge
   
 + (NSString *)openCVVersionString {
   return [NSString stringWithFormat:@"OpenCV Version %s",  CV_VERSION];
