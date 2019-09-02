@@ -21,9 +21,13 @@ class CameraViewController: UIViewController {
   
   @IBOutlet weak var cancelButton: FramedButton!
   @IBOutlet weak var galleryButton: FramedButton!
-  @IBOutlet weak var overlayButton: FramedButton!
+  @IBOutlet weak var edgesOverlayButton: FramedButton!
+  
+  
   @IBOutlet weak var cameraView: UIView!
-  @IBOutlet weak var overlayImageView: UIImageView!
+  @IBOutlet weak var edgesOverlayImageView: UIImageView!
+  @IBOutlet weak var squaresOverlayImageView: UIImageView!
+  
   @IBOutlet weak var versionLabel: UILabel!
   
   // MARK: - Properties
@@ -35,7 +39,7 @@ class CameraViewController: UIViewController {
   
   private var overlayVisible: Bool = true {
     didSet {
-      overlayImageView.isHidden = !overlayVisible
+      edgesOverlayImageView.isHidden = !overlayVisible
       cameraScanner.shouldProcessEdges = overlayVisible
     }
   }
@@ -75,11 +79,11 @@ class CameraViewController: UIViewController {
                           for: UIControl.State())
     galleryButton.setTitle(R.string.localizable.picture_from_gallery(),
                           for: UIControl.State())
-    overlayButton.setTitle(R.string.localizable.overlay(),
+    edgesOverlayButton.setTitle(R.string.localizable.overlay(),
                            for: UIControl.State())
     
     versionLabel.text = OpenCVScannerBridge.openCVVersionString()
-    overlayImageView.layer.opacity = 0.5
+    edgesOverlayImageView.layer.opacity = 0.5
   }
   
   private func setupScanner() {
@@ -92,9 +96,15 @@ class CameraViewController: UIViewController {
 
 extension CameraViewController: CameraScannerDelegate {
   
-  func updateOverlay(with image: UIImage) {
+  func updateEdgesOverlay(with image: UIImage) {
     DispatchQueue.main.async {
-      self.overlayImageView.image = image
+      self.edgesOverlayImageView.image = image
+    }
+  }
+  
+  func updateSquaresOverlay(with image: UIImage) {
+    DispatchQueue.main.async {
+      self.squaresOverlayImageView.image = image
     }
   }
 }

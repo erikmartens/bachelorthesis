@@ -20,16 +20,23 @@
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aMc-9y-p2L">
                                 <rect key="frame" x="0.0" y="172" width="414" height="552"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="aMc-9y-p2L" secondAttribute="height" multiplier="3:4" id="hnV-rs-uv0"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdh-pU-4Dd" userLabel="Overlay View" customClass="UIImageView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdh-pU-4Dd" userLabel="Edges Overlay View" customClass="UIImageView">
                                 <rect key="frame" x="0.0" y="172" width="414" height="552"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="qdh-pU-4Dd" secondAttribute="height" multiplier="3:4" id="Ycj-nv-cbI"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xYJ-44-0T4" userLabel="Squares Overlay View" customClass="UIImageView">
+                                <rect key="frame" x="0.0" y="172" width="414" height="552"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="xYJ-44-0T4" secondAttribute="height" multiplier="3:4" id="3wO-tR-mFd"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gcf-BS-GrP">
@@ -90,8 +97,8 @@
                                     <constraint firstItem="YV8-bT-zvc" firstAttribute="width" secondItem="TMg-TU-61w" secondAttribute="width" id="h54-wb-fsk"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wM2-HQ-de1">
-                                <rect key="frame" x="16" y="96" width="382" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wM2-HQ-de1">
+                                <rect key="frame" x="16" y="-24" width="382" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="93M-nh-1zl"/>
                                 </constraints>
@@ -102,12 +109,19 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="xYJ-44-0T4" firstAttribute="leading" secondItem="FeO-eR-wIQ" secondAttribute="leading" id="2cH-Sx-HRM"/>
                             <constraint firstItem="fmM-G2-jX7" firstAttribute="trailing" secondItem="gcf-BS-GrP" secondAttribute="trailing" constant="16" id="2tU-uQ-a5B"/>
+                            <constraint firstAttribute="trailing" secondItem="xYJ-44-0T4" secondAttribute="trailing" id="56s-Jy-3Ju"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aMc-9y-p2L" secondAttribute="bottom" id="9UK-w4-bYe"/>
                             <constraint firstItem="aMc-9y-p2L" firstAttribute="centerY" secondItem="FeO-eR-wIQ" secondAttribute="centerY" id="BJS-OL-TAw"/>
                             <constraint firstItem="qdh-pU-4Dd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FeO-eR-wIQ" secondAttribute="top" id="Bei-4M-wcH"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qdh-pU-4Dd" secondAttribute="bottom" id="EIv-tl-85m"/>
+                            <constraint firstAttribute="top" secondItem="wM2-HQ-de1" secondAttribute="bottom" id="Ejk-4F-eab"/>
                             <constraint firstItem="qdh-pU-4Dd" firstAttribute="trailing" secondItem="FeO-eR-wIQ" secondAttribute="trailing" id="ICs-8Y-jeB"/>
                             <constraint firstItem="gcf-BS-GrP" firstAttribute="leading" secondItem="fmM-G2-jX7" secondAttribute="leading" constant="16" id="Jp7-zP-q9L"/>
+                            <constraint firstItem="xYJ-44-0T4" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FeO-eR-wIQ" secondAttribute="top" id="Lm5-9A-UeR"/>
+                            <constraint firstItem="xYJ-44-0T4" firstAttribute="centerY" secondItem="FeO-eR-wIQ" secondAttribute="centerY" id="QEo-5b-k6Q"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xYJ-44-0T4" secondAttribute="bottom" id="RV5-az-wjQ"/>
                             <constraint firstItem="aMc-9y-p2L" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FeO-eR-wIQ" secondAttribute="top" id="WAl-yH-fgU"/>
                             <constraint firstItem="wM2-HQ-de1" firstAttribute="leading" secondItem="fmM-G2-jX7" secondAttribute="leading" constant="16" id="WQw-4i-kgb"/>
                             <constraint firstItem="fmM-G2-jX7" firstAttribute="trailing" secondItem="wM2-HQ-de1" secondAttribute="trailing" constant="16" id="XVY-hL-afw"/>
@@ -117,7 +131,6 @@
                             <constraint firstItem="gcf-BS-GrP" firstAttribute="top" secondItem="aMc-9y-p2L" secondAttribute="bottom" constant="16" id="sbK-lH-qBz"/>
                             <constraint firstItem="Rgr-zW-oXj" firstAttribute="width" secondItem="FeO-eR-wIQ" secondAttribute="width" multiplier="1/2" id="tfM-PA-slI"/>
                             <constraint firstItem="aMc-9y-p2L" firstAttribute="leading" secondItem="FeO-eR-wIQ" secondAttribute="leading" id="wQe-dO-bqS"/>
-                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qdh-pU-4Dd" secondAttribute="bottom" id="yMN-Nd-qTy"/>
                             <constraint firstItem="qdh-pU-4Dd" firstAttribute="centerY" secondItem="FeO-eR-wIQ" secondAttribute="centerY" id="yph-9h-bY9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fmM-G2-jX7"/>
@@ -125,9 +138,10 @@
                     <connections>
                         <outlet property="cameraView" destination="aMc-9y-p2L" id="pmx-rm-GDd"/>
                         <outlet property="cancelButton" destination="YV8-bT-zvc" id="yGa-Qk-zf4"/>
+                        <outlet property="edgesOverlayButton" destination="TMg-TU-61w" id="nU9-Om-chC"/>
+                        <outlet property="edgesOverlayImageView" destination="qdh-pU-4Dd" id="eCo-eN-7T4"/>
                         <outlet property="galleryButton" destination="Rgr-zW-oXj" id="SrI-91-r7l"/>
-                        <outlet property="overlayButton" destination="TMg-TU-61w" id="nU9-Om-chC"/>
-                        <outlet property="overlayImageView" destination="qdh-pU-4Dd" id="eCo-eN-7T4"/>
+                        <outlet property="squaresOverlayImageView" destination="xYJ-44-0T4" id="weC-Od-ykc"/>
                         <outlet property="versionLabel" destination="wM2-HQ-de1" id="emH-6F-ye0"/>
                     </connections>
                 </viewController>

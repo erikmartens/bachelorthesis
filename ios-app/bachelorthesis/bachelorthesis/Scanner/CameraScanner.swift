@@ -16,7 +16,8 @@ enum ScannerLibrary {
 }
 
 protocol CameraScannerDelegate: class {
-  func updateOverlay(with image: UIImage)
+  func updateEdgesOverlay(with image: UIImage)
+  func updateSquaresOverlay(with image: UIImage)
 }
 
 class CameraScanner: NSObject {
@@ -37,6 +38,10 @@ class CameraScanner: NSObject {
   
   var videoPreviewLayer: AVCaptureVideoPreviewLayer?
   var shouldProcessEdges: Bool = true
+  
+  private var currentOrientation: AVCaptureVideoOrientation {
+    return AVCaptureVideoOrientation(from: UIDevice.current.orientation) ?? .portrait
+  }
   
   // MARK: - Initialization
   
@@ -94,9 +99,23 @@ class CameraScanner: NSObject {
       if openCvScanner == nil {
         openCvScanner = OpenCVScannerBridge()
       }
-      let currentOrientation = AVCaptureVideoOrientation(from: UIDevice.current.orientation) ?? .portrait
       let resultImage = openCvScanner!.extractEdges(from: sampleBuffer, with: currentOrientation)
-      cameraScannerDelegate?.updateOverlay(with: resultImage)
+      cameraScannerDelegate?.updateEdgesOverlay(with: resultImage)
+    }
+  }
+  
+  private func processSquares(_ sampleBuffer: CMSampleBuffer) {
+    switch scannerLibrary {
+    case .metal:
+      break
+    case .gpuImage:
+      break
+    case .openCV:
+      if openCvScanner == nil {
+        openCvScanner = OpenCVScannerBridge()
+      }
+      let resultImage = openCvScanner!.extractSquares(from: sampleBuffer, with: currentOrientation)
+      cameraScannerDelegate?.updateSquaresOverlay(with: resultImage)
     }
   }
 }
@@ -106,6 +125,8 @@ extension CameraScanner: AVCaptureVideoDataOutputSampleBufferDelegate {
   func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
     if shouldProcessEdges {
       processEdges(sampleBuffer)
+    } else {
+      processSquares(sampleBuffer)
     }
   }
   

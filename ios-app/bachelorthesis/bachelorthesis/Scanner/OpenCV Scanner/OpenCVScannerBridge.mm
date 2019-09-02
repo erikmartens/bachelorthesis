@@ -11,6 +11,7 @@
 
 #import <opencv2/opencv.hpp>
 #include <opencv2/imgcodecs/ios.h>
+#include "squares.cpp"
 
 @implementation OpenCVScannerBridge
   
@@ -36,36 +37,42 @@
   
 # pragma mark Functions
   
-//- (CGPathRef * _Nullable)extractDocumentFrom:(CMSampleBufferRef _Nonnull)sampleBuffer
-//    {
-//      CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-//      CVPixelBufferLockBaseAddress(imageBuffer, 0);
-//      int bufferHeight = (int) CVPixelBufferGetHeight(imageBuffer);
-//      int bufferWidth = (int) CVPixelBufferGetWidth(imageBuffer);
-//      void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
-//      size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-//      const cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
-//
-//      const cv::Mat grayImage;
-//      cv::cvtColor(image, grayImage, cv::COLOR_RGBA2GRAY);
-//
-//      cv::Mat edges;
-//      cv::Canny(grayImage, edges, 0, 50);
-//
-////      std::vector<OcrWord> candidates = self.extractionBarcode->extract(image, [@"" UTF8String]);
-////      SCExtractionBarcodeResult *result = [[SCExtractionBarcodeResult alloc] init];
-////      if (candidates.size() > 0) {
-////        OcrWord candidate = candidates[0];
-////        result.cardNumber = [NSString stringWithCString:candidate.text.c_str() encoding:[NSString defaultCStringEncoding]];
-////        result.confidence = candidate.confidence;
-////        result.barcodeFormat = [[BarcodeFormat alloc] initWithManateeType:candidate.barcodeTypeCode];
-////      }
-//
-//      CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
-//      return result;
-//      return nil;
-//    }
+- (UIImage * _Nonnull)extractSquaresFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation
+    {
+      CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+      CVPixelBufferLockBaseAddress(imageBuffer, 0);
+      int bufferHeight = (int) CVPixelBufferGetHeight(imageBuffer);
+      int bufferWidth = (int) CVPixelBufferGetWidth(imageBuffer);
+      void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
+      size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+      const cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
   
+      vector<vector<cv::Point> > detected_squares;
+      findSquares(image, detected_squares);
+      
+      cv::Mat squares_image = image;
+      drawSquares(squares_image, detected_squares);
+
+      cv::Mat squares_flipped;
+      switch (imageOrientation)
+      {
+        case AVCaptureVideoOrientationPortrait:
+        cv::rotate(squares_image, squares_flipped, cv::ROTATE_90_CLOCKWISE);
+        break;
+        case AVCaptureVideoOrientationPortraitUpsideDown:
+        cv::rotate(squares_image, squares_flipped, cv::ROTATE_90_CLOCKWISE);
+        break;
+        case AVCaptureVideoOrientationLandscapeRight:
+        cv::rotate(squares_image, squares_flipped, cv::ROTATE_90_CLOCKWISE);
+        break;
+        case AVCaptureVideoOrientationLandscapeLeft:
+        cv::rotate(squares_image, squares_flipped, cv::ROTATE_90_CLOCKWISE);
+        break;
+      }
+
+      return MatToUIImage(squares_flipped);
+    }
+
   - (UIImage * _Nonnull)extractEdgesFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation
   {
     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
@@ -76,31 +83,31 @@
     size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
     const cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
     
-    cv::Mat grayImage;
-    cv::cvtColor(image, grayImage, cv::COLOR_RGBA2GRAY);
-    cv::GaussianBlur(grayImage, grayImage, cv::Size(5,5), 1.2);
+    cv::Mat gray_image;
+    cv::cvtColor(image, gray_image, cv::COLOR_RGBA2GRAY);
+    cv::GaussianBlur(gray_image, gray_image, cv::Size(5,5), 1.2);
     
     cv::Mat edges;
-    cv::Canny(grayImage, edges, 0, 50);
+    cv::Canny(gray_image, edges, 0, 50);
     
-    cv::Mat edgesFlipped;
+    cv::Mat edges_flipped;
     switch (imageOrientation)
     {
       case AVCaptureVideoOrientationPortrait:
-      cv::rotate(edges, edgesFlipped, cv::ROTATE_90_CLOCKWISE);
+      cv::rotate(edges, edges_flipped, cv::ROTATE_90_CLOCKWISE);
       break;
       case AVCaptureVideoOrientationPortraitUpsideDown:
-      cv::rotate(edges, edgesFlipped, cv::ROTATE_90_CLOCKWISE);
+      cv::rotate(edges, edges_flipped, cv::ROTATE_90_CLOCKWISE);
       break;
       case AVCaptureVideoOrientationLandscapeRight:
-      cv::rotate(edges, edgesFlipped, cv::ROTATE_90_CLOCKWISE);
+      cv::rotate(edges, edges_flipped, cv::ROTATE_90_CLOCKWISE);
       break;
       case AVCaptureVideoOrientationLandscapeLeft:
-      cv::rotate(edges, edgesFlipped, cv::ROTATE_90_CLOCKWISE);
+      cv::rotate(edges, edges_flipped, cv::ROTATE_90_CLOCKWISE);
       break;
     }
     
-    return MatToUIImage(edgesFlipped);
+    return MatToUIImage(edges_flipped);
   }
   
 @end

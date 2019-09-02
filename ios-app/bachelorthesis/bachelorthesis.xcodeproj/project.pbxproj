@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2E28E9503A8FA1AFACF3EE10 /* libPods-bachelorthesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26ECCC2B927977348C5142B6 /* libPods-bachelorthesis.a */; };
+		BE6C3F2B231D7E6500EA116A /* squares.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE6C3F2A231D7E6500EA116A /* squares.cpp */; };
 		BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566B23181424007C18BA /* AppDelegate.swift */; };
 		BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566D23181424007C18BA /* MainTableViewController.swift */; };
 		BE8C567123181424007C18BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE8C566F23181424007C18BA /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		26ECCC2B927977348C5142B6 /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE68F3E1AB810CE00D7D6D99 /* Pods-bachelorthesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.release.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.release.xcconfig"; sourceTree = "<group>"; };
+		BE6C3F2A231D7E6500EA116A /* squares.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = squares.cpp; sourceTree = "<group>"; };
 		BE8C566823181424007C18BA /* bachelorthesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bachelorthesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8C566B23181424007C18BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE8C566D23181424007C18BA /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			children = (
 				BEDB8F9D231D0B9200C71D71 /* OpenCVScannerBridge.h */,
 				BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */,
+				BE6C3F2A231D7E6500EA116A /* squares.cpp */,
 			);
 			path = "OpenCV Scanner";
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */,
 				BEDB8F8F231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift in Sources */,
 				BEDB8F9223192F6300C71D71 /* CameraViewController.swift in Sources */,
+				BE6C3F2B231D7E6500EA116A /* squares.cpp in Sources */,
 				BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */,
 				BEDB8F87231921BC00C71D71 /* R.generated.swift in Sources */,
 				BEDB8F892319226D00C71D71 /* MainTableViewCell.swift in Sources */,
