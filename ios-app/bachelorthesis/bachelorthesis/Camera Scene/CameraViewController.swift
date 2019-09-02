@@ -22,8 +22,7 @@ class CameraViewController: UIViewController {
   @IBOutlet weak var cancelButton: FramedButton!
   @IBOutlet weak var galleryButton: FramedButton!
   @IBOutlet weak var edgesOverlayButton: FramedButton!
-  
-  
+
   @IBOutlet weak var cameraView: UIView!
   @IBOutlet weak var edgesOverlayImageView: UIImageView!
   @IBOutlet weak var squaresOverlayImageView: UIImageView!

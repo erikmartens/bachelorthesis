@@ -21,6 +21,8 @@ extension AVCaptureVideoOrientation {
           self = .landscapeLeft
         case .landscapeRight:
           self = .landscapeRight
-        }
+        @unknown default:
+            return nil
+    }
   }
 }

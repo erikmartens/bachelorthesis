@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E28E9503A8FA1AFACF3EE10 /* libPods-bachelorthesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26ECCC2B927977348C5142B6 /* libPods-bachelorthesis.a */; };
+		ACE1799C956736228D7B8868 /* libPods-bachelorthesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8E312C69A7A1CCA718A0E4 /* libPods-bachelorthesis.a */; };
 		BE6C3F2B231D7E6500EA116A /* squares.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE6C3F2A231D7E6500EA116A /* squares.cpp */; };
 		BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566B23181424007C18BA /* AppDelegate.swift */; };
 		BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566D23181424007C18BA /* MainTableViewController.swift */; };
@@ -30,8 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		26ECCC2B927977348C5142B6 /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE68F3E1AB810CE00D7D6D99 /* Pods-bachelorthesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.release.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.release.xcconfig"; sourceTree = "<group>"; };
+		1C4AFC113266EA223AA67C0D /* Pods-bachelorthesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.release.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.release.xcconfig"; sourceTree = "<group>"; };
+		4EE7837D3CB3344EFF754816 /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
+		AF8E312C69A7A1CCA718A0E4 /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE6C3F2A231D7E6500EA116A /* squares.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = squares.cpp; sourceTree = "<group>"; };
 		BE8C566823181424007C18BA /* bachelorthesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bachelorthesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8C566B23181424007C18BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,7 +60,6 @@
 		BEDB8FA0231D0C1600C71D71 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScannerProtocol.swift; sourceTree = "<group>"; };
 		BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDeviceOrientation->AVCaptureVideoOrientation.swift"; sourceTree = "<group>"; };
-		C29B85E95E5FFF7332097F6A /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E28E9503A8FA1AFACF3EE10 /* libPods-bachelorthesis.a in Frameworks */,
+				ACE1799C956736228D7B8868 /* libPods-bachelorthesis.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,8 +77,8 @@
 		7D739B47A8B2B807B396CCCB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C29B85E95E5FFF7332097F6A /* Pods-bachelorthesis.debug.xcconfig */,
-				AE68F3E1AB810CE00D7D6D99 /* Pods-bachelorthesis.release.xcconfig */,
+				4EE7837D3CB3344EFF754816 /* Pods-bachelorthesis.debug.xcconfig */,
+				1C4AFC113266EA223AA67C0D /* Pods-bachelorthesis.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -90,7 +90,7 @@
 				BE8C566A23181424007C18BA /* bachelorthesis */,
 				BE8C566923181424007C18BA /* Products */,
 				7D739B47A8B2B807B396CCCB /* Pods */,
-				D4650AE85F218C7875DE9E51 /* Frameworks */,
+				F8393339BE90BBF052A3ACB1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,10 +219,10 @@
 			path = Converters;
 			sourceTree = "<group>";
 		};
-		D4650AE85F218C7875DE9E51 /* Frameworks */ = {
+		F8393339BE90BBF052A3ACB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				26ECCC2B927977348C5142B6 /* libPods-bachelorthesis.a */,
+				AF8E312C69A7A1CCA718A0E4 /* libPods-bachelorthesis.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -234,13 +234,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE8C567A23181425007C18BA /* Build configuration list for PBXNativeTarget "bachelorthesis" */;
 			buildPhases = (
-				F242A6FC8A7F90C5B8539CCF /* [CP] Check Pods Manifest.lock */,
+				DE36362EE37F9F6F17928025 /* [CP] Check Pods Manifest.lock */,
 				BEDB8F80231909CD00C71D71 /* SwiftLint */,
 				BEDB8F7F2319099D00C71D71 /* R.Swift */,
 				BE8C566423181424007C18BA /* Sources */,
 				BE8C566523181424007C18BA /* Frameworks */,
 				BE8C566623181424007C18BA /* Resources */,
-				EFAA572F1E3C5015633939A5 /* [CP] Copy Pods Resources */,
+				AD88E731C41D774228994BDD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -302,6 +302,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		AD88E731C41D774228994BDD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BEDB8F7F2319099D00C71D71 /* R.Swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -316,7 +333,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -340,37 +357,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
-		EFAA572F1E3C5015633939A5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis-resources.sh",
-				"${PODS_ROOT}/GPUImage/framework/Resources/lookup.png",
-				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_amatorka.png",
-				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_miss_etikate.png",
-				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_1.png",
-				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_2.png",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_amatorka.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_miss_etikate.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_1.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_2.png",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F242A6FC8A7F90C5B8539CCF /* [CP] Check Pods Manifest.lock */ = {
+		DE36362EE37F9F6F17928025 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -572,12 +559,12 @@
 		};
 		BE8C567B23181425007C18BA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C29B85E95E5FFF7332097F6A /* Pods-bachelorthesis.debug.xcconfig */;
+			baseConfigurationReference = 4EE7837D3CB3344EFF754816 /* Pods-bachelorthesis.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K9UPH3NRK2;
+				DEVELOPMENT_TEAM = VDPU24L36V;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/bachelorthesis/PrefixHeader.pch";
 				INFOPLIST_FILE = bachelorthesis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -596,12 +583,12 @@
 		};
 		BE8C567C23181425007C18BA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE68F3E1AB810CE00D7D6D99 /* Pods-bachelorthesis.release.xcconfig */;
+			baseConfigurationReference = 1C4AFC113266EA223AA67C0D /* Pods-bachelorthesis.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K9UPH3NRK2;
+				DEVELOPMENT_TEAM = VDPU24L36V;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/bachelorthesis/PrefixHeader.pch";
 				INFOPLIST_FILE = bachelorthesis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
