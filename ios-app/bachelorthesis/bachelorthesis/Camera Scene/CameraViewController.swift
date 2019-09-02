@@ -47,12 +47,6 @@ class CameraViewController: UIViewController {
 
     setupUserInterface()
     setupScanner()
-    
-    NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
-  }
-  
-  deinit {
-     NotificationCenter.default.removeObserver(self, name: nil, object: nil)
   }
   
   // MARK: - IBActions
@@ -64,10 +58,6 @@ class CameraViewController: UIViewController {
   
   // MARK: - Private Functions
   
-  @objc private func orientationChanged(_ notification: Notification) {
-
-  }
-  
   private func setupUserInterface() {
     cancelButton.setTitle(R.string.localizable.cancel().capitalized,
                           for: UIControl.State())
@@ -75,7 +65,6 @@ class CameraViewController: UIViewController {
                           for: UIControl.State())
     
     versionLabel.text = OpenCVScannerBridge.openCVVersionString()
-    
     overlayImageView.layer.opacity = 0.5
   }
   
