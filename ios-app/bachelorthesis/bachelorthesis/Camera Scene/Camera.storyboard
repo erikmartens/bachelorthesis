@@ -22,27 +22,62 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YV8-bT-zvc">
-                                <rect key="frame" x="16" y="44" width="56" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wM2-HQ-de1">
+                                <rect key="frame" x="16" y="96" width="382" height="24"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="dQK-Ad-elf"/>
+                                    <constraint firstAttribute="height" constant="24" id="93M-nh-1zl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YV8-bT-zvc" customClass="FramedButton" customModule="bachelorthesis" customModuleProvider="target">
+                                <rect key="frame" x="16" y="44" width="56" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="dQK-Ad-elf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="accentColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="didPressCancelButton:" destination="EA3-IU-CYe" eventType="touchUpInside" id="J4B-CO-GwB"/>
+                                    <action selector="didPressCancelButton:" destination="EA3-IU-CYe" eventType="touchUpInside" id="GSD-An-fQk"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rgr-zW-oXj" customClass="FramedButton" customModule="bachelorthesis" customModuleProvider="target">
+                                <rect key="frame" x="184" y="826" width="46" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="x95-yf-TMt"/>
+                                </constraints>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="accentColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fmM-G2-jX7" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YV8-bT-zvc" secondAttribute="trailing" id="4nB-31-1i4"/>
                             <constraint firstAttribute="bottom" secondItem="aMc-9y-p2L" secondAttribute="bottom" id="9UK-w4-bYe"/>
+                            <constraint firstItem="Rgr-zW-oXj" firstAttribute="centerX" secondItem="FeO-eR-wIQ" secondAttribute="centerX" id="LJ7-U6-E85"/>
                             <constraint firstItem="YV8-bT-zvc" firstAttribute="top" secondItem="FeO-eR-wIQ" secondAttribute="top" constant="44" id="RLC-L7-ZZV"/>
+                            <constraint firstItem="wM2-HQ-de1" firstAttribute="top" secondItem="YV8-bT-zvc" secondAttribute="bottom" constant="16" id="SaO-QP-JNK"/>
+                            <constraint firstItem="fmM-G2-jX7" firstAttribute="bottom" secondItem="Rgr-zW-oXj" secondAttribute="bottom" id="VDC-6i-akW"/>
                             <constraint firstItem="aMc-9y-p2L" firstAttribute="top" secondItem="FeO-eR-wIQ" secondAttribute="top" id="WAl-yH-fgU"/>
+                            <constraint firstItem="wM2-HQ-de1" firstAttribute="leading" secondItem="fmM-G2-jX7" secondAttribute="leading" constant="16" id="WQw-4i-kgb"/>
+                            <constraint firstItem="fmM-G2-jX7" firstAttribute="trailing" secondItem="wM2-HQ-de1" secondAttribute="trailing" constant="16" id="XVY-hL-afw"/>
                             <constraint firstAttribute="trailing" secondItem="aMc-9y-p2L" secondAttribute="trailing" id="Zsc-gQ-LO5"/>
+                            <constraint firstItem="Rgr-zW-oXj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fmM-G2-jX7" secondAttribute="leading" id="hcO-Gd-rd6"/>
+                            <constraint firstItem="fmM-G2-jX7" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Rgr-zW-oXj" secondAttribute="trailing" id="k6l-Dd-QfO"/>
                             <constraint firstItem="YV8-bT-zvc" firstAttribute="leading" secondItem="fmM-G2-jX7" secondAttribute="leading" constant="16" id="lV5-jD-fNN"/>
                             <constraint firstItem="aMc-9y-p2L" firstAttribute="leading" secondItem="FeO-eR-wIQ" secondAttribute="leading" id="wQe-dO-bqS"/>
                         </constraints>
@@ -50,7 +85,9 @@
                     </view>
                     <connections>
                         <outlet property="cameraView" destination="aMc-9y-p2L" id="pmx-rm-GDd"/>
-                        <outlet property="cancelButton" destination="YV8-bT-zvc" id="6qX-re-tLJ"/>
+                        <outlet property="cancelButton" destination="YV8-bT-zvc" id="yGa-Qk-zf4"/>
+                        <outlet property="gallerButton" destination="Rgr-zW-oXj" id="SrI-91-r7l"/>
+                        <outlet property="versionLabel" destination="wM2-HQ-de1" id="emH-6F-ye0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tjr-g7-K5N" userLabel="First Responder" sceneMemberID="firstResponder"/>

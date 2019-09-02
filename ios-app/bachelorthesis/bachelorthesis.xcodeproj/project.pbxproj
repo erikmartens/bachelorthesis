@@ -22,6 +22,8 @@
 		BEDB8F9223192F6300C71D71 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F9123192F6300C71D71 /* CameraViewController.swift */; };
 		BEDB8F9423192F7900C71D71 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDB8F9323192F7900C71D71 /* Camera.storyboard */; };
 		BEDB8F96231BC7FD00C71D71 /* CameraScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */; };
+		BEDB8F99231BD3A100C71D71 /* FramedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F98231BD3A100C71D71 /* FramedButton.swift */; };
+		BEDB8F9F231D0B9200C71D71 /* OpenCVWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F9E231D0B9200C71D71 /* OpenCVWrapper.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,11 @@
 		BEDB8F9123192F6300C71D71 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		BEDB8F9323192F7900C71D71 /* Camera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanner.swift; sourceTree = "<group>"; };
+		BEDB8F98231BD3A100C71D71 /* FramedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FramedButton.swift; sourceTree = "<group>"; };
+		BEDB8F9C231D0B9100C71D71 /* bachelorthesis-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bachelorthesis-Bridging-Header.h"; sourceTree = "<group>"; };
+		BEDB8F9D231D0B9200C71D71 /* OpenCVWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
+		BEDB8F9E231D0B9200C71D71 /* OpenCVWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
+		BEDB8FA0231D0C1600C71D71 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		C29B85E95E5FFF7332097F6A /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,12 +100,15 @@
 			isa = PBXGroup;
 			children = (
 				BE8C567723181425007C18BA /* Info.plist */,
+				BEDB8F9C231D0B9100C71D71 /* bachelorthesis-Bridging-Header.h */,
+				BEDB8FA0231D0C1600C71D71 /* PrefixHeader.pch */,
 				BE8C567223181425007C18BA /* Assets.xcassets */,
 				BEDB8F7D2319093600C71D71 /* Localizable.strings */,
 				BEDB8F762319086E00C71D71 /* Main */,
 				BEDB8F7523181F3C00C71D71 /* Launch Scene */,
 				BEDB8F7423181EEC00C71D71 /* Main Scene */,
 				BEDB8F9023192F3F00C71D71 /* Camera Scene */,
+				BEDB8F9A231D096100C71D71 /* Scanner */,
 				BEDB8F8323191F4F00C71D71 /* Resources */,
 				BEDB8F8A2319260200C71D71 /* Helpers */,
 			);
@@ -143,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				BEDB8F8B2319261000C71D71 /* Extensions */,
+				BEDB8F97231BD35700C71D71 /* IBDesignables */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -164,6 +175,31 @@
 				BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */,
 			);
 			path = "Camera Scene";
+			sourceTree = "<group>";
+		};
+		BEDB8F97231BD35700C71D71 /* IBDesignables */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB8F98231BD3A100C71D71 /* FramedButton.swift */,
+			);
+			path = IBDesignables;
+			sourceTree = "<group>";
+		};
+		BEDB8F9A231D096100C71D71 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB8F9B231D096F00C71D71 /* OpenCV Scanner */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
+		BEDB8F9B231D096F00C71D71 /* OpenCV Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB8F9D231D0B9200C71D71 /* OpenCVWrapper.h */,
+				BEDB8F9E231D0B9200C71D71 /* OpenCVWrapper.mm */,
+			);
+			path = "OpenCV Scanner";
 			sourceTree = "<group>";
 		};
 		D4650AE85F218C7875DE9E51 /* Frameworks */ = {
@@ -210,6 +246,7 @@
 				TargetAttributes = {
 					BE8C566723181424007C18BA = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -345,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEDB8F99231BD3A100C71D71 /* FramedButton.swift in Sources */,
 				BEDB8F8523191F7400C71D71 /* AvailableScanners.swift in Sources */,
 				BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */,
 				BEDB8F8F231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift in Sources */,
@@ -352,6 +390,7 @@
 				BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */,
 				BEDB8F87231921BC00C71D71 /* R.generated.swift in Sources */,
 				BEDB8F892319226D00C71D71 /* MainTableViewCell.swift in Sources */,
+				BEDB8F9F231D0B9200C71D71 /* OpenCVWrapper.mm in Sources */,
 				BEDB8F8D2319264500C71D71 /* UIViewController+PresentSafariViewController.swift in Sources */,
 				BEDB8F96231BC7FD00C71D71 /* CameraScanner.swift in Sources */,
 			);
@@ -516,8 +555,10 @@
 			baseConfigurationReference = C29B85E95E5FFF7332097F6A /* Pods-bachelorthesis.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K9UPH3NRK2;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/bachelorthesis/PrefixHeader.pch";
 				INFOPLIST_FILE = bachelorthesis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -526,6 +567,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.erikmaximilianmartens.bachelorthesis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "bachelorthesis/bachelorthesis-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -536,8 +579,10 @@
 			baseConfigurationReference = AE68F3E1AB810CE00D7D6D99 /* Pods-bachelorthesis.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = K9UPH3NRK2;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/bachelorthesis/PrefixHeader.pch";
 				INFOPLIST_FILE = bachelorthesis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -546,6 +591,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.erikmaximilianmartens.bachelorthesis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "bachelorthesis/bachelorthesis-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

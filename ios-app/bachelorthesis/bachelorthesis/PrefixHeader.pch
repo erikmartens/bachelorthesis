@@ -1,0 +1,18 @@
+//
+//  PrefixHeader.pch
+//  bachelorthesis
+//
+//  Created by  Erik Maximilian Martens on 02.09.19.
+//  Copyright © 2019  Erik Maximilian Martens. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifdef __cplusplus
+#include <opencv2/opencv.hpp>
+#endif
+
+#endif /* PrefixHeader_pch */
+
+

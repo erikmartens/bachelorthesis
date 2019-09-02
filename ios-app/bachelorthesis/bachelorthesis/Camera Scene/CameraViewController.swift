@@ -19,8 +19,11 @@ class CameraViewController: UIViewController {
   
   // MARK: - IBOutlets
   
-  @IBOutlet weak var cancelButton: UIButton!
+  @IBOutlet weak var cancelButton: FramedButton!
+  @IBOutlet weak var gallerButton: FramedButton!
   @IBOutlet weak var cameraView: UIView!
+  
+  @IBOutlet weak var versionLabel: UILabel!
   
   // MARK: - Properties
   
@@ -30,11 +33,23 @@ class CameraViewController: UIViewController {
   
   // MARK: - ViewController Life Cycle
   
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
+  
+  override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    return .portrait
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     cancelButton.setTitle(R.string.localizable.cancel().capitalized,
                           for: UIControl.State())
+    gallerButton.setTitle(R.string.localizable.picture_from_gallery(),
+                          for: UIControl.State())
+    
+    versionLabel.text = OpenCVWrapper.openCVVersionString()
     
     cameraScanner = CameraScanner(frame: cameraView.frame)
     cameraView.layer.addSublayer(cameraScanner.videoPreviewLayer!)
@@ -43,7 +58,7 @@ class CameraViewController: UIViewController {
   
   // MARK: - IBActions
   
-  @IBAction func didPressCancelButton(_ sender: UIButton) {
+  @IBAction func didPressCancelButton(_ sender: FramedButton) {
     cameraScanner.stopCaptureSession()
     scannerDelegate?.didCancelScanning()
   }

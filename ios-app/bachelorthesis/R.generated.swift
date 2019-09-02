@@ -58,7 +58,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 4 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 5 localization keys.
     struct localizable {
       /// en translation: Cancel
       /// 
@@ -72,6 +72,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let select_a_library = Rswift.StringResource(key: "select_a_library", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Select picture from gallery
+      /// 
+      /// Locales: en, de
+      static let picture_from_gallery = Rswift.StringResource(key: "picture_from_gallery", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Website
       /// 
       /// Locales: en, de
@@ -96,6 +100,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, de
       static func select_a_library(_: Void = ()) -> String {
         return NSLocalizedString("select_a_library", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Select picture from gallery
+      /// 
+      /// Locales: en, de
+      static func picture_from_gallery(_: Void = ()) -> String {
+        return NSLocalizedString("picture_from_gallery", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Website
