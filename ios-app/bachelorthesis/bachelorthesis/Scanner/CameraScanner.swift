@@ -15,10 +15,17 @@ enum ScannerLibrary {
   case openCV
 }
 
-class CameraScanner {
+protocol CameraScannerDelegate: class {
+  func updateOverlay(with image: UIImage)
+}
+
+class CameraScanner: NSObject {
+  
+  private static let scannerQueue = DispatchQueue.global(qos: .userInitiated)
   
   // MARK: - Properties
   
+  private weak var cameraScannerDelegate: CameraScannerDelegate?
   private var scannerLibrary: ScannerLibrary
   
   private var videoCaptureDevice: AVCaptureDevice?
@@ -26,11 +33,14 @@ class CameraScanner {
   private let output = AVCaptureVideoDataOutput()
   private var input: AVCaptureDeviceInput?
   
+  private var openCvScanner: OpenCVScannerBridge?
+  
   var videoPreviewLayer: AVCaptureVideoPreviewLayer?
   
   // MARK: - Initialization
   
-  init(frame: CGRect, scannerLibrary: ScannerLibrary) {
+  init(frame: CGRect, cameraScannerDelegate: CameraScannerDelegate, scannerLibrary: ScannerLibrary) {
+    self.cameraScannerDelegate = cameraScannerDelegate
     self.scannerLibrary = scannerLibrary
     
     videoCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video)
@@ -56,6 +66,9 @@ class CameraScanner {
     self.input = input
     videoCaptureSession.addInput(input)
     videoCaptureSession.addOutput(output)
+    
+    output.setSampleBufferDelegate(self, queue: CameraScanner.scannerQueue)
+    
     videoCaptureSession.startRunning()
   }
   
@@ -66,5 +79,34 @@ class CameraScanner {
     if let input = input {
       videoCaptureSession.removeInput(input)
     }
+  }
+  
+  // MARK: - Private Functions
+  
+  private func precoessOutput(_ sampleBuffer: CMSampleBuffer) {
+    switch scannerLibrary {
+    case .metal:
+      break
+    case .gpuImage:
+      break
+    case .openCV:
+      if openCvScanner == nil {
+        openCvScanner = OpenCVScannerBridge()
+      }
+      let currentOrientation = AVCaptureVideoOrientation(from: UIDevice.current.orientation) ?? .portrait
+      let resultImage = openCvScanner!.extractEdges(from: sampleBuffer, with: currentOrientation)
+      cameraScannerDelegate?.updateOverlay(with: resultImage)
+    }
+  }
+}
+
+extension CameraScanner: AVCaptureVideoDataOutputSampleBufferDelegate {
+  
+  func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    precoessOutput(sampleBuffer)
+  }
+  
+  func captureOutput(_ captureOutput: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    // nothing to do here
   }
 }

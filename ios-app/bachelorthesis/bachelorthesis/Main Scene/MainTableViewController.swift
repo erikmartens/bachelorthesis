@@ -72,7 +72,7 @@ class MainTableViewController: UITableViewController {
   }
 }
 
-extension MainTableViewController: ScannerDelegate {
+extension MainTableViewController: CameraViewControllerDelegate {
   
   func didCancelScanning() {
     navigationController?.presentedViewController?.dismiss(animated: true, completion: nil)

@@ -18,9 +18,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aMc-9y-p2L">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aMc-9y-p2L">
+                                <rect key="frame" x="0.0" y="172" width="414" height="552"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="aMc-9y-p2L" secondAttribute="height" multiplier="3:4" id="hnV-rs-uv0"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdh-pU-4Dd" userLabel="Overlay View" customClass="UIImageView">
+                                <rect key="frame" x="0.0" y="172" width="414" height="552"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qdh-pU-4Dd" secondAttribute="height" multiplier="3:4" id="Ycj-nv-cbI"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wM2-HQ-de1">
                                 <rect key="frame" x="16" y="96" width="382" height="24"/>
@@ -64,22 +74,28 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fmM-G2-jX7" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="YV8-bT-zvc" secondAttribute="trailing" id="4nB-31-1i4"/>
-                            <constraint firstAttribute="bottom" secondItem="aMc-9y-p2L" secondAttribute="bottom" id="9UK-w4-bYe"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aMc-9y-p2L" secondAttribute="bottom" id="9UK-w4-bYe"/>
+                            <constraint firstItem="aMc-9y-p2L" firstAttribute="centerY" secondItem="FeO-eR-wIQ" secondAttribute="centerY" id="BJS-OL-TAw"/>
+                            <constraint firstItem="qdh-pU-4Dd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FeO-eR-wIQ" secondAttribute="top" id="Bei-4M-wcH"/>
+                            <constraint firstItem="qdh-pU-4Dd" firstAttribute="trailing" secondItem="FeO-eR-wIQ" secondAttribute="trailing" id="ICs-8Y-jeB"/>
                             <constraint firstItem="Rgr-zW-oXj" firstAttribute="centerX" secondItem="FeO-eR-wIQ" secondAttribute="centerX" id="LJ7-U6-E85"/>
                             <constraint firstItem="YV8-bT-zvc" firstAttribute="top" secondItem="FeO-eR-wIQ" secondAttribute="top" constant="44" id="RLC-L7-ZZV"/>
                             <constraint firstItem="wM2-HQ-de1" firstAttribute="top" secondItem="YV8-bT-zvc" secondAttribute="bottom" constant="16" id="SaO-QP-JNK"/>
                             <constraint firstItem="fmM-G2-jX7" firstAttribute="bottom" secondItem="Rgr-zW-oXj" secondAttribute="bottom" id="VDC-6i-akW"/>
-                            <constraint firstItem="aMc-9y-p2L" firstAttribute="top" secondItem="FeO-eR-wIQ" secondAttribute="top" id="WAl-yH-fgU"/>
+                            <constraint firstItem="aMc-9y-p2L" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FeO-eR-wIQ" secondAttribute="top" id="WAl-yH-fgU"/>
                             <constraint firstItem="wM2-HQ-de1" firstAttribute="leading" secondItem="fmM-G2-jX7" secondAttribute="leading" constant="16" id="WQw-4i-kgb"/>
                             <constraint firstItem="fmM-G2-jX7" firstAttribute="trailing" secondItem="wM2-HQ-de1" secondAttribute="trailing" constant="16" id="XVY-hL-afw"/>
                             <constraint firstAttribute="trailing" secondItem="aMc-9y-p2L" secondAttribute="trailing" id="Zsc-gQ-LO5"/>
+                            <constraint firstItem="qdh-pU-4Dd" firstAttribute="leading" secondItem="FeO-eR-wIQ" secondAttribute="leading" id="gaM-y6-g56"/>
                             <constraint firstItem="Rgr-zW-oXj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fmM-G2-jX7" secondAttribute="leading" id="hcO-Gd-rd6"/>
                             <constraint firstItem="fmM-G2-jX7" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Rgr-zW-oXj" secondAttribute="trailing" id="k6l-Dd-QfO"/>
                             <constraint firstItem="YV8-bT-zvc" firstAttribute="leading" secondItem="fmM-G2-jX7" secondAttribute="leading" constant="16" id="lV5-jD-fNN"/>
                             <constraint firstItem="aMc-9y-p2L" firstAttribute="leading" secondItem="FeO-eR-wIQ" secondAttribute="leading" id="wQe-dO-bqS"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qdh-pU-4Dd" secondAttribute="bottom" id="yMN-Nd-qTy"/>
+                            <constraint firstItem="qdh-pU-4Dd" firstAttribute="centerY" secondItem="FeO-eR-wIQ" secondAttribute="centerY" id="yph-9h-bY9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fmM-G2-jX7"/>
                     </view>
@@ -87,6 +103,7 @@
                         <outlet property="cameraView" destination="aMc-9y-p2L" id="pmx-rm-GDd"/>
                         <outlet property="cancelButton" destination="YV8-bT-zvc" id="yGa-Qk-zf4"/>
                         <outlet property="gallerButton" destination="Rgr-zW-oXj" id="SrI-91-r7l"/>
+                        <outlet property="overlayImageView" destination="qdh-pU-4Dd" id="eCo-eN-7T4"/>
                         <outlet property="versionLabel" destination="wM2-HQ-de1" id="emH-6F-ye0"/>
                     </connections>
                 </viewController>

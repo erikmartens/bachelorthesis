@@ -24,8 +24,8 @@
 		BEDB8F96231BC7FD00C71D71 /* CameraScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */; };
 		BEDB8F99231BD3A100C71D71 /* FramedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F98231BD3A100C71D71 /* FramedButton.swift */; };
 		BEDB8F9F231D0B9200C71D71 /* OpenCVScannerBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */; };
-		BEDB8FA2231D18B700C71D71 /* OpenCVScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA1231D18B700C71D71 /* OpenCVScanner.swift */; };
 		BEDB8FA4231D190F00C71D71 /* CameraScannerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */; };
+		BEDB8FAA231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,8 +55,8 @@
 		BEDB8F9D231D0B9200C71D71 /* OpenCVScannerBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVScannerBridge.h; sourceTree = "<group>"; };
 		BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVScannerBridge.mm; sourceTree = "<group>"; };
 		BEDB8FA0231D0C1600C71D71 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
-		BEDB8FA1231D18B700C71D71 /* OpenCVScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenCVScanner.swift; sourceTree = "<group>"; };
 		BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScannerProtocol.swift; sourceTree = "<group>"; };
+		BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDeviceOrientation->AVCaptureVideoOrientation.swift"; sourceTree = "<group>"; };
 		C29B85E95E5FFF7332097F6A /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,6 +156,7 @@
 		BEDB8F8A2319260200C71D71 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				BEDB8FA8231D5A0100C71D71 /* Converters */,
 				BEDB8F8B2319261000C71D71 /* Extensions */,
 				BEDB8F97231BD35700C71D71 /* IBDesignables */,
 			);
@@ -203,9 +204,16 @@
 			children = (
 				BEDB8F9D231D0B9200C71D71 /* OpenCVScannerBridge.h */,
 				BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */,
-				BEDB8FA1231D18B700C71D71 /* OpenCVScanner.swift */,
 			);
 			path = "OpenCV Scanner";
+			sourceTree = "<group>";
+		};
+		BEDB8FA8231D5A0100C71D71 /* Converters */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */,
+			);
+			path = Converters;
 			sourceTree = "<group>";
 		};
 		D4650AE85F218C7875DE9E51 /* Frameworks */ = {
@@ -388,6 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEDB8FAA231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift in Sources */,
 				BEDB8F99231BD3A100C71D71 /* FramedButton.swift in Sources */,
 				BEDB8F8523191F7400C71D71 /* AvailableScanners.swift in Sources */,
 				BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */,
@@ -395,7 +404,6 @@
 				BEDB8F9223192F6300C71D71 /* CameraViewController.swift in Sources */,
 				BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */,
 				BEDB8F87231921BC00C71D71 /* R.generated.swift in Sources */,
-				BEDB8FA2231D18B700C71D71 /* OpenCVScanner.swift in Sources */,
 				BEDB8F892319226D00C71D71 /* MainTableViewCell.swift in Sources */,
 				BEDB8F9F231D0B9200C71D71 /* OpenCVScannerBridge.mm in Sources */,
 				BEDB8FA4231D190F00C71D71 /* CameraScannerProtocol.swift in Sources */,

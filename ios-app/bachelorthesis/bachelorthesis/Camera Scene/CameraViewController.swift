@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-protocol ScannerDelegate: class {
+protocol CameraViewControllerDelegate: class {
   func didCancelScanning()
   func didFinishScanning()
   func useImageGallery()
@@ -22,12 +22,12 @@ class CameraViewController: UIViewController {
   @IBOutlet weak var cancelButton: FramedButton!
   @IBOutlet weak var gallerButton: FramedButton!
   @IBOutlet weak var cameraView: UIView!
-  
+  @IBOutlet weak var overlayImageView: UIImageView!
   @IBOutlet weak var versionLabel: UILabel!
   
   // MARK: - Properties
   
-  weak var scannerDelegate: ScannerDelegate!
+  weak var scannerDelegate: CameraViewControllerDelegate!
   var selectedScannerLibrary: ScannerLibrary!
   
   private var cameraScanner: CameraScanner!
@@ -38,23 +38,21 @@ class CameraViewController: UIViewController {
     return .lightContent
   }
   
-  override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-    return .portrait
+  override var shouldAutorotate: Bool {
+    return false
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    cancelButton.setTitle(R.string.localizable.cancel().capitalized,
-                          for: UIControl.State())
-    gallerButton.setTitle(R.string.localizable.picture_from_gallery(),
-                          for: UIControl.State())
+    setupUserInterface()
+    setupScanner()
     
-    versionLabel.text = OpenCVScannerBridge.openCVVersionString()
-    
-    cameraScanner = CameraScanner(frame: cameraView.frame, scannerLibrary: selectedScannerLibrary)
-    cameraView.layer.addSublayer(cameraScanner.videoPreviewLayer!)
-    cameraScanner.startCaptureSessession()
+    NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
+  }
+  
+  deinit {
+     NotificationCenter.default.removeObserver(self, name: nil, object: nil)
   }
   
   // MARK: - IBActions
@@ -64,5 +62,36 @@ class CameraViewController: UIViewController {
     scannerDelegate?.didCancelScanning()
   }
   
-  // MARK: - Functions
+  // MARK: - Private Functions
+  
+  @objc private func orientationChanged(_ notification: Notification) {
+
+  }
+  
+  private func setupUserInterface() {
+    cancelButton.setTitle(R.string.localizable.cancel().capitalized,
+                          for: UIControl.State())
+    gallerButton.setTitle(R.string.localizable.picture_from_gallery(),
+                          for: UIControl.State())
+    
+    versionLabel.text = OpenCVScannerBridge.openCVVersionString()
+    
+    overlayImageView.layer.opacity = 0.5
+  }
+  
+  private func setupScanner() {
+    cameraScanner = CameraScanner(frame: cameraView.frame, cameraScannerDelegate: self, scannerLibrary: selectedScannerLibrary)
+    cameraView.layer.addSublayer(cameraScanner.videoPreviewLayer!)
+    cameraScanner.videoPreviewLayer!.position = CGPoint(x: cameraView.layer.bounds.midX, y: cameraView.layer.bounds.midY)
+    cameraScanner.startCaptureSessession()
+  }
+}
+
+extension CameraViewController: CameraScannerDelegate {
+  
+  func updateOverlay(with image: UIImage) {
+    DispatchQueue.main.async {
+      self.overlayImageView.image = image
+    }
+  }
 }
