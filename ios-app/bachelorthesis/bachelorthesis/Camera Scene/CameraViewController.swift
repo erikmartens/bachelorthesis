@@ -22,7 +22,7 @@ class CameraViewController: UIViewController {
   @IBOutlet weak var cancelButton: FramedButton!
   @IBOutlet weak var galleryButton: FramedButton!
   @IBOutlet weak var edgesOverlayButton: FramedButton!
-
+  
   @IBOutlet weak var cameraView: UIView!
   @IBOutlet weak var edgesOverlayImageView: UIImageView!
   @IBOutlet weak var squaresOverlayImageView: UIImageView!
@@ -39,6 +39,7 @@ class CameraViewController: UIViewController {
   private var overlayVisible: Bool = true {
     didSet {
       edgesOverlayImageView.isHidden = !overlayVisible
+      squaresOverlayImageView.isHidden = overlayVisible
       cameraScanner.shouldProcessEdges = overlayVisible
     }
   }
@@ -55,7 +56,7 @@ class CameraViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     setupUserInterface()
     setupScanner()
   }
@@ -77,12 +78,14 @@ class CameraViewController: UIViewController {
     cancelButton.setTitle(R.string.localizable.cancel().capitalized,
                           for: UIControl.State())
     galleryButton.setTitle(R.string.localizable.picture_from_gallery(),
-                          for: UIControl.State())
-    edgesOverlayButton.setTitle(R.string.localizable.overlay(),
                            for: UIControl.State())
+    edgesOverlayButton.setTitle(R.string.localizable.overlay(),
+                                for: UIControl.State())
     
     versionLabel.text = OpenCVScannerBridge.openCVVersionString()
+    
     edgesOverlayImageView.layer.opacity = 0.5
+    squaresOverlayImageView.layer.opacity = 0.5
   }
   
   private func setupScanner() {

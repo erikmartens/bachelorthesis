@@ -49,9 +49,9 @@ class CameraScanner: NSObject {
     self.cameraScannerDelegate = cameraScannerDelegate
     self.scannerLibrary = scannerLibrary
     
-    videoCaptureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+    videoCaptureDevice = AVCaptureDevice.default(for: .video)
     
-    videoCaptureSession.sessionPreset = AVCaptureSession.Preset.photo
+    videoCaptureSession.sessionPreset = .photo
     
     videoPreviewLayer = AVCaptureVideoPreviewLayer(session: videoCaptureSession)
     videoPreviewLayer!.frame = frame
@@ -72,9 +72,7 @@ class CameraScanner: NSObject {
     self.input = input
     videoCaptureSession.addInput(input)
     videoCaptureSession.addOutput(output)
-    
     output.setSampleBufferDelegate(self, queue: CameraScanner.scannerQueue)
-    
     videoCaptureSession.startRunning()
   }
   

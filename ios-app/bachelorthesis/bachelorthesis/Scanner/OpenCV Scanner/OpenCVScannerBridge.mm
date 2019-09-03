@@ -12,6 +12,7 @@
 #import <opencv2/opencv.hpp>
 #include <opencv2/imgcodecs/ios.h>
 #include "squares.cpp"
+#include "Utilities.hpp"
 
 @implementation OpenCVScannerBridge
 
@@ -39,68 +40,75 @@
 
 - (UIImage * _Nonnull)extractSquaresFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation
 {
-    //      CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-    //      CVPixelBufferLockBaseAddress(imageBuffer, 0);
-    //      int bufferHeight = (int) CVPixelBufferGetHeight(imageBuffer);
-    //      int bufferWidth = (int) CVPixelBufferGetWidth(imageBuffer);
-    //      void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
-    //      size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-    //      const cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
-    //
-    //      vector<vector<cv::Point> > detected_squares;
-    //      findSquares(image, detected_squares);
-    //
-    //      cv::Mat squares_image = image;
-    //      drawSquares(squares_image, detected_squares);
-    //
-    //      cv::Mat squares_flipped;
-    //      switch (imageOrientation)
-    //      {
-    //        case AVCaptureVideoOrientationPortrait:
-    //        cv::rotate(squares_image, squares_flipped, cv::ROTATE_90_CLOCKWISE);
-    //        break;
-    //        case AVCaptureVideoOrientationPortraitUpsideDown:
-    //        cv::rotate(squares_image, squares_flipped, cv::ROTATE_90_CLOCKWISE);
-    //        break;
-    //        case AVCaptureVideoOrientationLandscapeRight:
-    //        cv::rotate(squares_image, squares_flipped, cv::ROTATE_90_CLOCKWISE);
-    //        break;
-    //        case AVCaptureVideoOrientationLandscapeLeft:
-    //        cv::rotate(squares_image, squares_flipped, cv::ROTATE_90_CLOCKWISE);
-    //        break;
-    //      }
-    //
-    //      return MatToUIImage(squares_flipped);
-    
     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     CVPixelBufferLockBaseAddress(imageBuffer, 0);
     int bufferHeight = (int) CVPixelBufferGetHeight(imageBuffer);
     int bufferWidth = (int) CVPixelBufferGetWidth(imageBuffer);
     void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
     size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-    const cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
     
-    vector<vector<cv::Point> > detected_quadrangles;
-    findQudrangles(image, detected_quadrangles);
+    cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
+    cv::Mat canvas {bufferHeight, bufferWidth, CV_8UC4};
     
-    cv::Mat image_flipped;
+//    const int scaleFactor = Utilities::downscaleImageByFactor(5, image);
+    
+    vector<vector<cv::Point> > detected_squares;
+    findSquares(image, detected_squares);
+    
+//    Utilities::upscaleImageByFactor(scaleFactor, image);
+    
+//    cv::Mat image_squares = image.clone();
+//    const vector<vector<cv::Point> > squares_copy = detected_squares;
+    drawLargestSquare(canvas, detected_squares);
+    
+    cv::Mat canvas_flipped;
     switch (imageOrientation)
     {
         case AVCaptureVideoOrientationPortrait:
-            cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
+            cv::rotate(canvas, canvas_flipped, cv::ROTATE_90_CLOCKWISE);
             break;
         case AVCaptureVideoOrientationPortraitUpsideDown:
-            cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
+            cv::rotate(canvas, canvas_flipped, cv::ROTATE_90_CLOCKWISE);
             break;
         case AVCaptureVideoOrientationLandscapeRight:
-            cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
+            cv::rotate(canvas, canvas_flipped, cv::ROTATE_90_CLOCKWISE);
             break;
         case AVCaptureVideoOrientationLandscapeLeft:
-            cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
+            cv::rotate(canvas, canvas_flipped, cv::ROTATE_90_CLOCKWISE);
             break;
     }
     
-    return MatToUIImage(image_flipped);
+    return MatToUIImage(canvas_flipped);
+    
+    //    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    //    CVPixelBufferLockBaseAddress(imageBuffer, 0);
+    //    int bufferHeight = (int) CVPixelBufferGetHeight(imageBuffer);
+    //    int bufferWidth = (int) CVPixelBufferGetWidth(imageBuffer);
+    //    void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
+    //    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+    //    const cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
+    //
+    //    vector<vector<cv::Point> > detected_quadrangles;
+    //    findQudrangles(image, detected_quadrangles);
+    //
+    //    cv::Mat image_flipped;
+    //    switch (imageOrientation)
+    //    {
+    //        case AVCaptureVideoOrientationPortrait:
+    //            cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
+    //            break;
+    //        case AVCaptureVideoOrientationPortraitUpsideDown:
+    //            cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
+    //            break;
+    //        case AVCaptureVideoOrientationLandscapeRight:
+    //            cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
+    //            break;
+    //        case AVCaptureVideoOrientationLandscapeLeft:
+    //            cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
+    //            break;
+    //    }
+    //
+    //    return MatToUIImage(image_flipped);
 }
 
 - (UIImage * _Nonnull)extractEdgesFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation
