@@ -48,6 +48,13 @@ class MainTableViewController: UITableViewController {
   
   // MARK: - TableView Data Source
   
+  override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    if section == 0 {
+      return R.string.localizable.select_a_framework()
+    }
+    return nil
+  }
+  
   override func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }

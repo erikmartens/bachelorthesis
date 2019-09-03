@@ -38,6 +38,18 @@
 
 # pragma mark Functions
 
+- (cv::Mat)convertSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer
+{
+  CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+  CVPixelBufferLockBaseAddress(imageBuffer, 0);
+  int bufferHeight = (int) CVPixelBufferGetHeight(imageBuffer);
+  int bufferWidth = (int) CVPixelBufferGetWidth(imageBuffer);
+  void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
+  size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+  const cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
+  return image;
+}
+
 - (UIImage * _Nonnull)extractSquaresFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation
 {
   CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
@@ -68,36 +80,6 @@
   }
   
   return MatToUIImage(image_flipped);
-  
-  //    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-  //    CVPixelBufferLockBaseAddress(imageBuffer, 0);
-  //    int bufferHeight = (int) CVPixelBufferGetHeight(imageBuffer);
-  //    int bufferWidth = (int) CVPixelBufferGetWidth(imageBuffer);
-  //    void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
-  //    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-  //    const cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
-  //
-  //    vector<vector<cv::Point> > detected_quadrangles;
-  //    findQudrangles(image, detected_quadrangles);
-  //
-  //    cv::Mat image_flipped;
-  //    switch (imageOrientation)
-  //    {
-  //        case AVCaptureVideoOrientationPortrait:
-  //            cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
-  //            break;
-  //        case AVCaptureVideoOrientationPortraitUpsideDown:
-  //            cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
-  //            break;
-  //        case AVCaptureVideoOrientationLandscapeRight:
-  //            cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
-  //            break;
-  //        case AVCaptureVideoOrientationLandscapeLeft:
-  //            cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
-  //            break;
-  //    }
-  //
-  //    return MatToUIImage(image_flipped);
 }
 
 - (UIImage * _Nonnull)extractEdgesFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation

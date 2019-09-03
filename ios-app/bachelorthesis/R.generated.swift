@@ -58,7 +58,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 7 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 8 localization keys.
     struct localizable {
       /// en translation: Additional Information
       /// 
@@ -68,6 +68,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let cancel = Rswift.StringResource(key: "cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Gallery
+      /// 
+      /// Locales: en, de
+      static let picture_from_gallery = Rswift.StringResource(key: "picture_from_gallery", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: GitHub
       /// 
       /// Locales: en, de
@@ -80,10 +84,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let select_a_library = Rswift.StringResource(key: "select_a_library", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
-      /// en translation: Select picture from gallery
+      /// en translation: Select a framework
       /// 
       /// Locales: en, de
-      static let picture_from_gallery = Rswift.StringResource(key: "picture_from_gallery", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      static let select_a_framework = Rswift.StringResource(key: "select_a_framework", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Website
       /// 
       /// Locales: en, de
@@ -101,6 +105,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, de
       static func cancel(_: Void = ()) -> String {
         return NSLocalizedString("cancel", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Gallery
+      /// 
+      /// Locales: en, de
+      static func picture_from_gallery(_: Void = ()) -> String {
+        return NSLocalizedString("picture_from_gallery", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: GitHub
@@ -124,11 +135,11 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("select_a_library", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Select picture from gallery
+      /// en translation: Select a framework
       /// 
       /// Locales: en, de
-      static func picture_from_gallery(_: Void = ()) -> String {
-        return NSLocalizedString("picture_from_gallery", bundle: R.hostingBundle, comment: "")
+      static func select_a_framework(_: Void = ()) -> String {
+        return NSLocalizedString("select_a_framework", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Website

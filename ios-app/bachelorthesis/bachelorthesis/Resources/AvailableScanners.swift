@@ -16,10 +16,6 @@ struct ScannerDTO {
 }
 
 let availableScanners = [
-  ScannerDTO(title: "Metal",
-             website: URL(string: "https://developer.apple.com/metal/"),
-             github: nil,
-             scannerLibrary: .metal),
   ScannerDTO(title: "GPUImage",
              website: URL(string: "http://www.sunsetlakesoftware.com/"),
              github: URL(string: "https://github.com/BradLarson/GPUImage"),

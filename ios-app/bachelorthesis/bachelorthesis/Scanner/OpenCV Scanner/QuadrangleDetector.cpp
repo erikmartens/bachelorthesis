@@ -18,10 +18,11 @@ void QuadrangleDetector::detect_squares( const Mat& image )
   vector<vector<Point> > squares;
   find_squares( image, squares );
   
-  vector<Point> biggest_square;
-  find_largest_square( image, biggest_square );
+//  vector<Point> biggest_square;
+//  find_largest_square( image, biggest_square );
   
-  draw_square( image, biggest_square);
+//  draw_square( image, biggest_square);
+  draw_squares( image, squares );
 }
 
 # pragma mark Private

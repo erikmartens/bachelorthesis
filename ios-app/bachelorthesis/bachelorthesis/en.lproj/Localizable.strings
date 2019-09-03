@@ -11,5 +11,6 @@
 "website" = "Website";
 "github" = "GitHub";
 "additional_information" = "Additional Information";
-"picture_from_gallery" = "Select picture from gallery";
+"picture_from_gallery" = "Gallery";
 "overlay" = "Overlay";
+"select_a_framework" = "Select a framework";
