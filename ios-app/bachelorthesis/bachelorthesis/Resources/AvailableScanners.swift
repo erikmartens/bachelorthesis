@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum ScannerLibrary {
+  case gpuImage
+  case openCV
+}
+
 struct ScannerDTO {
   let title: String
   let website: URL?

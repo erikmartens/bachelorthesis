@@ -9,12 +9,6 @@
 import Foundation
 import AVFoundation
 
-enum ScannerLibrary {
-  case metal
-  case gpuImage
-  case openCV
-}
-
 protocol CameraScannerDelegate: class {
   func updateEdgesOverlay(with image: UIImage)
   func updateSquaresOverlay(with image: UIImage)
@@ -37,7 +31,7 @@ class CameraScanner: NSObject {
   private var openCvScanner: OpenCVScannerBridge?
   
   var videoPreviewLayer: AVCaptureVideoPreviewLayer?
-  var shouldProcessEdges: Bool = true
+  var cameraMode: CameraMode = .edges
   
   private var currentOrientation: AVCaptureVideoOrientation {
     return AVCaptureVideoOrientation(from: UIDevice.current.orientation) ?? .portrait
@@ -89,8 +83,6 @@ class CameraScanner: NSObject {
   
   private func processEdges(_ sampleBuffer: CMSampleBuffer) {
     switch scannerLibrary {
-    case .metal:
-      break
     case .gpuImage:
       break
     case .openCV:
@@ -104,8 +96,6 @@ class CameraScanner: NSObject {
   
   private func processSquares(_ sampleBuffer: CMSampleBuffer) {
     switch scannerLibrary {
-    case .metal:
-      break
     case .gpuImage:
       break
     case .openCV:
@@ -121,10 +111,9 @@ class CameraScanner: NSObject {
 extension CameraScanner: AVCaptureVideoDataOutputSampleBufferDelegate {
   
   func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-    if shouldProcessEdges {
-      processEdges(sampleBuffer)
-    } else {
-      processSquares(sampleBuffer)
+    switch cameraMode {
+    case .edges: processEdges(sampleBuffer)
+    case .quadrangles: processSquares(sampleBuffer)
     }
   }
   

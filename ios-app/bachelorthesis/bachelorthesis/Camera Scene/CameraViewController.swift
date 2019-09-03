@@ -9,6 +9,18 @@
 import UIKit
 import AVFoundation
 
+enum CameraMode {
+  case edges
+  case quadrangles
+  
+  var title: String {
+    switch self {
+    case .edges: return R.string.localizable.edges()
+    case .quadrangles: return R.string.localizable.quadrangles()
+    }
+  }
+}
+
 protocol CameraViewControllerDelegate: class {
   func didCancelScanning()
   func didFinishScanning()
@@ -21,7 +33,7 @@ class CameraViewController: UIViewController {
   
   @IBOutlet weak var cancelButton: FramedButton!
   @IBOutlet weak var galleryButton: FramedButton!
-  @IBOutlet weak var edgesOverlayButton: FramedButton!
+  @IBOutlet weak var cameraModeButton: FramedButton!
   
   @IBOutlet weak var cameraView: UIView!
   @IBOutlet weak var edgesOverlayImageView: UIImageView!
@@ -36,11 +48,18 @@ class CameraViewController: UIViewController {
   
   private var cameraScanner: CameraScanner!
   
-  private var overlayVisible: Bool = true {
+  private var cameraMode: CameraMode = .edges {
     didSet {
-      edgesOverlayImageView.isHidden = !overlayVisible
-      squaresOverlayImageView.isHidden = overlayVisible
-      cameraScanner.shouldProcessEdges = overlayVisible
+      switch cameraMode {
+      case .edges:
+        edgesOverlayImageView.isHidden = false
+        squaresOverlayImageView.isHidden = true
+      case .quadrangles:
+        edgesOverlayImageView.isHidden = true
+        squaresOverlayImageView.isHidden = false
+      }
+      cameraModeButton.setTitle(cameraMode.title, for: UIControl.State())
+      cameraScanner.cameraMode = cameraMode
     }
   }
   
@@ -68,8 +87,11 @@ class CameraViewController: UIViewController {
     scannerDelegate?.didCancelScanning()
   }
   
-  @IBAction func overlayButtonPressed(_ sender: FramedButton) {
-    overlayVisible = !overlayVisible
+  @IBAction func cameraModeButtonPressed(_ sender: FramedButton) {
+    switch cameraMode {
+    case .edges: cameraMode = .quadrangles
+    case .quadrangles: cameraMode = .edges
+    }
   }
   
   // MARK: - Private Functions
@@ -79,7 +101,7 @@ class CameraViewController: UIViewController {
                           for: UIControl.State())
     galleryButton.setTitle(R.string.localizable.picture_from_gallery(),
                            for: UIControl.State())
-    edgesOverlayButton.setTitle(R.string.localizable.overlay(),
+    cameraModeButton.setTitle(CameraMode.edges.title,
                                 for: UIControl.State())
     
     versionLabel.text = OpenCVScannerBridge.openCVVersionString()

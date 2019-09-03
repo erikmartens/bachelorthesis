@@ -58,7 +58,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 8 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 10 localization keys.
     struct localizable {
       /// en translation: Additional Information
       /// 
@@ -68,6 +68,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let cancel = Rswift.StringResource(key: "cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Edges
+      /// 
+      /// Locales: en, de
+      static let edges = Rswift.StringResource(key: "edges", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Gallery
       /// 
       /// Locales: en, de
@@ -80,6 +84,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let overlay = Rswift.StringResource(key: "overlay", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Quadrangles
+      /// 
+      /// Locales: en, de
+      static let quadrangles = Rswift.StringResource(key: "quadrangles", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Select a Library
       /// 
       /// Locales: en, de
@@ -107,6 +115,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("cancel", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Edges
+      /// 
+      /// Locales: en, de
+      static func edges(_: Void = ()) -> String {
+        return NSLocalizedString("edges", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Gallery
       /// 
       /// Locales: en, de
@@ -126,6 +141,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, de
       static func overlay(_: Void = ()) -> String {
         return NSLocalizedString("overlay", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Quadrangles
+      /// 
+      /// Locales: en, de
+      static func quadrangles(_: Void = ()) -> String {
+        return NSLocalizedString("quadrangles", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Select a Library

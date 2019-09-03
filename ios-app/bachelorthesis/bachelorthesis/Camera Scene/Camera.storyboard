@@ -70,7 +70,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="x95-yf-TMt"/>
                                         </constraints>
-                                        <state key="normal" title="Button">
+                                        <state key="normal" title="Gallery">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -85,7 +85,7 @@
                                             <constraint firstAttribute="height" constant="36" id="Taa-U5-juD"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Overlay">
+                                        <state key="normal" title="Mode">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -94,7 +94,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="overlayButtonPressed:" destination="EA3-IU-CYe" eventType="touchUpInside" id="9tU-Wb-WQv"/>
+                                            <action selector="cameraModeButtonPressed:" destination="EA3-IU-CYe" eventType="touchUpInside" id="9tU-Wb-WQv"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -141,9 +141,9 @@
                         <viewLayoutGuide key="safeArea" id="fmM-G2-jX7"/>
                     </view>
                     <connections>
+                        <outlet property="cameraModeButton" destination="TMg-TU-61w" id="TLa-Ow-TSm"/>
                         <outlet property="cameraView" destination="aMc-9y-p2L" id="pmx-rm-GDd"/>
                         <outlet property="cancelButton" destination="YV8-bT-zvc" id="yGa-Qk-zf4"/>
-                        <outlet property="edgesOverlayButton" destination="TMg-TU-61w" id="nU9-Om-chC"/>
                         <outlet property="edgesOverlayImageView" destination="qdh-pU-4Dd" id="eCo-eN-7T4"/>
                         <outlet property="galleryButton" destination="Rgr-zW-oXj" id="SrI-91-r7l"/>
                         <outlet property="squaresOverlayImageView" destination="xYJ-44-0T4" id="weC-Od-ykc"/>
