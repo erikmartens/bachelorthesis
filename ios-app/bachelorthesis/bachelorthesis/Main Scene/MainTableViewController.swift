@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WeScan
 
 class MainTableViewController: UITableViewController {
 
@@ -21,7 +22,15 @@ class MainTableViewController: UITableViewController {
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
-    presentCameraViewController(for: availableScanners[indexPath.row].scannerLibrary)
+    
+    let selectedScannerType = availableScanners[indexPath.row].scannerLibrary
+    
+    switch selectedScannerType {
+    case .weScan:
+      presentWeScanScannerViewController()
+    case .openCV, .gpuImage:
+      presentCameraViewController(for: selectedScannerType)
+    }
   }
   
   override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
@@ -77,6 +86,12 @@ class MainTableViewController: UITableViewController {
     viewController.scannerDelegate = self
     present(viewController, animated: true, completion: nil)
   }
+  
+  private func presentWeScanScannerViewController() {
+    let scannerViewController = ImageScannerController()
+    scannerViewController.imageScannerDelegate = self
+    present(scannerViewController, animated: true)
+  }
 }
 
 extension MainTableViewController: CameraViewControllerDelegate {
@@ -91,5 +106,25 @@ extension MainTableViewController: CameraViewControllerDelegate {
   
   func useImageGallery() {
     
+  }
+}
+
+extension MainTableViewController: ImageScannerControllerDelegate {
+  
+  func imageScannerController(_ scanner: ImageScannerController, didFailWithError error: Error) {
+    // You are responsible for carefully handling the error
+    print(error)
+  }
+  
+  func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
+    // The user successfully scanned an image, which is available in the ImageScannerResults
+    // You are responsible for dismissing the ImageScannerController
+    scanner.dismiss(animated: true)
+  }
+  
+  func imageScannerControllerDidCancel(_ scanner: ImageScannerController) {
+    // The user tapped 'Cancel' on the scanner
+    // You are responsible for dismissing the ImageScannerController
+    scanner.dismiss(animated: true)
   }
 }
