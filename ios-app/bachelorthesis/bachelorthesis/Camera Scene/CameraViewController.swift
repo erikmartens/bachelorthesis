@@ -85,7 +85,7 @@ class CameraViewController: UIViewController {
     versionLabel.text = OpenCVScannerBridge.openCVVersionString()
     
     edgesOverlayImageView.layer.opacity = 0.5
-    squaresOverlayImageView.layer.opacity = 0.5
+    squaresOverlayImageView.layer.opacity = 1.0
   }
   
   private func setupScanner() {

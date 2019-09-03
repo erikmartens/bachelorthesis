@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		ACE1799C956736228D7B8868 /* libPods-bachelorthesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8E312C69A7A1CCA718A0E4 /* libPods-bachelorthesis.a */; };
-		BE6C3F2B231D7E6500EA116A /* squares.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE6C3F2A231D7E6500EA116A /* squares.cpp */; };
 		BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566B23181424007C18BA /* AppDelegate.swift */; };
 		BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566D23181424007C18BA /* MainTableViewController.swift */; };
 		BE8C567123181424007C18BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE8C566F23181424007C18BA /* Main.storyboard */; };
@@ -28,13 +27,13 @@
 		BEDB8FA4231D190F00C71D71 /* CameraScannerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */; };
 		BEDB8FAA231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */; };
 		F2BEC80D231E6CDE0053C9C2 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */; };
+		F2BEC810231E90540053C9C2 /* QuadrangleDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2BEC80E231E90540053C9C2 /* QuadrangleDetector.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1C4AFC113266EA223AA67C0D /* Pods-bachelorthesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.release.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.release.xcconfig"; sourceTree = "<group>"; };
 		4EE7837D3CB3344EFF754816 /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
 		AF8E312C69A7A1CCA718A0E4 /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE6C3F2A231D7E6500EA116A /* squares.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = squares.cpp; sourceTree = "<group>"; };
 		BE8C566823181424007C18BA /* bachelorthesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bachelorthesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8C566B23181424007C18BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE8C566D23181424007C18BA /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +62,8 @@
 		BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDeviceOrientation->AVCaptureVideoOrientation.swift"; sourceTree = "<group>"; };
 		F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utilities.hpp; sourceTree = "<group>"; };
+		F2BEC80E231E90540053C9C2 /* QuadrangleDetector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = QuadrangleDetector.cpp; sourceTree = "<group>"; };
+		F2BEC80F231E90540053C9C2 /* QuadrangleDetector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = QuadrangleDetector.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,7 +210,8 @@
 			children = (
 				BEDB8F9D231D0B9200C71D71 /* OpenCVScannerBridge.h */,
 				BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */,
-				BE6C3F2A231D7E6500EA116A /* squares.cpp */,
+				F2BEC80F231E90540053C9C2 /* QuadrangleDetector.hpp */,
+				F2BEC80E231E90540053C9C2 /* QuadrangleDetector.cpp */,
 				F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */,
 				F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */,
 			);
@@ -396,9 +398,9 @@
 				BEDB8F8523191F7400C71D71 /* AvailableScanners.swift in Sources */,
 				BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */,
 				BEDB8F8F231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift in Sources */,
+				F2BEC810231E90540053C9C2 /* QuadrangleDetector.cpp in Sources */,
 				BEDB8F9223192F6300C71D71 /* CameraViewController.swift in Sources */,
 				F2BEC80D231E6CDE0053C9C2 /* Utilities.cpp in Sources */,
-				BE6C3F2B231D7E6500EA116A /* squares.cpp in Sources */,
 				BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */,
 				BEDB8F87231921BC00C71D71 /* R.generated.swift in Sources */,
 				BEDB8F892319226D00C71D71 /* MainTableViewCell.swift in Sources */,

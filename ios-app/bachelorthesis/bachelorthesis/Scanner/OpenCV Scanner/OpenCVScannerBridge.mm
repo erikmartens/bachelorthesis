@@ -11,7 +11,7 @@
 
 #import <opencv2/opencv.hpp>
 #include <opencv2/imgcodecs/ios.h>
-#include "squares.cpp"
+#include "QuadrangleDetector.hpp"
 #include "Utilities.hpp"
 
 @implementation OpenCVScannerBridge
@@ -46,34 +46,28 @@
   int bufferWidth = (int) CVPixelBufferGetWidth(imageBuffer);
   void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
   size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+  const cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
   
-  cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
-  cv::Mat canvas {bufferHeight, bufferWidth, CV_8UC4};
+  QuadrangleDetector::detect_squares(image);
   
-  //    const int scaleFactor = Utilities::downscaleImageByFactor(5, image);
-  
-  vector<vector<cv::Point> > detected_squares;
-  findSquares(image, detected_squares);
-  drawSquares(canvas, detected_squares);
-  
-  cv::Mat canvas_flipped;
+  cv::Mat image_flipped;
   switch (imageOrientation)
   {
     case AVCaptureVideoOrientationPortrait:
-      cv::rotate(canvas, canvas_flipped, cv::ROTATE_90_CLOCKWISE);
+      cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
       break;
     case AVCaptureVideoOrientationPortraitUpsideDown:
-      cv::rotate(canvas, canvas_flipped, cv::ROTATE_90_CLOCKWISE);
+      cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
       break;
     case AVCaptureVideoOrientationLandscapeRight:
-      cv::rotate(canvas, canvas_flipped, cv::ROTATE_90_CLOCKWISE);
+      cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
       break;
     case AVCaptureVideoOrientationLandscapeLeft:
-      cv::rotate(canvas, canvas_flipped, cv::ROTATE_90_CLOCKWISE);
+      cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
       break;
   }
   
-  return MatToUIImage(canvas_flipped);
+  return MatToUIImage(image_flipped);
   
   //    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
   //    CVPixelBufferLockBaseAddress(imageBuffer, 0);
