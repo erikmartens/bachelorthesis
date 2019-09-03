@@ -18,11 +18,15 @@ void QuadrangleDetector::detect_squares( const Mat& image )
   vector<vector<Point> > squares;
   find_squares( image, squares );
   
-//  vector<Point> biggest_square;
-//  find_largest_square( image, biggest_square );
+  vector<Point> biggest_square;
+  find_largest_square( image, biggest_square );
   
-//  draw_square( image, biggest_square);
-  draw_squares( image, squares );
+  if ( !biggest_square.size() ){
+    // square was detected
+    draw_square( image, biggest_square);
+  }
+  
+//  draw_squares( image, squares );
 }
 
 # pragma mark Private
@@ -140,7 +144,6 @@ void QuadrangleDetector::find_largest_square(const vector<vector<Point> >& squar
   if ( largestIndex >= 0 && largestIndex < squares.size() ){
     biggest_square = squares[largestIndex];
   }
-  return;
 }
 
 void QuadrangleDetector::draw_squares( const Mat& image, const vector<vector<Point> >& squares )
