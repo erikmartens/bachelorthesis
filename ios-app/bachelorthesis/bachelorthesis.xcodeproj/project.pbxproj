@@ -210,8 +210,8 @@
 				BEDB8F9D231D0B9200C71D71 /* OpenCVScannerBridge.h */,
 				BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */,
 				BE6C3F2A231D7E6500EA116A /* squares.cpp */,
-				F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */,
 				F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */,
+				F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */,
 			);
 			path = "OpenCV Scanner";
 			sourceTree = "<group>";

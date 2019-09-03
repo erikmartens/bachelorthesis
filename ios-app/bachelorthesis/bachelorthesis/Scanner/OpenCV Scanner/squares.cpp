@@ -154,8 +154,9 @@ static void drawLargestSquare( Mat& image, const vector<vector<cv::Point> >& squ
     }
   }
   
-  cv::Point* p = (cv::Point*) malloc( sizeof(cv::Point) );
-  *p = squares[largest_contour_index][0];
+  //  cv::Point* p = (cv::Point*) malloc( sizeof(cv::Point) );
+  //  *p = squares[largest_contour_index][0];
+  const cv::Point* p = &squares[largest_contour_index][0];
   int n = (int) squares[largest_contour_index].size();
   polylines( image, &p, &n, 1, true, Scalar( 0, 255, 0 ), 3, LINE_AA );
 }

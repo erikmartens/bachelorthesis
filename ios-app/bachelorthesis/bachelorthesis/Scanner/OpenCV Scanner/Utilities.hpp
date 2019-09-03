@@ -4,10 +4,11 @@
 #include <opencv2/opencv.hpp>
 
 class Utilities {
-
+  
 public:
-    static int downscaleImageByFactor(const int factor, cv::Mat &image);
-    static void upscaleImageByFactor(const int factor, cv::Mat &image);
+  static void downscaleImageByFactor(const int factor, cv::Mat &image);
+  static int downscaleImageByMaxFactor(const int factor, cv::Mat &image);
+  static void upscaleImageByFactor(const int factor, cv::Mat &image);
 };
 
 #endif /* Utilities.hpp */

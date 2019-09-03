@@ -89,6 +89,7 @@ class CameraViewController: UIViewController {
   }
   
   private func setupScanner() {
+    cameraView.layoutIfNeeded()
     cameraScanner = CameraScanner(frame: cameraView.frame, cameraScannerDelegate: self, scannerLibrary: selectedScannerLibrary)
     cameraView.layer.addSublayer(cameraScanner.videoPreviewLayer!)
     cameraScanner.videoPreviewLayer!.position = CGPoint(x: cameraView.layer.bounds.midX, y: cameraView.layer.bounds.midY)
