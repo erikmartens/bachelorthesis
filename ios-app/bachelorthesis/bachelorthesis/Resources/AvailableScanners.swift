@@ -9,6 +9,7 @@
 import Foundation
 
 enum ScannerLibrary {
+  case weScan
   case gpuImage
   case openCV
 }
@@ -21,6 +22,10 @@ struct ScannerDTO {
 }
 
 let availableScanners = [
+  ScannerDTO(title: "WeScan",
+             website: URL(string: "https://wetransfer.com/"),
+             github: URL(string: "https://github.com/WeTransfer/WeScan"),
+             scannerLibrary: .weScan),
   ScannerDTO(title: "GPUImage",
              website: URL(string: "http://www.sunsetlakesoftware.com/"),
              github: URL(string: "https://github.com/BradLarson/GPUImage"),

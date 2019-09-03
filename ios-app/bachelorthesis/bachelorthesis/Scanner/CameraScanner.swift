@@ -83,6 +83,8 @@ class CameraScanner: NSObject {
   
   private func processEdges(_ sampleBuffer: CMSampleBuffer) {
     switch scannerLibrary {
+    case .weScan:
+      break
     case .gpuImage:
       break
     case .openCV:
@@ -91,11 +93,14 @@ class CameraScanner: NSObject {
       }
       let resultImage = openCvScanner!.extractEdges(from: sampleBuffer, with: currentOrientation)
       cameraScannerDelegate?.updateEdgesOverlay(with: resultImage)
+    
     }
   }
   
   private func processSquares(_ sampleBuffer: CMSampleBuffer) {
     switch scannerLibrary {
+    case .weScan:
+      break
     case .gpuImage:
       break
     case .openCV:
