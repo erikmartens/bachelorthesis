@@ -12,6 +12,7 @@
 #import <opencv2/opencv.hpp>
 #include <opencv2/imgcodecs/ios.h>
 #include "QuadrangleDetector.hpp"
+#include "LoyaltyCardDetector.hpp"
 #include "Utilities.hpp"
 
 @implementation OpenCVScannerBridge
@@ -38,16 +39,27 @@
 
 # pragma mark Functions
 
-- (cv::Mat)convertSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer
+//- (cv::Mat)convertSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer
+//{
+//  CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+//  CVPixelBufferLockBaseAddress(imageBuffer, 0);
+//  int bufferHeight = (int) CVPixelBufferGetHeight(imageBuffer);
+//  int bufferWidth = (int) CVPixelBufferGetWidth(imageBuffer);
+//  void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
+//  size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+//  const cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
+//  return image;
+//}
+
+- (UIImage * _Nullable)extractLoyaltyCardImage:(UIImage * _Nonnull)image
 {
-  CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-  CVPixelBufferLockBaseAddress(imageBuffer, 0);
-  int bufferHeight = (int) CVPixelBufferGetHeight(imageBuffer);
-  int bufferWidth = (int) CVPixelBufferGetWidth(imageBuffer);
-  void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
-  size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-  const cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
-  return image;
+  int imageHeight = (int) image.size.height;
+  int imageWidth = (int) image.size.width;
+  cv::Mat imageMat {imageHeight, imageWidth};
+  
+  UIImageToMat(image, imageMat);
+  LoyaltyCardDetector::extract_loyalty_card_from(imageMat);
+  return MatToUIImage(imageMat);
 }
 
 - (UIImage * _Nonnull)extractSquaresFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation

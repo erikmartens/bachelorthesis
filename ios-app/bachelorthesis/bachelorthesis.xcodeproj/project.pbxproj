@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BE6C3F2E231FC09F00EA116A /* LoyaltyCardDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */; };
 		BE89ABFC231FCFF300E17C36 /* ImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE89ABFB231FCFF300E17C36 /* ImagePicker.storyboard */; };
-		BE89ABFE231FD03200E17C36 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89ABFD231FD03200E17C36 /* ImagePickerViewController.swift */; };
+		BE89ABFE231FD03200E17C36 /* StilImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89ABFD231FD03200E17C36 /* StilImageViewController.swift */; };
 		BE89AC00231FD87000E17C36 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89ABFF231FD87000E17C36 /* ImagePicker.swift */; };
 		BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566B23181424007C18BA /* AppDelegate.swift */; };
 		BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566D23181424007C18BA /* MainTableViewController.swift */; };
@@ -39,7 +39,7 @@
 		BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LoyaltyCardDetector.cpp; sourceTree = "<group>"; };
 		BE6C3F2D231FC09F00EA116A /* LoyaltyCardDetector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LoyaltyCardDetector.hpp; sourceTree = "<group>"; };
 		BE89ABFB231FCFF300E17C36 /* ImagePicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImagePicker.storyboard; sourceTree = "<group>"; };
-		BE89ABFD231FD03200E17C36 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
+		BE89ABFD231FD03200E17C36 /* StilImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StilImageViewController.swift; sourceTree = "<group>"; };
 		BE89ABFF231FD87000E17C36 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		BE8C566823181424007C18BA /* bachelorthesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bachelorthesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8C566B23181424007C18BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,14 +103,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BE89ABFA231FCFC600E17C36 /* Image Picker Scene */ = {
+		BE89ABFA231FCFC600E17C36 /* Still Image Scene */ = {
 			isa = PBXGroup;
 			children = (
 				BE89ABFB231FCFF300E17C36 /* ImagePicker.storyboard */,
-				BE89ABFD231FD03200E17C36 /* ImagePickerViewController.swift */,
+				BE89ABFD231FD03200E17C36 /* StilImageViewController.swift */,
 				BE89ABFF231FD87000E17C36 /* ImagePicker.swift */,
 			);
-			path = "Image Picker Scene";
+			path = "Still Image Scene";
 			sourceTree = "<group>";
 		};
 		BE8C565F23181424007C18BA = {
@@ -143,7 +143,7 @@
 				BEDB8F762319086E00C71D71 /* Main */,
 				BEDB8F7523181F3C00C71D71 /* Launch Scene */,
 				BEDB8F7423181EEC00C71D71 /* Main Scene */,
-				BE89ABFA231FCFC600E17C36 /* Image Picker Scene */,
+				BE89ABFA231FCFC600E17C36 /* Still Image Scene */,
 				BEDB8F9023192F3F00C71D71 /* Camera Scene */,
 				BEDB8F9A231D096100C71D71 /* Scanner */,
 				BEDB8F8323191F4F00C71D71 /* Resources */,
@@ -464,7 +464,7 @@
 				BEDB8F99231BD3A100C71D71 /* FramedButton.swift in Sources */,
 				BEDB8F8523191F7400C71D71 /* AvailableScanners.swift in Sources */,
 				BE89AC00231FD87000E17C36 /* ImagePicker.swift in Sources */,
-				BE89ABFE231FD03200E17C36 /* ImagePickerViewController.swift in Sources */,
+				BE89ABFE231FD03200E17C36 /* StilImageViewController.swift in Sources */,
 				BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */,
 				BEDB8F8F231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift in Sources */,
 				F2BEC810231E90540053C9C2 /* QuadrangleDetector.cpp in Sources */,

@@ -315,7 +315,7 @@ struct _R: Rswift.Validatable {
     }
     
     struct imagePicker: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = ImagePickerViewController
+      typealias InitialController = StillImageViewController
       
       let bundle = R.hostingBundle
       let name = "ImagePicker"

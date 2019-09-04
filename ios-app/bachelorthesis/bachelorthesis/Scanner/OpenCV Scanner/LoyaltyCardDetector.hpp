@@ -20,13 +20,13 @@ using namespace std;
 class LoyaltyCardDetector
 {
 public:
-  static Mat extract_loyalty_card_from(const Mat &image);
+  static void extract_loyalty_card_from(Mat &image);
   
 private:
-  static void get_image_canny_borders(const Mat &image);
-  static vector<Point> find_borders_points(const Mat &image);
-  static vector<Point> order_points(vector<Point> points);
-  static Mat four_points_transform(const Mat image, vector<Point> corners);
+  static void get_image_canny_borders(Mat &image);
+  static void find_border_points(Mat &image, vector<cv::Point> &borders);
+  static vector<cv::Point> order_points(vector<cv::Point> points);
+  static void four_points_transform(Mat &image, vector<cv::Point> corners);
 };
 
 #endif /* LoyaltyCardDetector_hpp */

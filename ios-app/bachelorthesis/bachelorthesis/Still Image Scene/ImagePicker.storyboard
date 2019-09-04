@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Image Picker View Controller-->
+        <!--Still Image View Controller-->
         <scene sceneID="1N7-qF-1wR">
             <objects>
-                <viewController id="Zar-X4-d1D" customClass="ImagePickerViewController" customModule="bachelorthesis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Zar-X4-d1D" customClass="StillImageViewController" customModule="bachelorthesis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qlO-1M-VMc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

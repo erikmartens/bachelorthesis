@@ -17,6 +17,8 @@
 
 + (NSString * _Nonnull)openCVVersionString;
 
+- (UIImage * _Nullable)extractLoyaltyCardImage:(UIImage * _Nonnull)image;
+
 - (UIImage * _Nonnull)extractSquaresFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation;
 - (UIImage * _Nonnull)extractEdgesFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation;
 

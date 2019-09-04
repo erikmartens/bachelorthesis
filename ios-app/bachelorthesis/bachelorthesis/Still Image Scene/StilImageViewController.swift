@@ -8,11 +8,11 @@
 
 import Foundation
 
-protocol ImagePickerViewControllerDelegate: class {
+protocol StillImageViewControllerDelegate: class {
   func didCancelImagePicker()
 }
 
-class ImagePickerViewController: UIViewController {
+class StillImageViewController: UIViewController {
   
   // MARK: - IBOutlets
   
@@ -27,6 +27,10 @@ class ImagePickerViewController: UIViewController {
     return ImagePicker(presentationController: self, delegate: self)
   }()
   
+  private lazy var openCvScanner: OpenCVScannerBridge = {
+    return OpenCVScannerBridge()
+  }()
+  
   private var selectedImage: UIImage? {
     didSet {
       guard let image = selectedImage else {
@@ -36,7 +40,16 @@ class ImagePickerViewController: UIViewController {
     }
   }
   
-  weak var delegate: ImagePickerViewControllerDelegate?
+  private var processedImage: UIImage? {
+    didSet {
+      guard let image = processedImage else {
+        return
+      }
+      imageView.image = image
+    }
+  }
+  
+  weak var delegate: StillImageViewControllerDelegate?
   var selectedScannerLibrary: ScannerLibrary!
   
   // MARK: - View Controller Life Cycle
@@ -68,13 +81,25 @@ class ImagePickerViewController: UIViewController {
   }
   
   @IBAction func didPressProcessImageButton(_ sender: FramedButton) {
+    guard let selectedScannerLibrary = selectedScannerLibrary,
+      let selectedImage = selectedImage else {
+      return
+    }
+    switch selectedScannerLibrary {
+    case .weScan:
+      break
+    case .gpuImage:
+      break
+    case .openCV:
+      processedImage = openCvScanner.extractLoyaltyCardImage(selectedImage)
+    }
   }
   
   @IBAction func didPressSaveImageButton(_ sender: FramedButton) {
   }
 }
 
-extension ImagePickerViewController: ImagePickerDelegate {
+extension StillImageViewController: ImagePickerDelegate {
   
   func didSelect(image: UIImage?) {
     selectedImage = image

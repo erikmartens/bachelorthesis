@@ -13,33 +13,31 @@ using namespace std;
 
 #pragma mark Public
 
-Mat LoyaltyCardDetector::extract_loyalty_card_from(const Mat &image)
+void LoyaltyCardDetector::extract_loyalty_card_from(Mat &image)
 {
-  Mat result;
+  Mat imageCopy = image.clone();
   
-  /// Load an image
   if( !image.data )
   {
-    return result;
+    return;
   }
 
-  // Process image
-  get_image_canny_borders(image);
-  vector<Point> borders = find_borders_points(image);
-  result = four_points_transform(image, borders);
-
-  cvtColor( result, image, COLOR_BGR2GRAY );
+  get_image_canny_borders(imageCopy);
+  vector<Point> borders;
+  find_border_points(imageCopy, borders);
+  four_points_transform(image, borders);
+  
+//  cvtColor( result, image, COLOR_BGR2GRAY );
   //GaussianBlur( graysrc, graysrc, Size(5,5), 0, 0, BORDER_DEFAULT );
-
-  threshold( image ,result, 127, 255, THRESH_TOZERO);
+  
+//  threshold( image, result, 127, 255, THRESH_TOZERO );
   //GaussianBlur( ticketImage, ticketImage, Size(5,5), 0, 0, BORDER_DEFAULT );
   //adaptiveThreshold(ticketImage,ticketImage, 255,ADAPTIVE_THRESH_GAUSSIAN_C,THRESH_BINARY,11,2);
-  return result;
 }
 
 #pragma mark Private
 
-void LoyaltyCardDetector::get_image_canny_borders(const Mat &image)
+void LoyaltyCardDetector::get_image_canny_borders(Mat &image)
 {
   cvtColor( image, image, COLOR_BGR2GRAY );
   GaussianBlur( image, image, Size(5,5), 0, 0, BORDER_DEFAULT );
@@ -47,7 +45,7 @@ void LoyaltyCardDetector::get_image_canny_borders(const Mat &image)
   Canny(image, image, 75, 200);
 }
 
-vector<Point> LoyaltyCardDetector::find_borders_points(const Mat &image)
+void LoyaltyCardDetector::find_border_points(Mat &image, vector<cv::Point> &borders)
 {
   vector<vector<Point> > contours;  /// Find contours
   findContours( image, contours, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0) );
@@ -60,11 +58,12 @@ vector<Point> LoyaltyCardDetector::find_borders_points(const Mat &image)
     approxPolyDP( Mat(contours[i]), contours_poly[i], 0.02 * peri, true );
     if (contours_poly[i].size() == 4)
     {
-      return contours_poly[i];
+      borders = contours_poly[i];
+      return;
     }
   }
   
-  return contours_poly[0];
+  borders = contours_poly[0];
 }
 
 vector<Point> LoyaltyCardDetector::order_points(vector<Point> points)
@@ -91,7 +90,7 @@ vector<Point> LoyaltyCardDetector::order_points(vector<Point> points)
   return order;
 }
 
-Mat LoyaltyCardDetector::four_points_transform(const Mat image, vector<Point> corners)
+void LoyaltyCardDetector::four_points_transform(Mat &image, vector<Point> corners)
 {
   Point2f points[4];
   vector<Point> pv = order_points(corners);
@@ -133,5 +132,5 @@ Mat LoyaltyCardDetector::four_points_transform(const Mat image, vector<Point> co
   Mat rotated;
   Size size(maxWidth, maxHeight);
   warpPerspective(image, rotated, warpMatrix, size, INTER_LINEAR, BORDER_CONSTANT);
-  return rotated;
+  image = rotated;
 }

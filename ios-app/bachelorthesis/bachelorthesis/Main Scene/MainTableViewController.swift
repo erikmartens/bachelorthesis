@@ -65,7 +65,7 @@ class MainTableViewController: UITableViewController {
   }
   
   private func presentImagePickerViewController(for scannerLibrary: ScannerLibrary) {
-    let viewController = R.storyboard.imagePicker().instantiateInitialViewController() as! ImagePickerViewController
+    let viewController = R.storyboard.imagePicker().instantiateInitialViewController() as! StillImageViewController
     let navigstionController = UINavigationController(rootViewController: viewController)
     viewController.selectedScannerLibrary = scannerLibrary
     viewController.delegate = self
@@ -178,7 +178,7 @@ extension MainTableViewController: ImageScannerControllerDelegate {
   }
 }
 
-extension MainTableViewController: ImagePickerViewControllerDelegate {
+extension MainTableViewController: StillImageViewControllerDelegate {
   func didCancelImagePicker() {
     navigationController?.presentedViewController?.dismiss(animated: true, completion: nil)
   }
