@@ -23,6 +23,19 @@ class ImagePickerViewController: UIViewController {
   
   // MARK: - Properties
   
+  private lazy var imagePicker: ImagePicker = {
+    return ImagePicker(presentationController: self, delegate: self)
+  }()
+  
+  private var selectedImage: UIImage? {
+    didSet {
+      guard let image = selectedImage else {
+        return
+      }
+      imageView.image = image
+    }
+  }
+  
   weak var delegate: ImagePickerViewControllerDelegate?
   var selectedScannerLibrary: ScannerLibrary!
   
@@ -36,9 +49,9 @@ class ImagePickerViewController: UIViewController {
   // MARK: - Private Functions
   
   private func setupUserInterface() {
-   navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
-                                                                             target: self,
-                                                                             action: #selector(cancelImagePicker(_:)))
+    navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
+                                                       target: self,
+                                                       action: #selector(cancelImagePicker(_:)))
     selectImageButton.setTitle(R.string.localizable.select_image(), for: UIControl.State())
     processImageButton.setTitle(R.string.localizable.process_image(), for: UIControl.State())
     saveImageButton.setTitle(R.string.localizable.save_image(), for: UIControl.State())
@@ -51,11 +64,19 @@ class ImagePickerViewController: UIViewController {
   // MARK: - IBActions
   
   @IBAction func didPressSelectImageButton(_ sender: FramedButton) {
+    self.imagePicker.present(from: sender)
   }
   
   @IBAction func didPressProcessImageButton(_ sender: FramedButton) {
   }
   
   @IBAction func didPressSaveImageButton(_ sender: FramedButton) {
+  }
+}
+
+extension ImagePickerViewController: ImagePickerDelegate {
+  
+  func didSelect(image: UIImage?) {
+    selectedImage = image
   }
 }
