@@ -31,10 +31,10 @@ private:
   
   static double angle( cv::Point pt1, cv::Point pt2, cv::Point pt0 );
   static void find_squares( const Mat& image, vector<vector<cv::Point> >& squares );
-  static void find_largest_square(const vector<vector<cv::Point> >& squares, vector<cv::Point>& biggest_square );
+  //  static void identify_loyalty_card_square(vector<vector<cv::Point> >& squares, vector<cv::Point>& vertics);
+  static void filter_largest_square(const vector<vector<cv::Point> >& squares, vector<cv::Point>& biggest_square );
   static void filter_squares_for_aspect_ratio(vector<vector<cv::Point> >& squares);
-  static void remove_largest_square(vector<vector<cv::Point> >& squares);
-  static void identify_loyalty_card_square(vector<vector<cv::Point> >& squares, vector<cv::Point>& vertics);
+  //  static void remove_largest_square(vector<vector<cv::Point> >& squares);
   
   static void draw_square( const Mat& image, const vector<cv::Point>& square );
   static void draw_squares( const Mat& image, const vector<vector<cv::Point> >& squares );

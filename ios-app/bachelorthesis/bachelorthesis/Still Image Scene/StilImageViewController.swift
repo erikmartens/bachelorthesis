@@ -27,8 +27,8 @@ class StillImageViewController: UIViewController {
     return ImagePicker(presentationController: self, delegate: self)
   }()
   
-  private lazy var openCvScanner: OpenCVScannerBridge = {
-    return OpenCVScannerBridge()
+  private lazy var openCvProcessor: OpenCvProcessorBridge = {
+    return OpenCvProcessorBridge()
   }()
   
   private var selectedImage: UIImage? {
@@ -91,7 +91,7 @@ class StillImageViewController: UIViewController {
     case .gpuImage:
       break
     case .openCV:
-      processedImage = openCvScanner.extractLoyaltyCardImage(selectedImage)
+      processedImage = openCvProcessor.extractLoyaltyCardImage(selectedImage)
     }
   }
   

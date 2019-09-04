@@ -103,7 +103,7 @@ class CameraViewController: UIViewController {
     cameraModeButton.setTitle(CameraMode.edges.title,
                                 for: UIControl.State())
     
-    versionLabel.text = OpenCVScannerBridge.openCVVersionString()
+    versionLabel.text = OpenCvProcessorBridge.openCVVersionString()
     
     edgesOverlayImageView.layer.opacity = 0.5
     squaresOverlayImageView.layer.opacity = 1.0

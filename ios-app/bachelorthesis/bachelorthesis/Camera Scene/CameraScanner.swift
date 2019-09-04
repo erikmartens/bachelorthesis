@@ -28,8 +28,8 @@ class CameraScanner: NSObject {
   private let output = AVCaptureVideoDataOutput()
   private var input: AVCaptureDeviceInput?
   
-  private lazy var openCvScanner: OpenCVScannerBridge = {
-    return OpenCVScannerBridge()
+  private lazy var openCvProcessor: OpenCvProcessorBridge = {
+    return OpenCvProcessorBridge()
   }()
   
   var videoPreviewLayer: AVCaptureVideoPreviewLayer?
@@ -90,7 +90,7 @@ class CameraScanner: NSObject {
     case .gpuImage:
       break
     case .openCV:
-      let resultImage = openCvScanner.extractEdges(from: sampleBuffer, with: currentOrientation)
+      let resultImage = openCvProcessor.extractEdges(from: sampleBuffer, with: currentOrientation)
       cameraScannerDelegate?.updateEdgesOverlay(with: resultImage)
     
     }
@@ -103,7 +103,7 @@ class CameraScanner: NSObject {
     case .gpuImage:
       break
     case .openCV:
-      let resultImage = openCvScanner.extractSquares(from: sampleBuffer, with: currentOrientation)
+      let resultImage = openCvProcessor.extractSquares(from: sampleBuffer, with: currentOrientation)
       cameraScannerDelegate?.updateSquaresOverlay(with: resultImage)
     }
   }

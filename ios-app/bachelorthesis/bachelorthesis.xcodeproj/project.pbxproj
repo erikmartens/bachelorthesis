@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		937D30CBA35FA7E59070D4C6 /* libPods-bachelorthesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A42A04F4D4E59D1892CCC5B5 /* libPods-bachelorthesis.a */; };
 		BE6C3F2E231FC09F00EA116A /* LoyaltyCardDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */; };
 		BE89ABFC231FCFF300E17C36 /* ImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE89ABFB231FCFF300E17C36 /* ImagePicker.storyboard */; };
 		BE89ABFE231FD03200E17C36 /* StilImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89ABFD231FD03200E17C36 /* StilImageViewController.swift */; };
@@ -26,15 +27,15 @@
 		BEDB8F9423192F7900C71D71 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDB8F9323192F7900C71D71 /* Camera.storyboard */; };
 		BEDB8F96231BC7FD00C71D71 /* CameraScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */; };
 		BEDB8F99231BD3A100C71D71 /* FramedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F98231BD3A100C71D71 /* FramedButton.swift */; };
-		BEDB8F9F231D0B9200C71D71 /* OpenCVScannerBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */; };
+		BEDB8F9F231D0B9200C71D71 /* OpenCvProcessorBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F9E231D0B9200C71D71 /* OpenCvProcessorBridge.mm */; };
 		BEDB8FA4231D190F00C71D71 /* CameraScannerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */; };
 		BEDB8FAA231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */; };
-		C2C740EAB428211ADB286196 /* libPods-bachelorthesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F9A9AF04F999E26B797CE9 /* libPods-bachelorthesis.a */; };
 		F2BEC80D231E6CDE0053C9C2 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		55F9A9AF04F999E26B797CE9 /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		22793AB0F0B2688854FF2708 /* Pods-bachelorthesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.release.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.release.xcconfig"; sourceTree = "<group>"; };
+		A42A04F4D4E59D1892CCC5B5 /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LoyaltyCardDetector.cpp; sourceTree = "<group>"; };
 		BE6C3F2D231FC09F00EA116A /* LoyaltyCardDetector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LoyaltyCardDetector.hpp; sourceTree = "<group>"; };
 		BE89ABFB231FCFF300E17C36 /* ImagePicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImagePicker.storyboard; sourceTree = "<group>"; };
@@ -60,13 +61,12 @@
 		BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanner.swift; sourceTree = "<group>"; };
 		BEDB8F98231BD3A100C71D71 /* FramedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FramedButton.swift; sourceTree = "<group>"; };
 		BEDB8F9C231D0B9100C71D71 /* bachelorthesis-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "bachelorthesis-Bridging-Header.h"; sourceTree = "<group>"; };
-		BEDB8F9D231D0B9200C71D71 /* OpenCVScannerBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCVScannerBridge.h; sourceTree = "<group>"; };
-		BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVScannerBridge.mm; sourceTree = "<group>"; };
+		BEDB8F9D231D0B9200C71D71 /* OpenCvProcessorBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenCvProcessorBridge.h; sourceTree = "<group>"; };
+		BEDB8F9E231D0B9200C71D71 /* OpenCvProcessorBridge.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCvProcessorBridge.mm; sourceTree = "<group>"; };
 		BEDB8FA0231D0C1600C71D71 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScannerProtocol.swift; sourceTree = "<group>"; };
 		BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDeviceOrientation->AVCaptureVideoOrientation.swift"; sourceTree = "<group>"; };
-		BF31E74ED758B0FF1FDD7787 /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
-		F0FB250E8451BE663D963F32 /* Pods-bachelorthesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.release.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.release.xcconfig"; sourceTree = "<group>"; };
+		D43296E1F2AE02F607657D9B /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
 		F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utilities.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2C740EAB428211ADB286196 /* libPods-bachelorthesis.a in Frameworks */,
+				937D30CBA35FA7E59070D4C6 /* libPods-bachelorthesis.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,18 +86,10 @@
 		7D739B47A8B2B807B396CCCB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BF31E74ED758B0FF1FDD7787 /* Pods-bachelorthesis.debug.xcconfig */,
-				F0FB250E8451BE663D963F32 /* Pods-bachelorthesis.release.xcconfig */,
+				D43296E1F2AE02F607657D9B /* Pods-bachelorthesis.debug.xcconfig */,
+				22793AB0F0B2688854FF2708 /* Pods-bachelorthesis.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		87AE3BA1CC12D5E9EC704D19 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				55F9A9AF04F999E26B797CE9 /* libPods-bachelorthesis.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		BE89ABFA231FCFC600E17C36 /* Still Image Scene */ = {
@@ -117,7 +109,7 @@
 				BE8C566A23181424007C18BA /* bachelorthesis */,
 				BE8C566923181424007C18BA /* Products */,
 				7D739B47A8B2B807B396CCCB /* Pods */,
-				87AE3BA1CC12D5E9EC704D19 /* Frameworks */,
+				DD2FCCF6D17A8DEDACF2BBF9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,7 +134,7 @@
 				BEDB8F7423181EEC00C71D71 /* Main Scene */,
 				BE89ABFA231FCFC600E17C36 /* Still Image Scene */,
 				BEDB8F9023192F3F00C71D71 /* Camera Scene */,
-				BEDB8F9A231D096100C71D71 /* Scanner */,
+				BEDB8F9A231D096100C71D71 /* Image Processors */,
 				BEDB8F8323191F4F00C71D71 /* Resources */,
 				BEDB8F8A2319260200C71D71 /* Helpers */,
 			);
@@ -207,6 +199,8 @@
 			children = (
 				BEDB8F9323192F7900C71D71 /* Camera.storyboard */,
 				BEDB8F9123192F6300C71D71 /* CameraViewController.swift */,
+				BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */,
+				BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */,
 			);
 			path = "Camera Scene";
 			sourceTree = "<group>";
@@ -219,27 +213,25 @@
 			path = IBDesignables;
 			sourceTree = "<group>";
 		};
-		BEDB8F9A231D096100C71D71 /* Scanner */ = {
+		BEDB8F9A231D096100C71D71 /* Image Processors */ = {
 			isa = PBXGroup;
 			children = (
-				BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */,
-				BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */,
-				BEDB8F9B231D096F00C71D71 /* OpenCV Scanner */,
+				BEDB8F9B231D096F00C71D71 /* OpenCV Processor */,
 			);
-			path = Scanner;
+			path = "Image Processors";
 			sourceTree = "<group>";
 		};
-		BEDB8F9B231D096F00C71D71 /* OpenCV Scanner */ = {
+		BEDB8F9B231D096F00C71D71 /* OpenCV Processor */ = {
 			isa = PBXGroup;
 			children = (
-				BEDB8F9D231D0B9200C71D71 /* OpenCVScannerBridge.h */,
-				BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */,
+				BEDB8F9D231D0B9200C71D71 /* OpenCvProcessorBridge.h */,
+				BEDB8F9E231D0B9200C71D71 /* OpenCvProcessorBridge.mm */,
 				BE6C3F2D231FC09F00EA116A /* LoyaltyCardDetector.hpp */,
 				BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */,
 				F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */,
 				F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */,
 			);
-			path = "OpenCV Scanner";
+			path = "OpenCV Processor";
 			sourceTree = "<group>";
 		};
 		BEDB8FA8231D5A0100C71D71 /* Converters */ = {
@@ -250,6 +242,14 @@
 			path = Converters;
 			sourceTree = "<group>";
 		};
+		DD2FCCF6D17A8DEDACF2BBF9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A42A04F4D4E59D1892CCC5B5 /* libPods-bachelorthesis.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -257,13 +257,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE8C567A23181425007C18BA /* Build configuration list for PBXNativeTarget "bachelorthesis" */;
 			buildPhases = (
-				2DEEF06CA917E34CEF24DBC7 /* [CP] Check Pods Manifest.lock */,
+				E79FF59AD1EECF11ED6A559B /* [CP] Check Pods Manifest.lock */,
 				BEDB8F80231909CD00C71D71 /* SwiftLint */,
 				BEDB8F7F2319099D00C71D71 /* R.Swift */,
 				BE8C566423181424007C18BA /* Sources */,
 				BE8C566523181424007C18BA /* Frameworks */,
 				BE8C566623181424007C18BA /* Resources */,
-				0FA979AC7C7DA0B26352F533 /* [CP] Copy Pods Resources */,
+				3B4B71377FC7E789F603E4E9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -326,7 +326,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0FA979AC7C7DA0B26352F533 /* [CP] Copy Pods Resources */ = {
+		3B4B71377FC7E789F603E4E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -388,28 +388,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2DEEF06CA917E34CEF24DBC7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-bachelorthesis-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		BEDB8F7F2319099D00C71D71 /* R.Swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -448,6 +426,28 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
+		E79FF59AD1EECF11ED6A559B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-bachelorthesis-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -468,7 +468,7 @@
 				BEDB8F87231921BC00C71D71 /* R.generated.swift in Sources */,
 				BE6C3F2E231FC09F00EA116A /* LoyaltyCardDetector.cpp in Sources */,
 				BEDB8F892319226D00C71D71 /* MainTableViewCell.swift in Sources */,
-				BEDB8F9F231D0B9200C71D71 /* OpenCVScannerBridge.mm in Sources */,
+				BEDB8F9F231D0B9200C71D71 /* OpenCvProcessorBridge.mm in Sources */,
 				BEDB8FA4231D190F00C71D71 /* CameraScannerProtocol.swift in Sources */,
 				BEDB8F8D2319264500C71D71 /* UIViewController+PresentSafariViewController.swift in Sources */,
 				BEDB8F96231BC7FD00C71D71 /* CameraScanner.swift in Sources */,
@@ -630,12 +630,12 @@
 		};
 		BE8C567B23181425007C18BA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF31E74ED758B0FF1FDD7787 /* Pods-bachelorthesis.debug.xcconfig */;
+			baseConfigurationReference = D43296E1F2AE02F607657D9B /* Pods-bachelorthesis.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K9UPH3NRK2;
+				DEVELOPMENT_TEAM = VDPU24L36V;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/bachelorthesis/PrefixHeader.pch";
 				INFOPLIST_FILE = bachelorthesis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -654,12 +654,12 @@
 		};
 		BE8C567C23181425007C18BA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F0FB250E8451BE663D963F32 /* Pods-bachelorthesis.release.xcconfig */;
+			baseConfigurationReference = 22793AB0F0B2688854FF2708 /* Pods-bachelorthesis.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = K9UPH3NRK2;
+				DEVELOPMENT_TEAM = VDPU24L36V;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/bachelorthesis/PrefixHeader.pch";
 				INFOPLIST_FILE = bachelorthesis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;

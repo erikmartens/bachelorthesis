@@ -13,7 +13,7 @@
 #import <CoreMedia/CoreMedia.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface OpenCVScannerBridge : NSObject
+@interface OpenCvProcessorBridge : NSObject
 
 + (NSString * _Nonnull)openCVVersionString;
 

@@ -7,14 +7,14 @@
 //
 
 //#import "Stocard-Swift.h"
-#import "OpenCVScannerBridge.h"
+#import "OpenCvProcessorBridge.h"
 
 #import <opencv2/opencv.hpp>
 #include <opencv2/imgcodecs/ios.h>
 #include "LoyaltyCardDetector.hpp"
 #include "Utilities.hpp"
 
-@implementation OpenCVScannerBridge
+@implementation OpenCvProcessorBridge
 
 # pragma mark Initiliazation
 
