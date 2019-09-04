@@ -58,12 +58,16 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 10 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 14 localization keys.
     struct localizable {
       /// en translation: Additional Information
       /// 
       /// Locales: en, de
       static let additional_information = Rswift.StringResource(key: "additional_information", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Camera
+      /// 
+      /// Locales: en, de
+      static let picture_from_camera = Rswift.StringResource(key: "picture_from_camera", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Cancel
       /// 
       /// Locales: en, de
@@ -80,6 +84,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let github = Rswift.StringResource(key: "github", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Input Options Are Undefined
+      /// 
+      /// Locales: en, de
+      static let input_options_undefined = Rswift.StringResource(key: "input_options_undefined", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Overlay
       /// 
       /// Locales: en, de
@@ -88,6 +96,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let quadrangles = Rswift.StringResource(key: "quadrangles", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Select Image Input Option
+      /// 
+      /// Locales: en, de
+      static let select_input_option = Rswift.StringResource(key: "select_input_option", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Select a Library
       /// 
       /// Locales: en, de
@@ -96,6 +108,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let select_a_framework = Rswift.StringResource(key: "select_a_framework", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: There are currently no input options specified. Please select a different framework.
+      /// 
+      /// Locales: en, de
+      static let no_input_options = Rswift.StringResource(key: "no_input_options", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Website
       /// 
       /// Locales: en, de
@@ -106,6 +122,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, de
       static func additional_information(_: Void = ()) -> String {
         return NSLocalizedString("additional_information", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Camera
+      /// 
+      /// Locales: en, de
+      static func picture_from_camera(_: Void = ()) -> String {
+        return NSLocalizedString("picture_from_camera", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Cancel
@@ -136,6 +159,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("github", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Input Options Are Undefined
+      /// 
+      /// Locales: en, de
+      static func input_options_undefined(_: Void = ()) -> String {
+        return NSLocalizedString("input_options_undefined", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Overlay
       /// 
       /// Locales: en, de
@@ -150,6 +180,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("quadrangles", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Select Image Input Option
+      /// 
+      /// Locales: en, de
+      static func select_input_option(_: Void = ()) -> String {
+        return NSLocalizedString("select_input_option", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Select a Library
       /// 
       /// Locales: en, de
@@ -162,6 +199,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, de
       static func select_a_framework(_: Void = ()) -> String {
         return NSLocalizedString("select_a_framework", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: There are currently no input options specified. Please select a different framework.
+      /// 
+      /// Locales: en, de
+      static func no_input_options(_: Void = ()) -> String {
+        return NSLocalizedString("no_input_options", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Website

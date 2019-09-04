@@ -23,36 +23,13 @@ class MainTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     
-    let selectedScannerType = availableScanners[indexPath.row].scannerLibrary
-    
-    switch selectedScannerType {
-    case .weScan:
-      presentWeScanScannerViewController()
-    case .openCV, .gpuImage:
-      presentCameraViewController(for: selectedScannerType)
-    }
+    let selectedScanner = availableScanners[indexPath.row]
+    showInputOptions(for: selectedScanner)
   }
   
   override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-    var actions: [String: ((UIAlertAction) -> Void)] = [:]
-    
-    if let websiteUrl = availableScanners[indexPath.row].website {
-      actions[R.string.localizable.website()] = { [weak self] _ in
-        self?.presentSafariViewController(for: websiteUrl, withTint: nil, completionHandler: nil)
-      }
-    }
-    
-    if let githubUrl = availableScanners[indexPath.row].github {
-      actions[R.string.localizable.github()] = { [weak self] _ in
-        self?.presentSafariViewController(for: githubUrl, withTint: nil, completionHandler: nil)
-      }
-    }
-
-    presentAlertViewController(withTitle: R.string.localizable.additional_information(),
-                               message: nil,
-                               actions: actions,
-                               addDefaultCancelAction: true,
-                               style: .actionSheet)
+    let selectedScanner = availableScanners[indexPath.row]
+    showInformationOptions(for: selectedScanner)
   }
   
   // MARK: - TableView Data Source
@@ -91,6 +68,70 @@ class MainTableViewController: UITableViewController {
     let scannerViewController = ImageScannerController()
     scannerViewController.imageScannerDelegate = self
     present(scannerViewController, animated: true)
+  }
+  
+  private func showInputOptions(for scanner: ScannerDTO) {
+    guard !scanner.inputOptions.isEmpty else {
+      presentAlertViewController(withTitle: R.string.localizable.input_options_undefined(),
+                                 message: R.string.localizable.no_input_options(),
+                                 actions: [:],
+                                 addDefaultCancelAction: true,
+                                 style: .actionSheet)
+      
+      return
+    }
+    
+    var actions: [String: ((UIAlertAction) -> Void)] = [:]
+    
+    if scanner.inputOptions.contains(.camera) {
+      actions[ImageInputOption.camera.title] = { [weak self] _ in
+        switch scanner.scannerLibrary {
+        case .weScan:
+          self?.presentWeScanScannerViewController()
+        case .openCV, .gpuImage:
+          self?.presentCameraViewController(for: scanner.scannerLibrary)
+        }
+      }
+    }
+    
+    if scanner.inputOptions.contains(.gallery) {
+      actions[ImageInputOption.camera.title] = { [weak self] _ in
+        switch scanner.scannerLibrary {
+        case .weScan:
+          self?.presentWeScanScannerViewController()
+        case .openCV, .gpuImage:
+          self?.presentCameraViewController(for: scanner.scannerLibrary)
+        }
+      }
+    }
+    
+    presentAlertViewController(withTitle: R.string.localizable.select_input_option(),
+                               message: nil,
+                               actions: actions,
+                               addDefaultCancelAction: true,
+                               style: .actionSheet)
+  }
+  
+  private func showInformationOptions(for scanner: ScannerDTO) {
+    var actions: [String: ((UIAlertAction) -> Void)] = [:]
+    
+    if let websiteUrl = scanner.website {
+      actions[R.string.localizable.website()] = { [weak self] _ in
+        self?.presentSafariViewController(for: websiteUrl, withTint: nil, completionHandler: nil)
+      }
+    }
+    
+    if let githubUrl = scanner.github {
+      actions[R.string.localizable.github()] = { [weak self] _ in
+        self?.presentSafariViewController(for: githubUrl, withTint: nil, completionHandler: nil)
+      }
+    }
+    
+    presentAlertViewController(withTitle: R.string.localizable.additional_information(),
+                               message: nil,
+                               actions: actions,
+                               addDefaultCancelAction: true,
+                               style: .actionSheet)
   }
 }
 

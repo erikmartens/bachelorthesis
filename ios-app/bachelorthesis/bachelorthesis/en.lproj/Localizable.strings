@@ -12,7 +12,11 @@
 "github" = "GitHub";
 "additional_information" = "Additional Information";
 "picture_from_gallery" = "Gallery";
+"picture_from_camera" = "Camera";
 "overlay" = "Overlay";
 "select_a_framework" = "Select a framework";
 "edges" = "Edges";
 "quadrangles" = "Quadrangles";
+"select_input_option" = "Select Image Input Option";
+"input_options_undefined" = "Input Options Are Undefined";
+"no_input_options" = "There are currently no input options specified. Please select a different framework.";
