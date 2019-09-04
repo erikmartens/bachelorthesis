@@ -6,7 +6,7 @@
   Copyright © 2019  Erik Maximilian Martens. All rights reserved.
 */
 
-"select_a_library" = "Wähle eine Bibliothek";
+"select_a_library" = "Extraktions-Framewok Evaluation";
 "cancel" = "Abbrechen";
 "website" = "Webseite";
 "github" = "GitHub";

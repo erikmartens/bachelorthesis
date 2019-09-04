@@ -11,12 +11,12 @@
 		BE89ABFC231FCFF300E17C36 /* ImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE89ABFB231FCFF300E17C36 /* ImagePicker.storyboard */; };
 		BE89ABFE231FD03200E17C36 /* StilImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89ABFD231FD03200E17C36 /* StilImageViewController.swift */; };
 		BE89AC00231FD87000E17C36 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89ABFF231FD87000E17C36 /* ImagePicker.swift */; };
+		BE89AC012320044A00E17C36 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BEDB8F7D2319093600C71D71 /* Localizable.strings */; };
 		BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566B23181424007C18BA /* AppDelegate.swift */; };
 		BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566D23181424007C18BA /* MainTableViewController.swift */; };
 		BE8C567123181424007C18BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE8C566F23181424007C18BA /* Main.storyboard */; };
 		BE8C567323181425007C18BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE8C567223181425007C18BA /* Assets.xcassets */; };
 		BE8C567623181425007C18BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE8C567423181425007C18BA /* LaunchScreen.storyboard */; };
-		BEDB8F7B2319093600C71D71 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BEDB8F7D2319093600C71D71 /* Localizable.strings */; };
 		BEDB8F8523191F7400C71D71 /* AvailableScanners.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F8423191F7400C71D71 /* AvailableScanners.swift */; };
 		BEDB8F87231921BC00C71D71 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F86231921BB00C71D71 /* R.generated.swift */; };
 		BEDB8F892319226D00C71D71 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F882319226D00C71D71 /* MainTableViewCell.swift */; };
@@ -31,7 +31,6 @@
 		BEDB8FAA231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */; };
 		C2C740EAB428211ADB286196 /* libPods-bachelorthesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F9A9AF04F999E26B797CE9 /* libPods-bachelorthesis.a */; };
 		F2BEC80D231E6CDE0053C9C2 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */; };
-		F2BEC810231E90540053C9C2 /* QuadrangleDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2BEC80E231E90540053C9C2 /* QuadrangleDetector.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,8 +69,6 @@
 		F0FB250E8451BE663D963F32 /* Pods-bachelorthesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.release.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.release.xcconfig"; sourceTree = "<group>"; };
 		F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utilities.hpp; sourceTree = "<group>"; };
-		F2BEC80E231E90540053C9C2 /* QuadrangleDetector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = QuadrangleDetector.cpp; sourceTree = "<group>"; };
-		F2BEC80F231E90540053C9C2 /* QuadrangleDetector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = QuadrangleDetector.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,8 +236,6 @@
 				BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */,
 				BE6C3F2D231FC09F00EA116A /* LoyaltyCardDetector.hpp */,
 				BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */,
-				F2BEC80F231E90540053C9C2 /* QuadrangleDetector.hpp */,
-				F2BEC80E231E90540053C9C2 /* QuadrangleDetector.cpp */,
 				F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */,
 				F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */,
 			);
@@ -320,7 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE8C567623181425007C18BA /* LaunchScreen.storyboard in Resources */,
-				BEDB8F7B2319093600C71D71 /* Localizable.strings in Resources */,
+				BE89AC012320044A00E17C36 /* Localizable.strings in Resources */,
 				BE89ABFC231FCFF300E17C36 /* ImagePicker.storyboard in Resources */,
 				BE8C567323181425007C18BA /* Assets.xcassets in Resources */,
 				BE8C567123181424007C18BA /* Main.storyboard in Resources */,
@@ -467,7 +462,6 @@
 				BE89ABFE231FD03200E17C36 /* StilImageViewController.swift in Sources */,
 				BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */,
 				BEDB8F8F231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift in Sources */,
-				F2BEC810231E90540053C9C2 /* QuadrangleDetector.cpp in Sources */,
 				BEDB8F9223192F6300C71D71 /* CameraViewController.swift in Sources */,
 				F2BEC80D231E6CDE0053C9C2 /* Utilities.cpp in Sources */,
 				BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */,
@@ -641,7 +635,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VDPU24L36V;
+				DEVELOPMENT_TEAM = K9UPH3NRK2;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/bachelorthesis/PrefixHeader.pch";
 				INFOPLIST_FILE = bachelorthesis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -665,7 +659,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VDPU24L36V;
+				DEVELOPMENT_TEAM = K9UPH3NRK2;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/bachelorthesis/PrefixHeader.pch";
 				INFOPLIST_FILE = bachelorthesis/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;

@@ -96,6 +96,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let edges = Rswift.StringResource(key: "edges", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Extraction Framework Evaluation
+      /// 
+      /// Locales: en, de
+      static let select_a_library = Rswift.StringResource(key: "select_a_library", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Gallery
       /// 
       /// Locales: en, de
@@ -132,10 +136,6 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let select_input_option = Rswift.StringResource(key: "select_input_option", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
-      /// en translation: Select a Library
-      /// 
-      /// Locales: en, de
-      static let select_a_library = Rswift.StringResource(key: "select_a_library", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Select a framework
       /// 
       /// Locales: en, de
@@ -175,6 +175,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, de
       static func edges(_: Void = ()) -> String {
         return NSLocalizedString("edges", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Extraction Framework Evaluation
+      /// 
+      /// Locales: en, de
+      static func select_a_library(_: Void = ()) -> String {
+        return NSLocalizedString("select_a_library", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Gallery
@@ -238,13 +245,6 @@ struct R: Rswift.Validatable {
       /// Locales: en, de
       static func select_input_option(_: Void = ()) -> String {
         return NSLocalizedString("select_input_option", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Select a Library
-      /// 
-      /// Locales: en, de
-      static func select_a_library(_: Void = ()) -> String {
-        return NSLocalizedString("select_a_library", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Select a framework

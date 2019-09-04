@@ -11,7 +11,6 @@
 
 #import <opencv2/opencv.hpp>
 #include <opencv2/imgcodecs/ios.h>
-#include "QuadrangleDetector.hpp"
 #include "LoyaltyCardDetector.hpp"
 #include "Utilities.hpp"
 
@@ -39,23 +38,11 @@
 
 # pragma mark Functions
 
-//- (cv::Mat)convertSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer
-//{
-//  CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-//  CVPixelBufferLockBaseAddress(imageBuffer, 0);
-//  int bufferHeight = (int) CVPixelBufferGetHeight(imageBuffer);
-//  int bufferWidth = (int) CVPixelBufferGetWidth(imageBuffer);
-//  void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
-//  size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-//  const cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
-//  return image;
-//}
-
 - (UIImage * _Nullable)extractLoyaltyCardImage:(UIImage * _Nonnull)image
 {
   int imageHeight = (int) image.size.height;
   int imageWidth = (int) image.size.width;
-  cv::Mat imageMat {imageHeight, imageWidth};
+  cv::Mat imageMat {imageHeight, imageWidth, CV_8UC4};
   
   UIImageToMat(image, imageMat);
   LoyaltyCardDetector::extract_loyalty_card_from(imageMat);
@@ -72,7 +59,7 @@
   size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
   const cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
   
-  QuadrangleDetector::detect_squares(image);
+  LoyaltyCardDetector::detect_squares(image);
   
   cv::Mat image_flipped;
   switch (imageOrientation)

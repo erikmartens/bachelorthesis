@@ -27,7 +27,7 @@ open class ImagePicker: NSObject {
     self.delegate = delegate
     
     self.pickerController.delegate = self
-    self.pickerController.allowsEditing = true
+    //    self.pickerController.allowsEditing = true
     self.pickerController.mediaTypes = ["public.image"]
   }
   
@@ -43,33 +43,34 @@ open class ImagePicker: NSObject {
   }
   
   public func present(from sourceView: UIView) {
+    pickerController.sourceType = .photoLibrary
+    presentationController?.present(pickerController, animated: true)
     
-    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-    
-    if let action = self.action(for: .camera, title: "Take photo") {
-      alertController.addAction(action)
-    }
-    if let action = self.action(for: .savedPhotosAlbum, title: "Camera roll") {
-      alertController.addAction(action)
-    }
-    if let action = self.action(for: .photoLibrary, title: "Photo library") {
-      alertController.addAction(action)
-    }
-    
-    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-    
-    if UIDevice.current.userInterfaceIdiom == .pad {
-      alertController.popoverPresentationController?.sourceView = sourceView
-      alertController.popoverPresentationController?.sourceRect = sourceView.bounds
-      alertController.popoverPresentationController?.permittedArrowDirections = [.down, .up]
-    }
-    
-    self.presentationController?.present(alertController, animated: true)
+    //    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    //
+    //    if let action = self.action(for: .camera, title: "Take photo") {
+    //      alertController.addAction(action)
+    //    }
+    //    if let action = self.action(for: .savedPhotosAlbum, title: "Camera roll") {
+    //      alertController.addAction(action)
+    //    }
+    //    if let action = self.action(for: .photoLibrary, title: "Photo library") {
+    //      alertController.addAction(action)
+    //    }
+    //
+    //    alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    //
+    //    if UIDevice.current.userInterfaceIdiom == .pad {
+    //      alertController.popoverPresentationController?.sourceView = sourceView
+    //      alertController.popoverPresentationController?.sourceRect = sourceView.bounds
+    //      alertController.popoverPresentationController?.permittedArrowDirections = [.down, .up]
+    //    }
+    //
+    //    self.presentationController?.present(alertController, animated: true)
   }
   
   private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
     controller.dismiss(animated: true, completion: nil)
-    
     self.delegate?.didSelect(image: image)
   }
 }
@@ -80,12 +81,8 @@ extension ImagePicker: UIImagePickerControllerDelegate {
     self.pickerController(picker, didSelect: nil)
   }
   
-  public func imagePickerController(_ picker: UIImagePickerController,
-                                    didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-    guard let image = info[.editedImage] as? UIImage else {
-      return self.pickerController(picker, didSelect: nil)
-    }
-    self.pickerController(picker, didSelect: image)
+  public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+    self.pickerController(picker, didSelect: info[.originalImage] as? UIImage)
   }
 }
 

@@ -21,50 +21,71 @@ void LoyaltyCardDetector::extract_loyalty_card_from(Mat &image)
   {
     return;
   }
-
-  get_image_canny_borders(imageCopy);
-  vector<Point> borders;
-  find_border_points(imageCopy, borders);
-  four_points_transform(image, borders);
   
-//  cvtColor( result, image, COLOR_BGR2GRAY );
+  //  get_image_canny_borders(imageCopy);
+  vector<vector<Point> > squares;
+  find_squares(imageCopy, squares);
+  
+  vector<Point> vertices;
+  identify_loyalty_card_square(squares, vertices);
+  //  find_vertices(imageCopy, vertices);
+  //  four_points_transform(image, borders);
+  draw_squares(image, squares);
+  //  draw_square(image, vertices);
+  
+  //  cvtColor( result, image, COLOR_BGR2GRAY );
   //GaussianBlur( graysrc, graysrc, Size(5,5), 0, 0, BORDER_DEFAULT );
   
-//  threshold( image, result, 127, 255, THRESH_TOZERO );
+  //  threshold( image, result, 127, 255, THRESH_TOZERO );
   //GaussianBlur( ticketImage, ticketImage, Size(5,5), 0, 0, BORDER_DEFAULT );
   //adaptiveThreshold(ticketImage,ticketImage, 255,ADAPTIVE_THRESH_GAUSSIAN_C,THRESH_BINARY,11,2);
 }
 
-#pragma mark Private
-
-void LoyaltyCardDetector::get_image_canny_borders(Mat &image)
+void LoyaltyCardDetector::detect_squares( const Mat& image )
 {
-  cvtColor( image, image, COLOR_BGR2GRAY );
-  GaussianBlur( image, image, Size(5,5), 0, 0, BORDER_DEFAULT );
-  // Canny edge detector
-  Canny(image, image, 75, 200);
-}
-
-void LoyaltyCardDetector::find_border_points(Mat &image, vector<cv::Point> &borders)
-{
-  vector<vector<Point> > contours;  /// Find contours
-  findContours( image, contours, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0) );
+  vector<vector<Point> > squares;
+  find_squares( image, squares );
   
-  vector<vector<Point> > contours_poly( contours.size() );
+  vector<Point> biggest_square;
+  find_largest_square( image, biggest_square );
   
-  for(unsigned int i = 0; i < contours.size(); i++ )
-  {
-    double peri = arcLength(contours[i], true);
-    approxPolyDP( Mat(contours[i]), contours_poly[i], 0.02 * peri, true );
-    if (contours_poly[i].size() == 4)
-    {
-      borders = contours_poly[i];
-      return;
-    }
+  if ( !biggest_square.size() ){
+    // square was detected
+    draw_square( image, biggest_square);
   }
   
-  borders = contours_poly[0];
+  //  draw_squares( image, squares );
 }
+
+#pragma mark Private
+
+//void LoyaltyCardDetector::get_image_canny_borders(Mat &image)
+//{
+//  cvtColor( image, image, COLOR_BGR2GRAY );
+//  GaussianBlur( image, image, Size(5,5), 0, 0, BORDER_DEFAULT );
+//  Canny(image, image, 75, 200);
+//}
+//
+//void LoyaltyCardDetector::find_vertices(Mat &image, vector<cv::Point> &borders)
+//{
+//  vector<vector<Point> > contours;
+//  findContours( image, contours, RETR_TREE, CHAIN_APPROX_SIMPLE, Point(0, 0) );
+//
+//  vector<vector<Point> > contours_poly( contours.size() );
+//
+//  for(unsigned int i = 0; i < contours.size(); i++ )
+//  {
+//    double peri = arcLength(contours[i], true);
+//    approxPolyDP( Mat(contours[i]), contours_poly[i], 0.02 * peri, true );
+//    if (contours_poly[i].size() == 4)
+//    {
+//      borders = contours_poly[i];
+//      return;
+//    }
+//  }
+//
+//  borders = contours_poly[0];
+//}
 
 vector<Point> LoyaltyCardDetector::order_points(vector<Point> points)
 {
@@ -133,4 +154,188 @@ void LoyaltyCardDetector::four_points_transform(Mat &image, vector<Point> corner
   Size size(maxWidth, maxHeight);
   warpPerspective(image, rotated, warpMatrix, size, INTER_LINEAR, BORDER_CONSTANT);
   image = rotated;
+}
+
+double LoyaltyCardDetector::angle( Point pt1, Point pt2, Point pt0 )
+{
+  double dx1 = pt1.x - pt0.x;
+  double dy1 = pt1.y - pt0.y;
+  double dx2 = pt2.x - pt0.x;
+  double dy2 = pt2.y - pt0.y;
+  return (dx1*dx2 + dy1*dy2)/sqrt((dx1*dx1 + dy1*dy1)*(dx2*dx2 + dy2*dy2) + 1e-10);
+}
+
+// returns sequence of squares detected on the image.
+void LoyaltyCardDetector::find_squares( const Mat& image, vector<vector<Point> >& squares )
+{
+  int thresh = 50, N = 11;
+  
+  squares.clear();
+  
+  Mat pyr, timg, gray0(image.size(), CV_8U), gray;
+  
+  // down-scale and upscale the image to filter out the noise
+  pyrDown(image, pyr, Size(image.cols/2, image.rows/2));
+  pyrUp(pyr, timg, image.size());
+  vector<vector<Point> > contours;
+  
+  // find squares in every color plane of the image
+  for( int c = 0; c < 3; c++ )
+  {
+    int ch[] = {c, 0};
+    mixChannels(&timg, 1, &gray0, 1, ch, 1);
+    
+    // try several threshold levels
+    for( int l = 0; l < N; l++ )
+    {
+      // hack: use Canny instead of zero threshold level.
+      // Canny helps to catch squares with gradient shading
+      if( l == 0 )
+      {
+        // apply Canny. Take the upper threshold from slider
+        // and set the lower to 0 (which forces edges merging)
+        Canny(gray0, gray, 0, thresh, 5);
+        // dilate canny output to remove potential
+        // holes between edge segments
+        dilate(gray, gray, Mat(), Point(-1,-1));
+      }
+      else
+      {
+        // apply threshold if l!=0:
+        //     tgray(x,y) = gray(x,y) < (l+1)*255/N ? 255 : 0
+        gray = gray0 >= (l+1)*255/N;
+      }
+      
+      
+      int max_contour_area = (gray.cols - 10) * (gray.rows - 10);
+//      copyMakeBorder(gray, gray, 5, 5, 5, 5, BORDER_CONSTANT, Scalar::all(0));
+      
+      // find contours and store them all as a list
+      findContours(gray, contours, RETR_LIST, CHAIN_APPROX_SIMPLE);
+//      findContours(gray, contours, RETR_LIST, CHAIN_APPROX_SIMPLE);
+      
+      vector<Point> approx;
+      
+      // test each contour
+      for( size_t i = 0; i < contours.size(); i++ )
+      {
+        // approximate contour with accuracy proportional
+        // to the contour perimeter
+        approxPolyDP( contours[i], approx, arcLength( contours[i], true )*0.02, true );
+        
+        if ( contourArea(contours[i]) >= (double) max_contour_area )
+        {
+          continue;
+        }
+        
+        // square contours should have 4 vertices after approximation
+        // relatively large area (to filter out noisy contours)
+        // and be convex.
+        // Note: absolute value of an area is used because
+        // area may be positive or negative - in accordance with the
+        // contour orientation
+        if( approx.size() == 4 &&
+           fabs(contourArea(approx)) > 1000 &&
+           isContourConvex(approx) )
+        {
+          double maxCosine = 0;
+          
+          for( int j = 2; j < 5; j++ )
+          {
+            // find the maximum cosine of the angle between joint edges
+            double cosine = fabs(angle(approx[j%4], approx[j-2], approx[j-1]));
+            maxCosine = MAX(maxCosine, cosine);
+          }
+          
+          // if cosines of all angles are small
+          // (all angles are ~90 degree) then write quandrange
+          // vertices to resultant sequence
+//          if( maxCosine < 0.3 )
+            squares.push_back(approx);
+        }
+      }
+    }
+  }
+}
+
+void LoyaltyCardDetector::identify_loyalty_card_square(vector<vector<Point> >& squares, vector<Point>& vertics)
+{
+  // the largest square usually is the image border
+  remove_largest_square(squares);
+//  filter_squares_for_aspect_ratio(squares);
+}
+
+void LoyaltyCardDetector::find_largest_square(const vector<vector<Point> >& squares, vector<Point>& biggest_square)
+{
+  if (!squares.size()){
+    // no squares detected
+    return;
+  }
+  
+  double maxArea = 0;
+  int largestIndex = -1;
+  
+  for ( int i = 0; i < squares.size(); i++)
+  {
+    vector<Point> square = squares[i];
+    double area = contourArea(Mat(square));
+    if ( area >= maxArea)
+    {
+      largestIndex = i;
+      maxArea = area;
+    }
+  }
+  if ( largestIndex >= 0 && largestIndex < squares.size() )
+  {
+    biggest_square = squares[largestIndex];
+  }
+}
+
+void LoyaltyCardDetector::remove_largest_square(vector<vector<Point> >& squares)
+{
+  if (!squares.size())
+  {
+    // no squares detected
+    return;
+  }
+  
+  double maxArea = 0;
+  int largestIndex = -1;
+  
+  for ( int i = 0; i < squares.size(); i++)
+  {
+    vector<Point> square = squares[i];
+    double area = contourArea(Mat(square));
+    if ( area >= maxArea )
+    {
+      largestIndex = i;
+      maxArea = area;
+    }
+  }
+  if ( largestIndex >= 0 && largestIndex < squares.size() )
+  {
+    squares.erase( squares.begin() + largestIndex );
+  }
+}
+
+void LoyaltyCardDetector::filter_squares_for_aspect_ratio(vector<vector<Point> >& squares)
+{
+  
+}
+
+void LoyaltyCardDetector::draw_square( const Mat& image, const vector<Point>& square )
+{
+  const Point* p = &square[0];
+  int n = (int) square.size();
+  polylines(image, &p, &n, 1, true, Scalar(255,255,255), 20, LINE_AA);
+}
+
+void LoyaltyCardDetector::draw_squares( const Mat& image, const vector<vector<Point> >& squares )
+{
+  for( size_t i = 0; i < squares.size(); i++ )
+  {
+    const Point* p = &squares[i][0];
+    int n = (int) squares[i].size();
+    polylines(image, &p, &n, 1, true, Scalar(255,255,255), 20, LINE_AA);
+  }
 }
