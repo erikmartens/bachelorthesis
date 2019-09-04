@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ACE1799C956736228D7B8868 /* libPods-bachelorthesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8E312C69A7A1CCA718A0E4 /* libPods-bachelorthesis.a */; };
+		BE6C3F2E231FC09F00EA116A /* LoyaltyCardDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */; };
 		BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566B23181424007C18BA /* AppDelegate.swift */; };
 		BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566D23181424007C18BA /* MainTableViewController.swift */; };
 		BE8C567123181424007C18BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE8C566F23181424007C18BA /* Main.storyboard */; };
@@ -26,14 +26,15 @@
 		BEDB8F9F231D0B9200C71D71 /* OpenCVScannerBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */; };
 		BEDB8FA4231D190F00C71D71 /* CameraScannerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */; };
 		BEDB8FAA231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */; };
+		C2C740EAB428211ADB286196 /* libPods-bachelorthesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 55F9A9AF04F999E26B797CE9 /* libPods-bachelorthesis.a */; };
 		F2BEC80D231E6CDE0053C9C2 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */; };
 		F2BEC810231E90540053C9C2 /* QuadrangleDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2BEC80E231E90540053C9C2 /* QuadrangleDetector.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1C4AFC113266EA223AA67C0D /* Pods-bachelorthesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.release.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.release.xcconfig"; sourceTree = "<group>"; };
-		4EE7837D3CB3344EFF754816 /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
-		AF8E312C69A7A1CCA718A0E4 /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		55F9A9AF04F999E26B797CE9 /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LoyaltyCardDetector.cpp; sourceTree = "<group>"; };
+		BE6C3F2D231FC09F00EA116A /* LoyaltyCardDetector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LoyaltyCardDetector.hpp; sourceTree = "<group>"; };
 		BE8C566823181424007C18BA /* bachelorthesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bachelorthesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8C566B23181424007C18BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE8C566D23181424007C18BA /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +61,8 @@
 		BEDB8FA0231D0C1600C71D71 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScannerProtocol.swift; sourceTree = "<group>"; };
 		BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDeviceOrientation->AVCaptureVideoOrientation.swift"; sourceTree = "<group>"; };
+		BF31E74ED758B0FF1FDD7787 /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
+		F0FB250E8451BE663D963F32 /* Pods-bachelorthesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.release.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.release.xcconfig"; sourceTree = "<group>"; };
 		F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utilities.hpp; sourceTree = "<group>"; };
 		F2BEC80E231E90540053C9C2 /* QuadrangleDetector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = QuadrangleDetector.cpp; sourceTree = "<group>"; };
@@ -71,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACE1799C956736228D7B8868 /* libPods-bachelorthesis.a in Frameworks */,
+				C2C740EAB428211ADB286196 /* libPods-bachelorthesis.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,10 +84,18 @@
 		7D739B47A8B2B807B396CCCB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				4EE7837D3CB3344EFF754816 /* Pods-bachelorthesis.debug.xcconfig */,
-				1C4AFC113266EA223AA67C0D /* Pods-bachelorthesis.release.xcconfig */,
+				BF31E74ED758B0FF1FDD7787 /* Pods-bachelorthesis.debug.xcconfig */,
+				F0FB250E8451BE663D963F32 /* Pods-bachelorthesis.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		87AE3BA1CC12D5E9EC704D19 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				55F9A9AF04F999E26B797CE9 /* libPods-bachelorthesis.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		BE8C565F23181424007C18BA = {
@@ -94,7 +105,7 @@
 				BE8C566A23181424007C18BA /* bachelorthesis */,
 				BE8C566923181424007C18BA /* Products */,
 				7D739B47A8B2B807B396CCCB /* Pods */,
-				F8393339BE90BBF052A3ACB1 /* Frameworks */,
+				87AE3BA1CC12D5E9EC704D19 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -210,6 +221,8 @@
 			children = (
 				BEDB8F9D231D0B9200C71D71 /* OpenCVScannerBridge.h */,
 				BEDB8F9E231D0B9200C71D71 /* OpenCVScannerBridge.mm */,
+				BE6C3F2D231FC09F00EA116A /* LoyaltyCardDetector.hpp */,
+				BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */,
 				F2BEC80F231E90540053C9C2 /* QuadrangleDetector.hpp */,
 				F2BEC80E231E90540053C9C2 /* QuadrangleDetector.cpp */,
 				F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */,
@@ -226,14 +239,6 @@
 			path = Converters;
 			sourceTree = "<group>";
 		};
-		F8393339BE90BBF052A3ACB1 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				AF8E312C69A7A1CCA718A0E4 /* libPods-bachelorthesis.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -241,13 +246,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE8C567A23181425007C18BA /* Build configuration list for PBXNativeTarget "bachelorthesis" */;
 			buildPhases = (
-				DE36362EE37F9F6F17928025 /* [CP] Check Pods Manifest.lock */,
+				2DEEF06CA917E34CEF24DBC7 /* [CP] Check Pods Manifest.lock */,
 				BEDB8F80231909CD00C71D71 /* SwiftLint */,
 				BEDB8F7F2319099D00C71D71 /* R.Swift */,
 				BE8C566423181424007C18BA /* Sources */,
 				BE8C566523181424007C18BA /* Frameworks */,
 				BE8C566623181424007C18BA /* Resources */,
-				AD88E731C41D774228994BDD /* [CP] Copy Pods Resources */,
+				0FA979AC7C7DA0B26352F533 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -309,21 +314,88 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		AD88E731C41D774228994BDD /* [CP] Copy Pods Resources */ = {
+		0FA979AC7C7DA0B26352F533 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis-resources.sh",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_amatorka.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_miss_etikate.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_1.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_2.png",
+				"${PODS_ROOT}/WeScan/WeScan/Assets/enhance.png",
+				"${PODS_ROOT}/WeScan/WeScan/Assets/enhance@2x.png",
+				"${PODS_ROOT}/WeScan/WeScan/Assets/enhance@3x.png",
+				"${PODS_ROOT}/WeScan/WeScan/Assets/flash.png",
+				"${PODS_ROOT}/WeScan/WeScan/Assets/flash@2x.png",
+				"${PODS_ROOT}/WeScan/WeScan/Assets/flash@3x.png",
+				"${PODS_ROOT}/WeScan/WeScan/Assets/flashUnavailable.png",
+				"${PODS_ROOT}/WeScan/WeScan/Assets/flashUnavailable@2x.png",
+				"${PODS_ROOT}/WeScan/WeScan/Assets/flashUnavailable@3x.png",
+				"${PODS_ROOT}/WeScan/WeScan/Assets/rotate.png",
+				"${PODS_ROOT}/WeScan/WeScan/Assets/rotate@2x.png",
+				"${PODS_ROOT}/WeScan/WeScan/Assets/rotate@3x.png",
+				"${PODS_ROOT}/WeScan/WeScan/de.lproj/Localizable.strings",
+				"${PODS_ROOT}/WeScan/WeScan/en.lproj/Localizable.strings",
+				"${PODS_ROOT}/WeScan/WeScan/fr.lproj/Localizable.strings",
+				"${PODS_ROOT}/WeScan/WeScan/it.lproj/Localizable.strings",
+				"${PODS_ROOT}/WeScan/WeScan/pt-PT.lproj/Localizable.strings",
+				"${PODS_ROOT}/WeScan/WeScan/zh-Hans.lproj/Localizable.strings",
+				"${PODS_ROOT}/WeScan/WeScan/zh-Hant.lproj/Localizable.strings",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_amatorka.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_miss_etikate.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_1.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_2.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/enhance.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/enhance@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/enhance@3x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/flash.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/flash@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/flash@3x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/flashUnavailable.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/flashUnavailable@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/flashUnavailable@3x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/rotate.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/rotate@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/rotate@3x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Localizable.strings",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2DEEF06CA917E34CEF24DBC7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-bachelorthesis-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BEDB8F7F2319099D00C71D71 /* R.Swift */ = {
@@ -340,7 +412,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -364,28 +436,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
-		DE36362EE37F9F6F17928025 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-bachelorthesis-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -403,6 +453,7 @@
 				F2BEC80D231E6CDE0053C9C2 /* Utilities.cpp in Sources */,
 				BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */,
 				BEDB8F87231921BC00C71D71 /* R.generated.swift in Sources */,
+				BE6C3F2E231FC09F00EA116A /* LoyaltyCardDetector.cpp in Sources */,
 				BEDB8F892319226D00C71D71 /* MainTableViewCell.swift in Sources */,
 				BEDB8F9F231D0B9200C71D71 /* OpenCVScannerBridge.mm in Sources */,
 				BEDB8FA4231D190F00C71D71 /* CameraScannerProtocol.swift in Sources */,
@@ -567,7 +618,7 @@
 		};
 		BE8C567B23181425007C18BA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EE7837D3CB3344EFF754816 /* Pods-bachelorthesis.debug.xcconfig */;
+			baseConfigurationReference = BF31E74ED758B0FF1FDD7787 /* Pods-bachelorthesis.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -591,7 +642,7 @@
 		};
 		BE8C567C23181425007C18BA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C4AFC113266EA223AA67C0D /* Pods-bachelorthesis.release.xcconfig */;
+			baseConfigurationReference = F0FB250E8451BE663D963F32 /* Pods-bachelorthesis.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
