@@ -3,11 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		BE6C3F2E231FC09F00EA116A /* LoyaltyCardDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */; };
+		BE89ABFC231FCFF300E17C36 /* ImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE89ABFB231FCFF300E17C36 /* ImagePicker.storyboard */; };
+		BE89ABFE231FD03200E17C36 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89ABFD231FD03200E17C36 /* ImagePickerViewController.swift */; };
 		BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566B23181424007C18BA /* AppDelegate.swift */; };
 		BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8C566D23181424007C18BA /* MainTableViewController.swift */; };
 		BE8C567123181424007C18BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE8C566F23181424007C18BA /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 		55F9A9AF04F999E26B797CE9 /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LoyaltyCardDetector.cpp; sourceTree = "<group>"; };
 		BE6C3F2D231FC09F00EA116A /* LoyaltyCardDetector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LoyaltyCardDetector.hpp; sourceTree = "<group>"; };
+		BE89ABFB231FCFF300E17C36 /* ImagePicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImagePicker.storyboard; sourceTree = "<group>"; };
+		BE89ABFD231FD03200E17C36 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		BE8C566823181424007C18BA /* bachelorthesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bachelorthesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE8C566B23181424007C18BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE8C566D23181424007C18BA /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -43,7 +47,6 @@
 		BE8C567523181425007C18BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE8C567723181425007C18BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEDB8F792319092E00C71D71 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		BEDB8F7A2319092E00C71D71 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		BEDB8F7C2319093600C71D71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BEDB8F7E2319093E00C71D71 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BEDB8F8423191F7400C71D71 /* AvailableScanners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableScanners.swift; sourceTree = "<group>"; };
@@ -98,6 +101,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BE89ABFA231FCFC600E17C36 /* Image Picker Scene */ = {
+			isa = PBXGroup;
+			children = (
+				BE89ABFB231FCFF300E17C36 /* ImagePicker.storyboard */,
+				BE89ABFD231FD03200E17C36 /* ImagePickerViewController.swift */,
+			);
+			path = "Image Picker Scene";
+			sourceTree = "<group>";
+		};
 		BE8C565F23181424007C18BA = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +140,7 @@
 				BEDB8F762319086E00C71D71 /* Main */,
 				BEDB8F7523181F3C00C71D71 /* Launch Scene */,
 				BEDB8F7423181EEC00C71D71 /* Main Scene */,
+				BE89ABFA231FCFC600E17C36 /* Image Picker Scene */,
 				BEDB8F9023192F3F00C71D71 /* Camera Scene */,
 				BEDB8F9A231D096100C71D71 /* Scanner */,
 				BEDB8F8323191F4F00C71D71 /* Resources */,
@@ -139,8 +152,8 @@
 		BEDB8F7423181EEC00C71D71 /* Main Scene */ = {
 			isa = PBXGroup;
 			children = (
-				BE8C566D23181424007C18BA /* MainTableViewController.swift */,
 				BE8C566F23181424007C18BA /* Main.storyboard */,
+				BE8C566D23181424007C18BA /* MainTableViewController.swift */,
 				BEDB8F882319226D00C71D71 /* MainTableViewCell.swift */,
 			);
 			path = "Main Scene";
@@ -192,8 +205,8 @@
 		BEDB8F9023192F3F00C71D71 /* Camera Scene */ = {
 			isa = PBXGroup;
 			children = (
-				BEDB8F9123192F6300C71D71 /* CameraViewController.swift */,
 				BEDB8F9323192F7900C71D71 /* Camera.storyboard */,
+				BEDB8F9123192F6300C71D71 /* CameraViewController.swift */,
 			);
 			path = "Camera Scene";
 			sourceTree = "<group>";
@@ -305,6 +318,7 @@
 			files = (
 				BE8C567623181425007C18BA /* LaunchScreen.storyboard in Resources */,
 				BEDB8F7B2319093600C71D71 /* Localizable.strings in Resources */,
+				BE89ABFC231FCFF300E17C36 /* ImagePicker.storyboard in Resources */,
 				BE8C567323181425007C18BA /* Assets.xcassets in Resources */,
 				BE8C567123181424007C18BA /* Main.storyboard in Resources */,
 				BEDB8F9423192F7900C71D71 /* Camera.storyboard in Resources */,
@@ -412,7 +426,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -446,6 +460,7 @@
 				BEDB8FAA231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift in Sources */,
 				BEDB8F99231BD3A100C71D71 /* FramedButton.swift in Sources */,
 				BEDB8F8523191F7400C71D71 /* AvailableScanners.swift in Sources */,
+				BE89ABFE231FD03200E17C36 /* ImagePickerViewController.swift in Sources */,
 				BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */,
 				BEDB8F8F231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift in Sources */,
 				F2BEC810231E90540053C9C2 /* QuadrangleDetector.cpp in Sources */,
@@ -469,7 +484,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				BE8C567023181424007C18BA /* Base */,
-				BEDB8F7A2319092E00C71D71 /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

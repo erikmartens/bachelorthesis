@@ -20,3 +20,6 @@
 "select_input_option" = "Select Image Input Option";
 "input_options_undefined" = "Input Options Are Undefined";
 "no_input_options" = "There are currently no input options specified. Please select a different framework.";
+"select_image" = "Select Image";
+"process_image" = "Process Image";
+"save_image" = "Save Image";

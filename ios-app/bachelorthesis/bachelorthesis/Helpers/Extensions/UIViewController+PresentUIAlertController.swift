@@ -23,7 +23,7 @@ extension UIViewController {
     }
     
     if addDefaultCancelAction {
-      let cancelAction = UIAlertAction(title: R.string.localizable.cancel(), style: .cancel) { _ in
+      let cancelAction = UIAlertAction(title: R.string.localizable.cancel().capitalized, style: .cancel) { _ in
         // nothing to do here, closes itself
       }
       alertController.addAction(cancelAction)

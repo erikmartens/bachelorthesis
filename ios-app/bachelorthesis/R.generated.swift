@@ -16,6 +16,19 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
+  /// This `R.image` struct is generated, and contains static references to 1 images.
+  struct image {
+    /// Image `noimage`.
+    static let noimage = Rswift.ImageResource(bundle: R.hostingBundle, name: "noimage")
+    
+    /// `UIImage(named: "noimage", bundle: ..., traitCollection: ...)`
+    static func noimage(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.noimage, compatibleWith: traitCollection)
+    }
+    
+    fileprivate init() {}
+  }
+  
   /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `MainTableViewCell`.
@@ -24,10 +37,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.storyboard` struct is generated, and contains static references to 3 storyboards.
+  /// This `R.storyboard` struct is generated, and contains static references to 4 storyboards.
   struct storyboard {
     /// Storyboard `Camera`.
     static let camera = _R.storyboard.camera()
+    /// Storyboard `ImagePicker`.
+    static let imagePicker = _R.storyboard.imagePicker()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `Main`.
@@ -36,6 +51,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Camera", bundle: ...)`
     static func camera(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.camera)
+    }
+    
+    /// `UIStoryboard(name: "ImagePicker", bundle: ...)`
+    static func imagePicker(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.imagePicker)
     }
     
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
@@ -51,14 +71,14 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.string` struct is generated, and contains static references to 3 localization tables.
+  /// This `R.string` struct is generated, and contains static references to 2 localization tables.
   struct string {
     /// This `R.string.launchScreen` struct is generated, and contains static references to 0 localization keys.
     struct launchScreen {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 14 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 17 localization keys.
     struct localizable {
       /// en translation: Additional Information
       /// 
@@ -92,10 +112,22 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let overlay = Rswift.StringResource(key: "overlay", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Process Image
+      /// 
+      /// Locales: en, de
+      static let process_image = Rswift.StringResource(key: "process_image", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Quadrangles
       /// 
       /// Locales: en, de
       static let quadrangles = Rswift.StringResource(key: "quadrangles", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Save Image
+      /// 
+      /// Locales: en, de
+      static let save_image = Rswift.StringResource(key: "save_image", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Select Image
+      /// 
+      /// Locales: en, de
+      static let select_image = Rswift.StringResource(key: "select_image", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Select Image Input Option
       /// 
       /// Locales: en, de
@@ -173,11 +205,32 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("overlay", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Process Image
+      /// 
+      /// Locales: en, de
+      static func process_image(_: Void = ()) -> String {
+        return NSLocalizedString("process_image", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Quadrangles
       /// 
       /// Locales: en, de
       static func quadrangles(_: Void = ()) -> String {
         return NSLocalizedString("quadrangles", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Save Image
+      /// 
+      /// Locales: en, de
+      static func save_image(_: Void = ()) -> String {
+        return NSLocalizedString("save_image", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Select Image
+      /// 
+      /// Locales: en, de
+      static func select_image(_: Void = ()) -> String {
+        return NSLocalizedString("select_image", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Select Image Input Option
@@ -218,11 +271,6 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.main` struct is generated, and contains static references to 0 localization keys.
-    struct main {
-      fileprivate init() {}
-    }
-    
     fileprivate init() {}
   }
   
@@ -247,6 +295,7 @@ struct _R: Rswift.Validatable {
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       try camera.validate()
+      try imagePicker.validate()
       try launchScreen.validate()
       try main.validate()
     }
@@ -258,6 +307,21 @@ struct _R: Rswift.Validatable {
       let name = "Camera"
       
       static func validate() throws {
+        if #available(iOS 11.0, *) {
+        }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct imagePicker: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = ImagePickerViewController
+      
+      let bundle = R.hostingBundle
+      let name = "ImagePicker"
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "noimage", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'noimage' is used in storyboard 'ImagePicker', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
       }

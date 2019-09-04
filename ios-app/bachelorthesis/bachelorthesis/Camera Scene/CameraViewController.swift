@@ -43,7 +43,7 @@ class CameraViewController: UIViewController {
   
   // MARK: - Properties
   
-  weak var scannerDelegate: CameraViewControllerDelegate!
+  weak var delegate: CameraViewControllerDelegate?
   var selectedScannerLibrary: ScannerLibrary!
   
   private var cameraScanner: CameraScanner!
@@ -63,7 +63,7 @@ class CameraViewController: UIViewController {
     }
   }
   
-  // MARK: - ViewController Life Cycle
+   // MARK: - View Controller Life Cycle
   
   override var preferredStatusBarStyle: UIStatusBarStyle {
     return .lightContent
@@ -75,7 +75,6 @@ class CameraViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     setupUserInterface()
     setupScanner()
   }
@@ -84,7 +83,7 @@ class CameraViewController: UIViewController {
   
   @IBAction func didPressCancelButton(_ sender: FramedButton) {
     cameraScanner.stopCaptureSession()
-    scannerDelegate?.didCancelScanning()
+    delegate?.didCancelScanning()
   }
   
   @IBAction func cameraModeButtonPressed(_ sender: FramedButton) {

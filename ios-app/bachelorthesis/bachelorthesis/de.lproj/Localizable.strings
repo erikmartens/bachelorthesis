@@ -20,3 +20,6 @@
 "select_input_option" = "Wähle Bild Eingabe Option";
 "input_options_undefined" = "Eingabe Optionen Nicht Definiert";
 "no_input_options" = "Aktuell sind keine Eingabe Optionen festgelegt. Bitte wähle ein anderes Framework.";
+"select_image" = "Bild Auswählen";
+"process_image" = "Bild Verarbeiten";
+"save_image" = "Bild Speichern";

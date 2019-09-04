@@ -60,8 +60,16 @@ class MainTableViewController: UITableViewController {
   private func presentCameraViewController(for scannerLibrary: ScannerLibrary) {
     let viewController = R.storyboard.camera().instantiateInitialViewController() as! CameraViewController
     viewController.selectedScannerLibrary = scannerLibrary
-    viewController.scannerDelegate = self
+    viewController.delegate = self
     present(viewController, animated: true, completion: nil)
+  }
+  
+  private func presentImagePickerViewController(for scannerLibrary: ScannerLibrary) {
+    let viewController = R.storyboard.imagePicker().instantiateInitialViewController() as! ImagePickerViewController
+    let navigstionController = UINavigationController(rootViewController: viewController)
+    viewController.selectedScannerLibrary = scannerLibrary
+    viewController.delegate = self
+    present(navigstionController, animated: true, completion: nil)
   }
   
   private func presentWeScanScannerViewController() {
@@ -95,12 +103,12 @@ class MainTableViewController: UITableViewController {
     }
     
     if scanner.inputOptions.contains(.gallery) {
-      actions[ImageInputOption.camera.title] = { [weak self] _ in
+      actions[ImageInputOption.gallery.title] = { [weak self] _ in
         switch scanner.scannerLibrary {
         case .weScan:
           self?.presentWeScanScannerViewController()
         case .openCV, .gpuImage:
-          self?.presentCameraViewController(for: scanner.scannerLibrary)
+          self?.presentImagePickerViewController(for: scanner.scannerLibrary)
         }
       }
     }
@@ -167,5 +175,11 @@ extension MainTableViewController: ImageScannerControllerDelegate {
     // The user tapped 'Cancel' on the scanner
     // You are responsible for dismissing the ImageScannerController
     scanner.dismiss(animated: true)
+  }
+}
+
+extension MainTableViewController: ImagePickerViewControllerDelegate {
+  func didCancelImagePicker() {
+    navigationController?.presentedViewController?.dismiss(animated: true, completion: nil)
   }
 }
