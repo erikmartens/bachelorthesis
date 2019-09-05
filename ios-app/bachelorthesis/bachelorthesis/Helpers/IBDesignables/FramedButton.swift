@@ -60,7 +60,7 @@ import UIKit
   override open var isHighlighted: Bool {
     didSet {
       if isHighlighted {
-        titleLabel?.textColor = .black
+        titleLabel?.textColor = highLightBackgroundColor.inverted
         layer.backgroundColor = highLightBackgroundColor.cgColor
         return
       }

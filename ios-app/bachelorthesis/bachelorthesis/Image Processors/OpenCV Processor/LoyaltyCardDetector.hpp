@@ -9,6 +9,7 @@
 #ifndef LoyaltyCardDetector_hpp
 #define LoyaltyCardDetector_hpp
 
+#include "Utilities.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include <stdlib.h>
 #include <stdio.h>
@@ -20,8 +21,9 @@ using namespace std;
 class LoyaltyCardDetector
 {
 public:
+  static void extract_card_from(Mat &image);
   static void extract_loyalty_card_from(Mat &image);
-  static void detect_squares( const Mat& image );
+  static void detect_squares( Mat& image );
   
 private:
   //  static void get_image_canny_borders(Mat &image);
@@ -30,14 +32,20 @@ private:
   static void four_points_transform(Mat &image, vector<cv::Point> corners);
   
   static double angle( cv::Point pt1, cv::Point pt2, cv::Point pt0 );
-  static void find_squares( const Mat& image, vector<vector<cv::Point> >& squares );
+  static void find_squares( Mat& image, vector<vector<cv::Point> >& quadrangles, vector<vector<cv::Point> >& contours );
+  static double loyalty_card_corner_radius(double arclength);
+  static double max_epsilon_factor(double arclength, double cornerRadius);
   //  static void identify_loyalty_card_square(vector<vector<cv::Point> >& squares, vector<cv::Point>& vertics);
   static void filter_largest_square(const vector<vector<cv::Point> >& squares, vector<cv::Point>& biggest_square );
-  static void filter_squares_for_aspect_ratio(vector<vector<cv::Point> >& squares);
+  //  static void filter_squares_for_aspect_ratio(vector<vector<cv::Point> >& squares);
   //  static void remove_largest_square(vector<vector<cv::Point> >& squares);
   
   static void draw_square( const Mat& image, const vector<cv::Point>& square );
   static void draw_squares( const Mat& image, const vector<vector<cv::Point> >& squares );
+  
+  static Vec3f calc_params(Point2f p1, Point2f p2);
+  static cv::Point find_intersection(Vec3f params1, Vec3f params2);
+  static vector<cv::Point> get_quadrilateral(Mat &grayscale, Mat &output);
 };
 
 #endif /* LoyaltyCardDetector_hpp */

@@ -45,7 +45,8 @@
   cv::Mat imageMat {imageHeight, imageWidth, CV_8UC4};
   
   UIImageToMat(image, imageMat);
-  LoyaltyCardDetector::extract_loyalty_card_from(imageMat);
+//  LoyaltyCardDetector::extract_loyalty_card_from(imageMat);
+  LoyaltyCardDetector::extract_card_from(imageMat);
   return MatToUIImage(imageMat);
 }
 
@@ -57,7 +58,7 @@
   int bufferWidth = (int) CVPixelBufferGetWidth(imageBuffer);
   void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
   size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-  const cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
+  cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
   
   LoyaltyCardDetector::detect_squares(image);
   
@@ -94,7 +95,7 @@
   
   // downscale image to reduce compute time
   const int scaleFactor = 2;
-  Utilities::downscaleImageByFactor(scaleFactor, image);
+  Utilities::downscale_image_by_factor(scaleFactor, image);
   
   cv::cvtColor(image, image, cv::COLOR_RGBA2GRAY);
   cv::GaussianBlur(image, image, cv::Size(5,5), 1.2);
@@ -117,7 +118,7 @@
       break;
   }
   
-  Utilities::upscaleImageByFactor(scaleFactor, edges_flipped);
+  Utilities::upscale_image_by_factor(scaleFactor, edges_flipped);
   return MatToUIImage(edges_flipped);
 }
 

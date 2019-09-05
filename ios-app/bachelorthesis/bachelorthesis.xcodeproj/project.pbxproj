@@ -30,6 +30,7 @@
 		BEDB8F9F231D0B9200C71D71 /* OpenCvProcessorBridge.mm in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F9E231D0B9200C71D71 /* OpenCvProcessorBridge.mm */; };
 		BEDB8FA4231D190F00C71D71 /* CameraScannerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */; };
 		BEDB8FAA231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */; };
+		F22181A2232049A9006C5D67 /* UIColor+Inverted.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22181A1232049A9006C5D67 /* UIColor+Inverted.swift */; };
 		F2BEC80D231E6CDE0053C9C2 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScannerProtocol.swift; sourceTree = "<group>"; };
 		BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDeviceOrientation->AVCaptureVideoOrientation.swift"; sourceTree = "<group>"; };
 		D43296E1F2AE02F607657D9B /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
+		F22181A1232049A9006C5D67 /* UIColor+Inverted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Inverted.swift"; sourceTree = "<group>"; };
 		F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utilities.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,6 +192,7 @@
 			children = (
 				BEDB8F8C2319264500C71D71 /* UIViewController+PresentSafariViewController.swift */,
 				BEDB8F8E231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift */,
+				F22181A1232049A9006C5D67 /* UIColor+Inverted.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */,
 				BEDB8F8F231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift in Sources */,
 				BEDB8F9223192F6300C71D71 /* CameraViewController.swift in Sources */,
+				F22181A2232049A9006C5D67 /* UIColor+Inverted.swift in Sources */,
 				F2BEC80D231E6CDE0053C9C2 /* Utilities.cpp in Sources */,
 				BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */,
 				BEDB8F87231921BC00C71D71 /* R.generated.swift in Sources */,

@@ -8,8 +8,8 @@ using namespace cv;
 
 const bool debug = false;
 
-void Utilities::downscaleImageByFactor(const int factor, cv::Mat &image) {
-  
+void Utilities::downscale_image_by_factor(const int factor, Mat &image)
+{
   // Quick return if there is nothing to resize
   if (factor <= 1)
   {
@@ -23,11 +23,11 @@ void Utilities::downscaleImageByFactor(const int factor, cv::Mat &image) {
   int updated_width = height / factor;
   int updated_height = height / factor;
   if(debug) cout << "Resizing image from " << image.rows << "x" << image.cols << " to " <<  height << "x" << width << " ..." << endl;
-  cv::resize(image, image, Size( (double) updated_width, (double) updated_height));
+  resize(image, image, Size( (double) updated_width, (double) updated_height));
 }
 
-int Utilities::downscaleImageByMaxFactor(const int factor, cv::Mat &image) {
-  
+int Utilities::downscale_image_by_max_factor(const int factor, Mat &image)
+{
   // Quick return if there is nothing to resize
   if (factor <= 1)
   {
@@ -55,13 +55,13 @@ int Utilities::downscaleImageByMaxFactor(const int factor, cv::Mat &image) {
     int updated_width = height / updated_factor;
     int updated_height = height / updated_factor;
     if(debug) cout << "Resizing image from " << image.rows << "x" << image.cols << " to " <<  height << "x" << width << " ..." << endl;
-    cv::resize(image, image, Size( (double) updated_width, (double) updated_height));
+    resize(image, image, Size( (double) updated_width, (double) updated_height));
     return updated_factor;
   }
   return 1;
 }
 
-void Utilities::upscaleImageByFactor(const int factor, cv::Mat &image) {
+void Utilities::upscale_image_by_factor(const int factor, Mat &image) {
   
   // Quick return if there is nothing to resize
   if (factor <= 1)
@@ -75,5 +75,5 @@ void Utilities::upscaleImageByFactor(const int factor, cv::Mat &image) {
   double updated_width = (double) width * (double) factor;
   double updated_height = (double) height * (double) factor;
   if(debug) cout << "Resizing image from " << image.rows << "x" << image.cols << " to " <<  height << "x" << width << " ..." << endl;
-  cv::resize(image, image, Size( updated_width, updated_height));
+  resize(image, image, Size( updated_width, updated_height));
 }
