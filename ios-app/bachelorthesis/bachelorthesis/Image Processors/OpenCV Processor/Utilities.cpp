@@ -20,7 +20,7 @@ void Utilities::downscale_image_by_factor(const int factor, Mat &image)
   int height = image.rows;
   
   // we don't want to loose information, height and width need to be divisible by factor
-  int updated_width = height / factor;
+  int updated_width = width / factor;
   int updated_height = height / factor;
   if(debug) cout << "Resizing image from " << image.rows << "x" << image.cols << " to " <<  height << "x" << width << " ..." << endl;
   resize(image, image, Size( (double) updated_width, (double) updated_height));

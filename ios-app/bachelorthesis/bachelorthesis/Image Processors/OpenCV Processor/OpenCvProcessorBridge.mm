@@ -9,7 +9,7 @@
 //#import "Stocard-Swift.h"
 #import "OpenCvProcessorBridge.h"
 
-#import <opencv2/opencv.hpp>
+#include <opencv2/opencv.hpp>
 #include <opencv2/imgcodecs/ios.h>
 #include "LoyaltyCardDetector.hpp"
 #include "Utilities.hpp"

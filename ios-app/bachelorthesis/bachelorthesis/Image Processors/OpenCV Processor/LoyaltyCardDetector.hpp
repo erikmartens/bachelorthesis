@@ -11,6 +11,7 @@
 
 #include "Utilities.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -42,8 +43,8 @@ private:
   
   static void draw_square( const Mat& image, const vector<cv::Point>& square );
   static void draw_squares( const Mat& image, const vector<vector<cv::Point> >& squares );
-  static void draw_lines(vector<Vec4i> lines, Mat &destination);
-  static void draw_points(vector<cv::Point> points, Mat &destination);
+  static void draw_lines(vector<Vec4i> &lines, Mat &destination);
+  static void draw_points(vector<cv::Point> &points, Mat &destination);
   
   static vector<cv::Point> get_card_vertices(Mat &grayscale);
   
