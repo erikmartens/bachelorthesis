@@ -48,7 +48,7 @@ private:
   static vector<cv::Point> get_card_vertices(Mat &grayscale);
   
   
-  static void get_intersections(vector<Vec4i> lines, vector<cv::Point> intersections, int imageWidth, int imageHeight);
+  static void get_intersections(vector<Vec4i> &lines, vector<cv::Point> &intersections, int imageWidth, int imageHeight);
   static void filter_for_vertices(vector<cv::Point> &intersections, vector<cv::Point> &corners);
 };
 

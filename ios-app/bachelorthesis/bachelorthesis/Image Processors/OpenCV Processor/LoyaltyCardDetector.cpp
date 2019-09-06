@@ -397,10 +397,10 @@ vector<Point> LoyaltyCardDetector::get_card_vertices(Mat &destination)
   HoughLinesP(convexHull_mask, lines, 1, CV_PI / 180, 80, 30, 10);
   
   /// debug
-  Mat output(destination.rows, destination.cols, CV_8UC1);
-  output = Scalar(0);
-  draw_lines(lines, output);
-  destination = output;
+//  Mat output(destination.rows, destination.cols, CV_8UC1);
+//  output = Scalar(0);
+//  draw_lines(lines, output);
+//  destination = output;
   
   // find intersection points of all lines
   vector<Point> intersections;
@@ -411,10 +411,10 @@ vector<Point> LoyaltyCardDetector::get_card_vertices(Mat &destination)
   filter_for_vertices(intersections, vertices);
   
   /// debug
-//  Mat output(destination.rows, destination.cols, CV_8UC1);
-//  output = Scalar(0);
-//  draw_points(vertices, output);
-//  destination = output;
+  Mat output(destination.rows, destination.cols, CV_8UC1);
+  output = Scalar(0);
+  draw_points(vertices, output);
+  destination = output;
   
   if (vertices.size() == 4) // we have the 4 final corners
   {
@@ -464,16 +464,16 @@ static bool get_intersection(const Vec4i &line_a, const Vec4i &line_b, Point &in
   }
 }
 
-void LoyaltyCardDetector::get_intersections(vector<Vec4i> lines, vector<Point> intersections, int imageWidth, int imageHeight)
+void LoyaltyCardDetector::get_intersections(vector<Vec4i> &lines, vector<Point> &intersections, int imageWidth, int imageHeight)
 {
   for (int i = 0; i < lines.size(); i++)
   {
     for (int j = i; j < lines.size(); j++)
     {
       Point intersection;
-      get_intersection(lines[i], lines[j], intersection);
+      bool intersects = get_intersection(lines[i], lines[j], intersection);
       
-      if ((intersection.x > 0) && (intersection.y > 0) && (intersection.x < imageWidth) && (intersection.y < imageHeight))
+      if ( intersects && (intersection.x > 0) && (intersection.y > 0) && (intersection.x < imageWidth) && (intersection.y < imageHeight) )
       {
         intersections.push_back(intersection);
       }
@@ -541,6 +541,6 @@ void LoyaltyCardDetector::draw_points(vector<Point> points, Mat &destination)
   for (size_t i = 0; i < points.size(); i++)
   {
     Point p = points[i];
-    circle(destination, p, 5, Scalar(255));
+    circle(destination, p, 20, Scalar(255), 20);
   }
 }

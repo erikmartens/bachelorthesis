@@ -70,9 +70,9 @@ class StillImageViewController: UIViewController {
   // MARK: - Private Functions
   
   private func setupUserInterface() {
-    navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
-                                                       target: self,
-                                                       action: #selector(cancelImagePicker(_:)))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
+                                                        target: self,
+                                                        action: #selector(cancelImagePicker(_:)))
     resultOpacityControlsContainer.isHidden = true
     
     resultOpacityDescriptionLabel.text = R.string.localizable.result_image_opacity()
