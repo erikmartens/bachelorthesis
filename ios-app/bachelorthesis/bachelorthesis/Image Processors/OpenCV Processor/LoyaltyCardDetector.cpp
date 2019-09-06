@@ -397,10 +397,10 @@ vector<Point> LoyaltyCardDetector::get_card_vertices(Mat &destination)
   HoughLinesP(convexHull_mask, lines, 1, CV_PI / 180, 80, 30, 10);
   
   /// debug
-//  Mat output(destination.rows, destination.cols, CV_8UC1);
-//  output = Scalar(0);
-//  draw_lines(lines, output);
-//  destination = output;
+  Mat output(destination.rows, destination.cols, CV_8UC1);
+  output = Scalar(0);
+  draw_lines(lines, output);
+  destination = output;
   
   // find intersection points of all lines
   vector<Point> intersections;
@@ -411,10 +411,10 @@ vector<Point> LoyaltyCardDetector::get_card_vertices(Mat &destination)
   filter_for_vertices(intersections, vertices);
   
   /// debug
-  Mat output(destination.rows, destination.cols, CV_8UC1);
-  output = Scalar(0);
-  draw_points(vertices, output);
-  destination = output;
+//  Mat output(destination.rows, destination.cols, CV_8UC1);
+//  output = Scalar(0);
+//  draw_points(vertices, output);
+//  destination = output;
   
   if (vertices.size() == 4) // we have the 4 final corners
   {

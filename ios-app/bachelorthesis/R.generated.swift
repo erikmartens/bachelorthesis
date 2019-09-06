@@ -78,7 +78,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 17 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 18 localization keys.
     struct localizable {
       /// en translation: Additional Information
       /// 
@@ -124,6 +124,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let quadrangles = Rswift.StringResource(key: "quadrangles", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Result Image Opacity
+      /// 
+      /// Locales: en, de
+      static let result_image_opacity = Rswift.StringResource(key: "result_image_opacity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Save Image
       /// 
       /// Locales: en, de
@@ -224,6 +228,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, de
       static func quadrangles(_: Void = ()) -> String {
         return NSLocalizedString("quadrangles", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Result Image Opacity
+      /// 
+      /// Locales: en, de
+      static func result_image_opacity(_: Void = ()) -> String {
+        return NSLocalizedString("result_image_opacity", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Save Image

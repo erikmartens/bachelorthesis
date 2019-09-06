@@ -16,7 +16,13 @@ class StillImageViewController: UIViewController {
   
   // MARK: - IBOutlets
   
-  @IBOutlet weak var imageView: UIImageView!
+  @IBOutlet weak var inputImageView: UIImageView!
+  @IBOutlet weak var resultImageView: UIImageView!
+  
+  @IBOutlet weak var resultOpacityControlsContainer: UIStackView!
+  @IBOutlet weak var resultOpacityDescriptionLabel: UILabel!
+  @IBOutlet weak var resultOpacitySlider: UISlider!
+  
   @IBOutlet weak var selectImageButton: FramedButton!
   @IBOutlet weak var processImageButton: FramedButton!
   @IBOutlet weak var saveImageButton: FramedButton!
@@ -36,16 +42,18 @@ class StillImageViewController: UIViewController {
       guard let image = selectedImage else {
         return
       }
-      imageView.image = image
+      inputImageView.image = image
     }
   }
   
   private var processedImage: UIImage? {
     didSet {
-      guard let image = processedImage else {
-        return
+      defer {
+        resultImageView.isHidden = processedImage == nil
+        resultOpacityControlsContainer.isHidden = processedImage == nil
       }
-      imageView.image = image
+      guard let image = processedImage else { return }
+      resultImageView.image = image
     }
   }
   
@@ -65,6 +73,9 @@ class StillImageViewController: UIViewController {
     navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
                                                        target: self,
                                                        action: #selector(cancelImagePicker(_:)))
+    resultOpacityControlsContainer.isHidden = true
+    
+    resultOpacityDescriptionLabel.text = R.string.localizable.result_image_opacity()
     selectImageButton.setTitle(R.string.localizable.select_image(), for: UIControl.State())
     processImageButton.setTitle(R.string.localizable.process_image(), for: UIControl.State())
     saveImageButton.setTitle(R.string.localizable.save_image(), for: UIControl.State())
@@ -76,6 +87,10 @@ class StillImageViewController: UIViewController {
   
   // MARK: - IBActions
   
+  @IBAction func resultOpacitySliderValueChanged(_ sender: UISlider) {
+    resultImageView.alpha = CGFloat(sender.value)
+  }
+ 
   @IBAction func didPressSelectImageButton(_ sender: FramedButton) {
     self.imagePicker.present(from: sender)
   }

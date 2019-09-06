@@ -24,11 +24,34 @@
                                     <constraint firstAttribute="width" secondItem="Qpa-IA-3as" secondAttribute="height" multiplier="4:3" id="QYu-WZ-qj6"/>
                                 </constraints>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J1t-nq-Ngy">
+                                <rect key="frame" x="0.0" y="44" width="414" height="310.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="J1t-nq-Ngy" secondAttribute="height" multiplier="4:3" id="roa-ee-iK8"/>
+                                </constraints>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nmw-zE-6z0">
-                                <rect key="frame" x="16" y="690" width="382" height="140"/>
+                                <rect key="frame" x="16" y="593" width="382" height="237"/>
                                 <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="baS-GZ-mqG">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="58.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result Image Opacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VK2-14-o6e">
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gVK-tO-v15">
+                                                <rect key="frame" x="-2" y="28.5" width="386" height="31"/>
+                                                <connections>
+                                                    <action selector="resultOpacitySliderValueChanged:" destination="Zar-X4-d1D" eventType="valueChanged" id="qt9-tM-eaf"/>
+                                                </connections>
+                                            </slider>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aia-cc-eAz" customClass="FramedButton" customModule="bachelorthesis" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="36"/>
+                                        <rect key="frame" x="0.0" y="74.5" width="382" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="ogm-F9-9k6"/>
                                         </constraints>
@@ -46,7 +69,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ibj-iD-hHP" customClass="FramedButton" customModule="bachelorthesis" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="52" width="382" height="36"/>
+                                        <rect key="frame" x="0.0" y="138" width="382" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="Er1-Ib-sox"/>
                                         </constraints>
@@ -64,7 +87,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kze-qe-K0q" customClass="FramedButton" customModule="bachelorthesis" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="104" width="382" height="36"/>
+                                        <rect key="frame" x="0.0" y="201" width="382" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="8rm-r8-Jrz"/>
                                         </constraints>
@@ -86,20 +109,27 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="J1t-nq-Ngy" secondAttribute="trailing" id="N8a-ny-hiA"/>
                             <constraint firstItem="qey-oW-dfN" firstAttribute="trailing" secondItem="Qpa-IA-3as" secondAttribute="trailing" id="NfW-Ep-QWF"/>
                             <constraint firstItem="qey-oW-dfN" firstAttribute="bottom" secondItem="nmw-zE-6z0" secondAttribute="bottom" constant="32" id="OG9-KB-pkO"/>
                             <constraint firstItem="qey-oW-dfN" firstAttribute="trailing" secondItem="nmw-zE-6z0" secondAttribute="trailing" constant="16" id="ZDn-pi-cDa"/>
                             <constraint firstItem="nmw-zE-6z0" firstAttribute="leading" secondItem="qey-oW-dfN" secondAttribute="leading" constant="16" id="axh-fd-U0E"/>
                             <constraint firstItem="Qpa-IA-3as" firstAttribute="top" secondItem="qey-oW-dfN" secondAttribute="top" id="eBy-Mn-MIh"/>
+                            <constraint firstItem="J1t-nq-Ngy" firstAttribute="top" secondItem="qey-oW-dfN" secondAttribute="top" id="hx9-Pe-4RM"/>
                             <constraint firstItem="nmw-zE-6z0" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Qpa-IA-3as" secondAttribute="bottom" constant="32" id="jWO-Mu-Z52"/>
+                            <constraint firstItem="J1t-nq-Ngy" firstAttribute="leading" secondItem="qey-oW-dfN" secondAttribute="leading" id="kkc-Pb-Uv7"/>
                             <constraint firstItem="Qpa-IA-3as" firstAttribute="leading" secondItem="qey-oW-dfN" secondAttribute="leading" id="shF-Us-vbh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qey-oW-dfN"/>
                     </view>
                     <navigationItem key="navigationItem" id="21h-DV-J0G"/>
                     <connections>
-                        <outlet property="imageView" destination="Qpa-IA-3as" id="GYm-ja-Ij8"/>
+                        <outlet property="inputImageView" destination="Qpa-IA-3as" id="GYm-ja-Ij8"/>
                         <outlet property="processImageButton" destination="Ibj-iD-hHP" id="HHp-rn-sx8"/>
+                        <outlet property="resultImageView" destination="J1t-nq-Ngy" id="ZU8-fe-rQa"/>
+                        <outlet property="resultOpacityControlsContainer" destination="baS-GZ-mqG" id="I8a-OL-PG2"/>
+                        <outlet property="resultOpacityDescriptionLabel" destination="VK2-14-o6e" id="ZdD-hl-OmE"/>
+                        <outlet property="resultOpacitySlider" destination="gVK-tO-v15" id="crd-Rv-Bjd"/>
                         <outlet property="saveImageButton" destination="Kze-qe-K0q" id="fV7-io-Siv"/>
                         <outlet property="selectImageButton" destination="Aia-cc-eAz" id="rs0-a5-Gpb"/>
                     </connections>

@@ -135,7 +135,7 @@
 				BEDB8F7523181F3C00C71D71 /* Launch Scene */,
 				BEDB8F7423181EEC00C71D71 /* Main Scene */,
 				BE89ABFA231FCFC600E17C36 /* Still Image Scene */,
-				BEDB8F9023192F3F00C71D71 /* Camera Scene */,
+				BEDB8F9023192F3F00C71D71 /* Live Image Scene */,
 				BEDB8F9A231D096100C71D71 /* Image Processors */,
 				BEDB8F8323191F4F00C71D71 /* Resources */,
 				BEDB8F8A2319260200C71D71 /* Helpers */,
@@ -197,7 +197,7 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		BEDB8F9023192F3F00C71D71 /* Camera Scene */ = {
+		BEDB8F9023192F3F00C71D71 /* Live Image Scene */ = {
 			isa = PBXGroup;
 			children = (
 				BEDB8F9323192F7900C71D71 /* Camera.storyboard */,
@@ -205,7 +205,7 @@
 				BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */,
 				BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */,
 			);
-			path = "Camera Scene";
+			path = "Live Image Scene";
 			sourceTree = "<group>";
 		};
 		BEDB8F97231BD35700C71D71 /* IBDesignables */ = {
