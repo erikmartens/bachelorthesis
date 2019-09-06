@@ -15,23 +15,16 @@ using namespace std;
 
 void LoyaltyCardDetector::extract_card_from(Mat &image)
 {
-//  Mat input_grey;
-//  cvtColor(image, input_grey, COLOR_BGR2GRAY);
-//  Mat threshold1;
-  Mat edges;
-//  blur(input_grey, input_grey, Size(3, 3));
-//  Canny(input_grey, edges, 30, 100);
-
-  vector<Point> card_corners = get_quadrilateral(image, edges);
-//  Mat warpedCard;
-//  if (card_corners.size() == 4)
-//  {
-//    Mat homography = findHomography(card_corners, vector<Point>{Point(warpedCard.cols, 0), Point(warpedCard.cols, warpedCard.rows), Point(0,0) , Point(0, warpedCard.rows)});
-//    warpPerspective(image, warpedCard, homography, Size(image.cols, image.rows));
-//  }
-//  image = warpedCard;
+  vector<Point> card_corners = get_card_vertices(image);
+  //  Mat warpedCard;
+  //  if (card_corners.size() == 4)
+  //  {
+  //    Mat homography = findHomography(card_corners, vector<Point>{Point(warpedCard.cols, 0), Point(warpedCard.cols, warpedCard.rows), Point(0,0) , Point(0, warpedCard.rows)});
+  //    warpPerspective(image, warpedCard, homography, Size(image.cols, image.rows));
+  //  }
+  //  image = warpedCard;
   
-//  four_points_transform(image, card_corners);
+  //  four_points_transform(image, card_corners);
 }
 
 void LoyaltyCardDetector::extract_loyalty_card_from(Mat &image)
@@ -42,25 +35,25 @@ void LoyaltyCardDetector::extract_loyalty_card_from(Mat &image)
   {
     return;
   }
-
+  
   vector<vector<Point> > quadrangles;
   vector<vector<Point> > contours;
-  find_squares( imageCopy, quadrangles, contours );
+  find_potential_card_contours( imageCopy, quadrangles, contours );
   
-//  vector<Point> biggest_square;
-//  filter_largest_square( squares, biggest_square );
+  //  vector<Point> biggest_square;
+  //  filter_largest_square( squares, biggest_square );
   
   draw_squares( image, contours );
-//  draw_square(image, biggest_square);
+  //  draw_square(image, biggest_square);
   
-//  four_points_transform(image, biggest_square);
+  //  four_points_transform(image, biggest_square);
 }
 
 void LoyaltyCardDetector::detect_squares( Mat& image )
 {
   vector<vector<Point> > quadrangles;
   vector<vector<Point> > contours;
-  find_squares( image, quadrangles, contours );
+  find_potential_card_contours( image, quadrangles, contours );
   
   vector<Point> biggest_square;
   filter_largest_square( image, biggest_square );
@@ -74,6 +67,8 @@ void LoyaltyCardDetector::detect_squares( Mat& image )
 }
 
 #pragma mark Private
+
+#pragma mark Private Card Detection Functions
 
 //void LoyaltyCardDetector::get_image_canny_borders(Mat &image)
 //{
@@ -106,15 +101,17 @@ void LoyaltyCardDetector::detect_squares( Mat& image )
 vector<Point> LoyaltyCardDetector::order_points(vector<Point> points)
 {
   if ( !points.size() )
+  {
     return points;
+  }
   
   vector<Point> order;
-  Point tl(std::numeric_limits<int>::max(), 0);
-  Point tr(0,std::numeric_limits<int>::max());
-  Point bl(std::numeric_limits<int>::max(),std::numeric_limits<int>::max());
-  Point br(std::numeric_limits<int>::min(), std::numeric_limits<int>::min());
+  Point tl(numeric_limits<int>::max(), 0);
+  Point tr(0,numeric_limits<int>::max());
+  Point bl(numeric_limits<int>::max(),numeric_limits<int>::max());
+  Point br(numeric_limits<int>::min(), numeric_limits<int>::min());
   
-  for (int i = 0; i < 4;i++)
+  for ( int i = 0; i < 4; i++ )
   {
     int x = points[i].x;
     int y = points[i].y;
@@ -184,25 +181,25 @@ double LoyaltyCardDetector::angle( Point pt1, Point pt2, Point pt0 )
   return (dx1*dx2 + dy1*dy2)/sqrt((dx1*dx1 + dy1*dy1)*(dx2*dx2 + dy2*dy2) + 1e-10);
 }
 
-void LoyaltyCardDetector::find_squares( Mat& image, vector<vector<Point> >& quadrangles, vector<vector<Point> >& contours )
+void LoyaltyCardDetector::find_potential_card_contours( Mat& image, vector<vector<Point> >& quadrangles, vector<vector<Point> >& contours )
 {
   int thresh = 50, N = 11;
-
+  
   quadrangles.clear();
-
+  
   Mat pyr, timg, gray0(image.size(), CV_8U), gray;
-
+  
   // down-scale and upscale the image to filter out the noise
   pyrDown(image, pyr, Size(image.cols/2, image.rows/2));
   pyrUp(pyr, timg, image.size());
   vector<vector<Point> > allIndentifiedContours;
-
+  
   // find squares in every color plane of the image
   for ( int c = 0; c < 3; c++ )
   {
     int ch[] = {c, 0};
     mixChannels(&timg, 1, &gray0, 1, ch, 1);
-
+    
     // try several threshold levels
     for ( int l = 0; l < N; l++ )
     {
@@ -223,14 +220,14 @@ void LoyaltyCardDetector::find_squares( Mat& image, vector<vector<Point> >& quad
         //     tgray(x,y) = gray(x,y) < (l+1)*255/N ? 255 : 0
         gray = gray0 >= (l+1)*255/N;
       }
-
+      
       int max_contour_area = (gray.cols) * (gray.rows);
-
+      
       // find contours and store them all as a list
       findContours(gray, allIndentifiedContours, RETR_LIST, CHAIN_APPROX_SIMPLE);
-
+      
       vector<Point> approximatedCorners;
-
+      
       // test each contour
       for ( size_t i = 0; i < allIndentifiedContours.size(); i++ )
       {
@@ -253,7 +250,7 @@ void LoyaltyCardDetector::find_squares( Mat& image, vector<vector<Point> >& quad
         vertices.push_back(vertices2f[2]);
         vertices.push_back(vertices2f[3]);
         approximatedCorners = vertices;
-
+        
         // approximate contour with accuracy proportional
         // to the contour perimeter
         // max corner radius percentage of a ISO 7810 ID-1 card is
@@ -261,7 +258,7 @@ void LoyaltyCardDetector::find_squares( Mat& image, vector<vector<Point> >& quad
         double cornerRadius = loyalty_card_corner_radius(arclength);
         double maxEpsilonFactor = max_epsilon_factor(arclength, cornerRadius);
         approxPolyDP( allIndentifiedContours[i], approximatedCorners, arclength*maxEpsilonFactor, true );
-
+        
         // square contours should have 4 vertices after approximation
         // relatively large area (to filter out noisy contours)
         // and be convex.
@@ -269,23 +266,23 @@ void LoyaltyCardDetector::find_squares( Mat& image, vector<vector<Point> >& quad
         // area may be positive or negative - in accordance with the
         // contour orientation
         if ( approximatedCorners.size() == 4 &&
-           isContourConvex(approximatedCorners) )
+            isContourConvex(approximatedCorners) )
         {
           double maxCosine = 0;
-
+          
           for ( int j = 2; j < 5; j++ )
           {
             // find the maximum cosine of the angle between joint edges
             double cosine = fabs(angle(approximatedCorners[j%4], approximatedCorners[j-2], approximatedCorners[j-1]));
             maxCosine = MAX(maxCosine, cosine);
           }
-
+          
           // if cosines of all angles are small
           // (all angles are ~90 degree) then write quandrange
           // vertices to resultant sequence
           if ( maxCosine < 0.3 )
             contours.push_back(allIndentifiedContours[i]);
-            quadrangles.push_back(approximatedCorners);
+          quadrangles.push_back(approximatedCorners);
         }
       }
     }
@@ -368,6 +365,151 @@ void LoyaltyCardDetector::filter_largest_square(const vector<vector<Point> >& sq
 //
 //}
 
+
+//////////////////
+
+vector<Point> LoyaltyCardDetector::get_card_vertices(Mat &destination)
+{
+  vector<vector<Point>> contours;
+  vector<vector<Point>> quadrangles;
+  find_potential_card_contours(destination, quadrangles, contours);
+  
+  /// sort found contours to identify most promising contour
+  vector<int> indices(contours.size());
+  for ( int i = 0; i < contours.size(); i++ )
+  {
+    indices[i] = i;
+  }
+  sort(indices.begin(), indices.end(), [&contours](int lhs, int rhs) {
+    return contours[lhs].size() < contours[rhs].size()
+    && contourArea(contours[lhs]) > contourArea(contours[rhs]);
+  });
+  
+  /// Find the convex hull object
+  Mat convexHull_mask(destination.rows, destination.cols, CV_8UC1);
+  convexHull_mask = Scalar(0);
+  vector<vector<Point> >hull(1);
+  convexHull(Mat(contours[indices[0]]), hull[0], false);
+  
+  /// find hough lines of convex hull
+  vector<Vec4i> lines;
+  drawContours(convexHull_mask, hull, 0, Scalar(255), 2, LINE_AA);
+  HoughLinesP(convexHull_mask, lines, 1, CV_PI / 180, 80, 30, 10);
+  
+  /// debug
+//  Mat output(destination.rows, destination.cols, CV_8UC1);
+//  output = Scalar(0);
+//  draw_lines(lines, output);
+//  destination = output;
+  
+  // find intersection points of all lines
+  vector<Point> intersections;
+  get_intersections(lines, intersections, destination.cols, destination.rows);
+  
+  // filter down to 4 cornerpoints of quadrangle
+  vector<Point> vertices;
+  filter_for_vertices(intersections, vertices);
+  
+  /// debug
+  Mat output(destination.rows, destination.cols, CV_8UC1);
+  output = Scalar(0);
+  draw_points(vertices, output);
+  destination = output;
+  
+  if (vertices.size() == 4) // we have the 4 final corners
+  {
+    return(vertices);
+  }
+  return(vector<Point>());
+}
+
+# pragma mark Private Helper Functions
+
+static array<int, 3> cross(const array<int, 3> &a, const array<int, 3> &b)
+{
+  array<int, 3> result;
+  result[0] = a[1] * b[2] - a[2] * b[1];
+  result[1] = a[2] * b[0] - a[0] * b[2];
+  result[2] = a[0] * b[1] - a[1] * b[0];
+  return result;
+}
+
+static bool get_intersection(const Vec4i &line_a, const Vec4i &line_b, Point &intersection)
+{
+  array<int, 3> pa{ { line_a[0], line_a[1], 1 } };
+  array<int, 3> pb{ { line_a[2], line_a[3], 1 } };
+  array<int, 3> la = cross(pa, pb);
+  pa[0] = line_b[0];
+  pa[1] = line_b[1];
+  pa[2] = 1;
+  
+  pb[0] = line_b[2];
+  pb[1] = line_b[3];
+  pb[2] = 1;
+  
+  array<int, 3> lb = cross(pa, pb);
+  array<int, 3> inter = cross(la, lb);
+  
+  // TODO: filter semiparallel lines
+  
+  if (inter[2] == 0)
+  {
+    return false; // two lines are parallel
+  }
+  else
+  {
+    intersection.x = inter[0] / inter[2];
+    intersection.y = inter[1] / inter[2];
+    return true;
+  }
+}
+
+void LoyaltyCardDetector::get_intersections(vector<Vec4i> lines, vector<Point> intersections, int imageWidth, int imageHeight)
+{
+  for (int i = 0; i < lines.size(); i++)
+  {
+    for (int j = i; j < lines.size(); j++)
+    {
+      Point intersection;
+      get_intersection(lines[i], lines[j], intersection);
+      
+      if ((intersection.x > 0) && (intersection.y > 0) && (intersection.x < imageWidth) && (intersection.y < imageHeight))
+      {
+        intersections.push_back(intersection);
+      }
+    }
+  }
+}
+
+void LoyaltyCardDetector::filter_for_vertices(vector<Point> &intersections, vector<Point> &corners)
+{
+  if ( intersections.size() < 4 )
+  {
+    return; // not enough points to have identified a quadrangle
+  }
+  
+  Point tl(numeric_limits<int>::max(), 0);
+  Point tr(0,numeric_limits<int>::max());
+  Point bl(numeric_limits<int>::max(),numeric_limits<int>::max());
+  Point br(numeric_limits<int>::min(), numeric_limits<int>::min());
+  
+  for ( int i = 0; i < 4; i++ )
+  {
+    int x = intersections[i].x;
+    int y = intersections[i].y;
+    if (x + y < tl.x + tl.y) tl = intersections[i];
+    if (x - y > tr.x - tr.y) tr = intersections[i];
+    if (x - y < bl.x - bl.y) bl = intersections[i];
+    if (x + y > br.x + br.y) br = intersections[i];
+  }
+  corners.push_back(tl);
+  corners.push_back(tr);
+  corners.push_back(bl);
+  corners.push_back(br);
+}
+
+# pragma mark Drawing Helper Functions
+
 void LoyaltyCardDetector::draw_square( const Mat& image, const vector<Point>& square )
 {
   const Point* p = &square[0];
@@ -385,122 +527,20 @@ void LoyaltyCardDetector::draw_squares( const Mat& image, const vector<vector<Po
   }
 }
 
-
-//////////////////
-
-Vec3f LoyaltyCardDetector::calc_params(Point2f p1, Point2f p2) // line's equation Params computation
+void LoyaltyCardDetector::draw_lines(vector<Vec4i> lines, Mat &destination)
 {
-  float a, b, c;
-  if (p2.y - p1.y == 0)
-  {
-    a = 0.0f;
-    b = -1.0f;
-  }
-  else if (p2.x - p1.x == 0)
-  {
-    a = -1.0f;
-    b = 0.0f;
-  }
-  else
-  {
-    a = (p2.y - p1.y) / (p2.x - p1.x);
-    b = -1.0f;
-  }
-  
-  c = (-a * p1.x) - b * p1.y;
-  return(Vec3f(a, b, c));
-}
-
-Point LoyaltyCardDetector::find_intersection(Vec3f params1, Vec3f params2)
-{
-  float x = -1, y = -1;
-  float det = params1[0] * params2[1] - params2[0] * params1[1];
-  if (det < 0.5f && det > -0.5f) // lines are approximately parallel
-  {
-    return(Point(-1, -1));
-  }
-  else
-  {
-    x = (params2[1] * -params1[2] - params1[1] * -params2[2]) / det;
-    y = (params1[0] * -params2[2] - params2[0] * -params1[2]) / det;
-  }
-  return(Point(x, y));
-}
-
-// returns the 4 intersection points of the card
-vector<Point> LoyaltyCardDetector::get_quadrilateral(Mat &grayscale, Mat &output)
-{
-  Mat convexHull_mask(grayscale.rows, grayscale.cols, CV_8UC1);
-  convexHull_mask = Scalar(0);
-  
-  vector<vector<Point>> contours;
-  vector<vector<Point>> vertices;
-  find_squares(grayscale, vertices, contours);
-//  findContours(grayscale, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
-  
-  vector<int> indices(contours.size());
-  for ( int i = 0; i < contours.size(); i++ )
-  {
-    indices[i] = i;
-  }
-  
-  sort(indices.begin(), indices.end(), [&contours](int lhs, int rhs) {
-    return contours[lhs].size() < contours[rhs].size()
-    && contourArea(contours[lhs]) > contourArea(contours[rhs]);
-  });
-  
-  /// Find the convex hull object
-  vector<vector<Point> >hull(1);
-  convexHull(Mat(contours[indices[0]]), hull[0], false);
-  
-  vector<Vec4i> lines;
-  drawContours(convexHull_mask, hull, 0, Scalar(255), 2, LINE_AA);
-  HoughLinesP(convexHull_mask, lines, 1, CV_PI / 180, 80, 30, 10);
-  
-  
-  
-  Mat cdst(grayscale.rows, grayscale.cols, CV_8UC1);
-  cdst = Scalar(0);
   for (size_t i = 0; i < lines.size(); i++)
   {
     Vec4i l = lines[i];
-    line(cdst, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(0, 0, 255), 3, LINE_8);
+    line(destination, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255), 3, LINE_8);
   }
-  
-  
-  
-  grayscale = cdst; //
-  
-//  if (lines.size() >= 4) // we found the 4 sides
-//  {
-    vector<Vec3f> params(4);
-    for (int l = 0; l < 4; l++)
-    {
-      params.push_back(calc_params(Point(lines[l][0], lines[l][1]), Point(lines[l][2], lines[l][3])));
-    }
-    
-    vector<Point> corners;
-    for (int i = 0; i < params.size(); i++)
-    {
-      for (int j = i; j < params.size(); j++) // j starts at i so we don't have duplicated points
-      {
-        Point intersec = find_intersection(params[i], params[j]);
-        if ((intersec.x > 0) && (intersec.y > 0) && (intersec.x < grayscale.cols) && (intersec.y < grayscale.rows))
-        {
-          corners.push_back(intersec);
-        }
-      }
-    }
-    
-    for (int i = 0; i < corners.size(); i++)
-    {
-      circle(output, corners[i], 3, Scalar(0, 0, 255));
-    }
-    
-    if (corners.size() == 4) // we have the 4 final corners
-    {
-      return(corners);
-    }
-//  }
-  return(vector<Point>());
+}
+
+void LoyaltyCardDetector::draw_points(vector<Point> points, Mat &destination)
+{
+  for (size_t i = 0; i < points.size(); i++)
+  {
+    Point p = points[i];
+    circle(destination, p, 5, Scalar(255));
+  }
 }

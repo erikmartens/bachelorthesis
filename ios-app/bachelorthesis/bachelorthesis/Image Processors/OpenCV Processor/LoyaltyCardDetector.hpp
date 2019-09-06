@@ -32,7 +32,7 @@ private:
   static void four_points_transform(Mat &image, vector<cv::Point> corners);
   
   static double angle( cv::Point pt1, cv::Point pt2, cv::Point pt0 );
-  static void find_squares( Mat& image, vector<vector<cv::Point> >& quadrangles, vector<vector<cv::Point> >& contours );
+  static void find_potential_card_contours( Mat& image, vector<vector<cv::Point> >& quadrangles, vector<vector<cv::Point> >& contours );
   static double loyalty_card_corner_radius(double arclength);
   static double max_epsilon_factor(double arclength, double cornerRadius);
   //  static void identify_loyalty_card_square(vector<vector<cv::Point> >& squares, vector<cv::Point>& vertics);
@@ -42,10 +42,14 @@ private:
   
   static void draw_square( const Mat& image, const vector<cv::Point>& square );
   static void draw_squares( const Mat& image, const vector<vector<cv::Point> >& squares );
+  static void draw_lines(vector<Vec4i> lines, Mat &destination);
+  static void draw_points(vector<cv::Point> points, Mat &destination);
   
-  static Vec3f calc_params(Point2f p1, Point2f p2);
-  static cv::Point find_intersection(Vec3f params1, Vec3f params2);
-  static vector<cv::Point> get_quadrilateral(Mat &grayscale, Mat &output);
+  static vector<cv::Point> get_card_vertices(Mat &grayscale);
+  
+  
+  static void get_intersections(vector<Vec4i> lines, vector<cv::Point> intersections, int imageWidth, int imageHeight);
+  static void filter_for_vertices(vector<cv::Point> &intersections, vector<cv::Point> &corners);
 };
 
 #endif /* LoyaltyCardDetector_hpp */
