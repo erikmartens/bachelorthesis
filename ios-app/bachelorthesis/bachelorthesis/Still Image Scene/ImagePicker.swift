@@ -68,6 +68,9 @@ open class ImagePicker: NSObject {
     //
     //    self.presentationController?.present(alertController, animated: true)
   }
+  func saveToCameraRoll(_ image: UIImage) {
+    UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
+  }
   
   private func pickerController(_ controller: UIImagePickerController, didSelect image: UIImage?) {
     controller.dismiss(animated: true, completion: nil)

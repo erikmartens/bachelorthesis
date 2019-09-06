@@ -111,6 +111,10 @@ class StillImageViewController: UIViewController {
   }
   
   @IBAction func didPressSaveImageButton(_ sender: FramedButton) {
+    guard let processedImage = processedImage else {
+      return
+    }
+    imagePicker.saveToCameraRoll(processedImage)
   }
 }
 
