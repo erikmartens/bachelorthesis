@@ -49,5 +49,5 @@ let availableScanners = [
              website: URL(string: "https://wetransfer.com/"),
              github: URL(string: "https://github.com/WeTransfer/WeScan"),
              scannerLibrary: .weScan,
-             inputOptions: [.camera])
+             inputOptions: [.camera, .gallery])
 ]

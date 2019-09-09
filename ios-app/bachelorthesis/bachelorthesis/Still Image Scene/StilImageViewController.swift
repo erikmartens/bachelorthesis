@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import WeScan
 
 protocol StillImageViewControllerDelegate: class {
   func didCancelImagePicker()
@@ -102,7 +103,9 @@ class StillImageViewController: UIViewController {
     }
     switch selectedScannerLibrary {
     case .weScan:
-      break
+      let scannerViewController = ImageScannerController(image: selectedImage)
+      scannerViewController.imageScannerDelegate = self
+      present(scannerViewController, animated: true)
     case .gpuImage:
       break
     case .openCV:
@@ -122,5 +125,25 @@ extension StillImageViewController: ImagePickerDelegate {
   
   func didSelect(image: UIImage?) {
     selectedImage = image
+  }
+}
+
+extension StillImageViewController: ImageScannerControllerDelegate {
+  
+  private func dismissImageScannerController() {
+    navigationController?.presentedViewController?.dismiss(animated: true, completion: nil)
+  }
+  
+  func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
+    processedImage = results.croppedScan.image
+    dismissImageScannerController()
+  }
+  
+  func imageScannerControllerDidCancel(_ scanner: ImageScannerController) {
+    dismissImageScannerController()
+  }
+  
+  func imageScannerController(_ scanner: ImageScannerController, didFailWithError error: Error) {
+    dismissImageScannerController()
   }
 }

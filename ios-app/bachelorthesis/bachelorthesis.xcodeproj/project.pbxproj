@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		937D30CBA35FA7E59070D4C6 /* libPods-bachelorthesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A42A04F4D4E59D1892CCC5B5 /* libPods-bachelorthesis.a */; };
+		09788B4B081A8DD0344C867D /* libPods-bachelorthesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F225A9213DECDD6F21AF5C3F /* libPods-bachelorthesis.a */; };
 		BE6C3F2E231FC09F00EA116A /* LoyaltyCardDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */; };
 		BE89ABFC231FCFF300E17C36 /* ImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE89ABFB231FCFF300E17C36 /* ImagePicker.storyboard */; };
 		BE89ABFE231FD03200E17C36 /* StilImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89ABFD231FD03200E17C36 /* StilImageViewController.swift */; };
@@ -35,8 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		22793AB0F0B2688854FF2708 /* Pods-bachelorthesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.release.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.release.xcconfig"; sourceTree = "<group>"; };
-		A42A04F4D4E59D1892CCC5B5 /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		57CEAB3AC275B3184F9C2306 /* Pods-bachelorthesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.release.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.release.xcconfig"; sourceTree = "<group>"; };
 		BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LoyaltyCardDetector.cpp; sourceTree = "<group>"; };
 		BE6C3F2D231FC09F00EA116A /* LoyaltyCardDetector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LoyaltyCardDetector.hpp; sourceTree = "<group>"; };
 		BE89ABFB231FCFF300E17C36 /* ImagePicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImagePicker.storyboard; sourceTree = "<group>"; };
@@ -67,8 +66,9 @@
 		BEDB8FA0231D0C1600C71D71 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScannerProtocol.swift; sourceTree = "<group>"; };
 		BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDeviceOrientation->AVCaptureVideoOrientation.swift"; sourceTree = "<group>"; };
-		D43296E1F2AE02F607657D9B /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
+		E73072C1FD3C7682B6003F27 /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
 		F22181A1232049A9006C5D67 /* UIColor+Inverted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Inverted.swift"; sourceTree = "<group>"; };
+		F225A9213DECDD6F21AF5C3F /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utilities.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,18 +78,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				937D30CBA35FA7E59070D4C6 /* libPods-bachelorthesis.a in Frameworks */,
+				09788B4B081A8DD0344C867D /* libPods-bachelorthesis.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42FB913EFE1DE55B6B8A6BB4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F225A9213DECDD6F21AF5C3F /* libPods-bachelorthesis.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7D739B47A8B2B807B396CCCB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D43296E1F2AE02F607657D9B /* Pods-bachelorthesis.debug.xcconfig */,
-				22793AB0F0B2688854FF2708 /* Pods-bachelorthesis.release.xcconfig */,
+				E73072C1FD3C7682B6003F27 /* Pods-bachelorthesis.debug.xcconfig */,
+				57CEAB3AC275B3184F9C2306 /* Pods-bachelorthesis.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -111,7 +119,7 @@
 				BE8C566A23181424007C18BA /* bachelorthesis */,
 				BE8C566923181424007C18BA /* Products */,
 				7D739B47A8B2B807B396CCCB /* Pods */,
-				DD2FCCF6D17A8DEDACF2BBF9 /* Frameworks */,
+				42FB913EFE1DE55B6B8A6BB4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -245,14 +253,6 @@
 			path = Converters;
 			sourceTree = "<group>";
 		};
-		DD2FCCF6D17A8DEDACF2BBF9 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A42A04F4D4E59D1892CCC5B5 /* libPods-bachelorthesis.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -260,13 +260,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE8C567A23181425007C18BA /* Build configuration list for PBXNativeTarget "bachelorthesis" */;
 			buildPhases = (
-				E79FF59AD1EECF11ED6A559B /* [CP] Check Pods Manifest.lock */,
+				24F0975E6888CC4E61861BC5 /* [CP] Check Pods Manifest.lock */,
 				BEDB8F80231909CD00C71D71 /* SwiftLint */,
 				BEDB8F7F2319099D00C71D71 /* R.Swift */,
 				BE8C566423181424007C18BA /* Sources */,
 				BE8C566523181424007C18BA /* Frameworks */,
 				BE8C566623181424007C18BA /* Resources */,
-				3B4B71377FC7E789F603E4E9 /* [CP] Copy Pods Resources */,
+				93236F27BED2965E68C6BA9A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -329,7 +329,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3B4B71377FC7E789F603E4E9 /* [CP] Copy Pods Resources */ = {
+		24F0975E6888CC4E61861BC5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-bachelorthesis-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93236F27BED2965E68C6BA9A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -355,13 +377,6 @@
 				"${PODS_ROOT}/WeScan/WeScan/Assets/rotate.png",
 				"${PODS_ROOT}/WeScan/WeScan/Assets/rotate@2x.png",
 				"${PODS_ROOT}/WeScan/WeScan/Assets/rotate@3x.png",
-				"${PODS_ROOT}/WeScan/WeScan/de.lproj/Localizable.strings",
-				"${PODS_ROOT}/WeScan/WeScan/en.lproj/Localizable.strings",
-				"${PODS_ROOT}/WeScan/WeScan/fr.lproj/Localizable.strings",
-				"${PODS_ROOT}/WeScan/WeScan/it.lproj/Localizable.strings",
-				"${PODS_ROOT}/WeScan/WeScan/pt-PT.lproj/Localizable.strings",
-				"${PODS_ROOT}/WeScan/WeScan/zh-Hans.lproj/Localizable.strings",
-				"${PODS_ROOT}/WeScan/WeScan/zh-Hant.lproj/Localizable.strings",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
@@ -384,7 +399,6 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/rotate.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/rotate@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/rotate@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Localizable.strings",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -405,7 +419,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -428,28 +442,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
-		};
-		E79FF59AD1EECF11ED6A559B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-bachelorthesis-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -634,7 +626,7 @@
 		};
 		BE8C567B23181425007C18BA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D43296E1F2AE02F607657D9B /* Pods-bachelorthesis.debug.xcconfig */;
+			baseConfigurationReference = E73072C1FD3C7682B6003F27 /* Pods-bachelorthesis.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -658,7 +650,7 @@
 		};
 		BE8C567C23181425007C18BA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22793AB0F0B2688854FF2708 /* Pods-bachelorthesis.release.xcconfig */;
+			baseConfigurationReference = 57CEAB3AC275B3184F9C2306 /* Pods-bachelorthesis.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

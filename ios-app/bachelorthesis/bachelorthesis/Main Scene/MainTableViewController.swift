@@ -64,7 +64,7 @@ class MainTableViewController: UITableViewController {
     present(viewController, animated: true, completion: nil)
   }
   
-  private func presentImagePickerViewController(for scannerLibrary: ScannerLibrary) {
+  private func presentStillImageViewController(for scannerLibrary: ScannerLibrary) {
     let viewController = R.storyboard.imagePicker().instantiateInitialViewController() as! StillImageViewController
     let navigstionController = UINavigationController(rootViewController: viewController)
     viewController.selectedScannerLibrary = scannerLibrary
@@ -104,12 +104,7 @@ class MainTableViewController: UITableViewController {
     
     if scanner.inputOptions.contains(.gallery) {
       actions[ImageInputOption.gallery.title] = { [weak self] _ in
-        switch scanner.scannerLibrary {
-        case .weScan:
-          self?.presentWeScanScannerViewController()
-        case .openCV, .gpuImage:
-          self?.presentImagePickerViewController(for: scanner.scannerLibrary)
-        }
+        self?.presentStillImageViewController(for: scanner.scannerLibrary)
       }
     }
     

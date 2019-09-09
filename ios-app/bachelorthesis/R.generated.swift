@@ -78,12 +78,16 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 18 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 24 localization keys.
     struct localizable {
       /// en translation: Additional Information
       /// 
       /// Locales: en, de
       static let additional_information = Rswift.StringResource(key: "additional_information", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Auto
+      /// 
+      /// Locales: en, de
+      static let wescanScanningAuto = Rswift.StringResource(key: "wescan.scanning.auto", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Camera
       /// 
       /// Locales: en, de
@@ -92,10 +96,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let cancel = Rswift.StringResource(key: "cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Cancel
+      /// 
+      /// Locales: en, de
+      static let wescanScanningCancel = Rswift.StringResource(key: "wescan.scanning.cancel", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Edges
       /// 
       /// Locales: en, de
       static let edges = Rswift.StringResource(key: "edges", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Edit Scan
+      /// 
+      /// Locales: en, de
+      static let wescanEditTitle = Rswift.StringResource(key: "wescan.edit.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Extraction Framework Evaluation
       /// 
       /// Locales: en, de
@@ -112,6 +124,14 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let input_options_undefined = Rswift.StringResource(key: "input_options_undefined", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Manual
+      /// 
+      /// Locales: en, de
+      static let wescanScanningManual = Rswift.StringResource(key: "wescan.scanning.manual", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Next
+      /// 
+      /// Locales: en, de
+      static let wescanEditButtonNext = Rswift.StringResource(key: "wescan.edit.button.next", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Overlay
       /// 
       /// Locales: en, de
@@ -128,6 +148,10 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let result_image_opacity = Rswift.StringResource(key: "result_image_opacity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Review
+      /// 
+      /// Locales: en, de
+      static let wescanReviewTitle = Rswift.StringResource(key: "wescan.review.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Save Image
       /// 
       /// Locales: en, de
@@ -160,6 +184,13 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("additional_information", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Auto
+      /// 
+      /// Locales: en, de
+      static func wescanScanningAuto(_: Void = ()) -> String {
+        return NSLocalizedString("wescan.scanning.auto", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Camera
       /// 
       /// Locales: en, de
@@ -174,11 +205,25 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("cancel", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Cancel
+      /// 
+      /// Locales: en, de
+      static func wescanScanningCancel(_: Void = ()) -> String {
+        return NSLocalizedString("wescan.scanning.cancel", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Edges
       /// 
       /// Locales: en, de
       static func edges(_: Void = ()) -> String {
         return NSLocalizedString("edges", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Edit Scan
+      /// 
+      /// Locales: en, de
+      static func wescanEditTitle(_: Void = ()) -> String {
+        return NSLocalizedString("wescan.edit.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Extraction Framework Evaluation
@@ -209,6 +254,20 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("input_options_undefined", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Manual
+      /// 
+      /// Locales: en, de
+      static func wescanScanningManual(_: Void = ()) -> String {
+        return NSLocalizedString("wescan.scanning.manual", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Next
+      /// 
+      /// Locales: en, de
+      static func wescanEditButtonNext(_: Void = ()) -> String {
+        return NSLocalizedString("wescan.edit.button.next", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Overlay
       /// 
       /// Locales: en, de
@@ -235,6 +294,13 @@ struct R: Rswift.Validatable {
       /// Locales: en, de
       static func result_image_opacity(_: Void = ()) -> String {
         return NSLocalizedString("result_image_opacity", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Review
+      /// 
+      /// Locales: en, de
+      static func wescanReviewTitle(_: Void = ()) -> String {
+        return NSLocalizedString("wescan.review.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Save Image

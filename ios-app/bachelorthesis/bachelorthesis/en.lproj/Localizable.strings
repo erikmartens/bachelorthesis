@@ -24,3 +24,19 @@
 "process_image" = "Process Image";
 "save_image" = "Save Image";
 "result_image_opacity" = "Result Image Opacity";
+
+// WeScan
+
+/* The "Next" button on the right side of the navigation bar on the Edit screen. */
+"wescan.edit.button.next" = "Next";
+
+/* The title on the navigation bar of the Edit screen. */
+"wescan.edit.title" = "Edit Scan";
+
+/* The title on the navigation bar of the Review screen. */
+"wescan.review.title" = "Review";
+
+/* The button titles on the Scanning screen. */
+"wescan.scanning.cancel" = "Cancel";
+"wescan.scanning.auto" = "Auto";
+"wescan.scanning.manual" = "Manual";
