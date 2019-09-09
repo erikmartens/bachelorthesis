@@ -31,7 +31,6 @@ class CameraViewController: UIViewController {
   
   // MARK: - IBOutlets
   
-  @IBOutlet weak var cancelButton: FramedButton!
   @IBOutlet weak var galleryButton: FramedButton!
   @IBOutlet weak var cameraModeButton: FramedButton!
   
@@ -65,10 +64,6 @@ class CameraViewController: UIViewController {
   
    // MARK: - View Controller Life Cycle
   
-  override var preferredStatusBarStyle: UIStatusBarStyle {
-    return .lightContent
-  }
-  
   override var shouldAutorotate: Bool {
     return false
   }
@@ -81,11 +76,6 @@ class CameraViewController: UIViewController {
   
   // MARK: - IBActions
   
-  @IBAction func didPressCancelButton(_ sender: FramedButton) {
-    cameraScanner.stopCaptureSession()
-    delegate?.didCancelScanning()
-  }
-  
   @IBAction func cameraModeButtonPressed(_ sender: FramedButton) {
     switch cameraMode {
     case .edges: cameraMode = .quadrangles
@@ -96,8 +86,14 @@ class CameraViewController: UIViewController {
   // MARK: - Private Functions
   
   private func setupUserInterface() {
-    cancelButton.setTitle(R.string.localizable.cancel().capitalized,
-                          for: UIControl.State())
+    navigationController?.navigationBar.barStyle = .blackTranslucent
+    navigationController?.navigationBar.barTintColor = .clear
+    navigationController?.navigationBar.isTranslucent = true
+    
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
+                                                        target: self,
+                                                        action: #selector(cancelLiveImageController(_:)))
+    
     galleryButton.setTitle(R.string.localizable.picture_from_gallery(),
                            for: UIControl.State())
     cameraModeButton.setTitle(CameraMode.edges.title,
@@ -115,6 +111,11 @@ class CameraViewController: UIViewController {
     cameraView.layer.addSublayer(cameraScanner.videoPreviewLayer!)
     cameraScanner.videoPreviewLayer!.position = CGPoint(x: cameraView.layer.bounds.midX, y: cameraView.layer.bounds.midY)
     cameraScanner.startCaptureSessession()
+  }
+  
+  @objc private func cancelLiveImageController(_ sender: UIBarButtonItem) {
+    cameraScanner.stopCaptureSession()
+    delegate?.didCancelScanning()
   }
 }
 

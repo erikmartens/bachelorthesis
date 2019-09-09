@@ -18,29 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="wuf-u6-TnR">
-                                <rect key="frame" x="16" y="120" width="382" height="36"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YV8-bT-zvc" customClass="FramedButton" customModule="bachelorthesis" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="36"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="36" id="dQK-Ad-elf"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Cancel">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="accentColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="didPressCancelButton:" destination="EA3-IU-CYe" eventType="touchUpInside" id="GSD-An-fQk"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aMc-9y-p2L">
                                 <rect key="frame" x="0.0" y="172" width="414" height="552"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -113,7 +90,6 @@
                         <constraints>
                             <constraint firstItem="xYJ-44-0T4" firstAttribute="leading" secondItem="FeO-eR-wIQ" secondAttribute="leading" id="2cH-Sx-HRM"/>
                             <constraint firstItem="fmM-G2-jX7" firstAttribute="trailing" secondItem="gcf-BS-GrP" secondAttribute="trailing" constant="16" id="2tU-uQ-a5B"/>
-                            <constraint firstItem="wuf-u6-TnR" firstAttribute="leading" secondItem="FeO-eR-wIQ" secondAttribute="leading" constant="16" id="3Nk-Sg-dlm"/>
                             <constraint firstAttribute="trailing" secondItem="xYJ-44-0T4" secondAttribute="trailing" id="56s-Jy-3Ju"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aMc-9y-p2L" secondAttribute="bottom" id="9UK-w4-bYe"/>
                             <constraint firstItem="aMc-9y-p2L" firstAttribute="centerY" secondItem="FeO-eR-wIQ" secondAttribute="centerY" id="BJS-OL-TAw"/>
@@ -131,11 +107,8 @@
                             <constraint firstAttribute="trailing" secondItem="aMc-9y-p2L" secondAttribute="trailing" id="Zsc-gQ-LO5"/>
                             <constraint firstItem="fmM-G2-jX7" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gcf-BS-GrP" secondAttribute="bottom" constant="16" id="b3R-gL-nBv"/>
                             <constraint firstItem="qdh-pU-4Dd" firstAttribute="leading" secondItem="FeO-eR-wIQ" secondAttribute="leading" id="gaM-y6-g56"/>
-                            <constraint firstItem="wuf-u6-TnR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fmM-G2-jX7" secondAttribute="top" constant="16" id="pUV-wO-iy4"/>
-                            <constraint firstAttribute="trailing" secondItem="wuf-u6-TnR" secondAttribute="trailing" constant="16" id="qcy-ML-sZh"/>
                             <constraint firstItem="gcf-BS-GrP" firstAttribute="top" secondItem="aMc-9y-p2L" secondAttribute="bottom" constant="16" id="sbK-lH-qBz"/>
                             <constraint firstItem="aMc-9y-p2L" firstAttribute="leading" secondItem="FeO-eR-wIQ" secondAttribute="leading" id="wQe-dO-bqS"/>
-                            <constraint firstItem="aMc-9y-p2L" firstAttribute="top" secondItem="wuf-u6-TnR" secondAttribute="bottom" constant="16" id="xPJ-q6-jzP"/>
                             <constraint firstItem="qdh-pU-4Dd" firstAttribute="centerY" secondItem="FeO-eR-wIQ" secondAttribute="centerY" id="yph-9h-bY9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fmM-G2-jX7"/>
@@ -143,7 +116,6 @@
                     <connections>
                         <outlet property="cameraModeButton" destination="TMg-TU-61w" id="TLa-Ow-TSm"/>
                         <outlet property="cameraView" destination="aMc-9y-p2L" id="pmx-rm-GDd"/>
-                        <outlet property="cancelButton" destination="YV8-bT-zvc" id="yGa-Qk-zf4"/>
                         <outlet property="edgesOverlayImageView" destination="qdh-pU-4Dd" id="eCo-eN-7T4"/>
                         <outlet property="galleryButton" destination="Rgr-zW-oXj" id="SrI-91-r7l"/>
                         <outlet property="squaresOverlayImageView" destination="xYJ-44-0T4" id="weC-Od-ykc"/>

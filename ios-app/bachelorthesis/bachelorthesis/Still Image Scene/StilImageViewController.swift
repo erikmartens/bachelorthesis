@@ -73,7 +73,7 @@ class StillImageViewController: UIViewController {
   private func setupUserInterface() {
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
                                                         target: self,
-                                                        action: #selector(cancelImagePicker(_:)))
+                                                        action: #selector(cancelStillImageController(_:)))
     resultOpacityControlsContainer.isHidden = true
     
     resultOpacityDescriptionLabel.text = R.string.localizable.result_image_opacity()
@@ -82,7 +82,7 @@ class StillImageViewController: UIViewController {
     saveImageButton.setTitle(R.string.localizable.save_image(), for: UIControl.State())
   }
   
-  @objc private func cancelImagePicker(_ sender: UIBarButtonItem) {
+  @objc private func cancelStillImageController(_ sender: UIBarButtonItem) {
     delegate?.didCancelImagePicker()
   }
   

@@ -29,7 +29,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   WeScan:
-    :commit: a0f8f459d6afe4c315f37d2ce73b0594485b6889
+    :commit: d3b379a9decd1ca212e3b007f2fa2b05c21fec2e
     :git: https://github.com/erikmartens/WeScan.git
 
 SPEC CHECKSUMS:
