@@ -378,7 +378,7 @@ struct _R: Rswift.Validatable {
     }
     
     struct camera: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = CameraViewController
+      typealias InitialController = LiveImageViewController
       
       let bundle = R.hostingBundle
       let name = "Camera"

@@ -23,7 +23,7 @@
 		BEDB8F892319226D00C71D71 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F882319226D00C71D71 /* MainTableViewCell.swift */; };
 		BEDB8F8D2319264500C71D71 /* UIViewController+PresentSafariViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F8C2319264500C71D71 /* UIViewController+PresentSafariViewController.swift */; };
 		BEDB8F8F231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F8E231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift */; };
-		BEDB8F9223192F6300C71D71 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F9123192F6300C71D71 /* CameraViewController.swift */; };
+		BEDB8F9223192F6300C71D71 /* LiveImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F9123192F6300C71D71 /* LiveImageViewController.swift */; };
 		BEDB8F9423192F7900C71D71 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDB8F9323192F7900C71D71 /* Camera.storyboard */; };
 		BEDB8F96231BC7FD00C71D71 /* CameraScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */; };
 		BEDB8F99231BD3A100C71D71 /* FramedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8F98231BD3A100C71D71 /* FramedButton.swift */; };
@@ -56,7 +56,7 @@
 		BEDB8F882319226D00C71D71 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		BEDB8F8C2319264500C71D71 /* UIViewController+PresentSafariViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentSafariViewController.swift"; sourceTree = "<group>"; };
 		BEDB8F8E231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PresentUIAlertController.swift"; sourceTree = "<group>"; };
-		BEDB8F9123192F6300C71D71 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		BEDB8F9123192F6300C71D71 /* LiveImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveImageViewController.swift; sourceTree = "<group>"; };
 		BEDB8F9323192F7900C71D71 /* Camera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanner.swift; sourceTree = "<group>"; };
 		BEDB8F98231BD3A100C71D71 /* FramedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FramedButton.swift; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				BEDB8F9323192F7900C71D71 /* Camera.storyboard */,
-				BEDB8F9123192F6300C71D71 /* CameraViewController.swift */,
+				BEDB8F9123192F6300C71D71 /* LiveImageViewController.swift */,
 				BEDB8F95231BC7FD00C71D71 /* CameraScanner.swift */,
 				BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */,
 			);
@@ -457,7 +457,7 @@
 				BE89ABFE231FD03200E17C36 /* StilImageViewController.swift in Sources */,
 				BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */,
 				BEDB8F8F231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift in Sources */,
-				BEDB8F9223192F6300C71D71 /* CameraViewController.swift in Sources */,
+				BEDB8F9223192F6300C71D71 /* LiveImageViewController.swift in Sources */,
 				F22181A2232049A9006C5D67 /* UIColor+Inverted.swift in Sources */,
 				F2BEC80D231E6CDE0053C9C2 /* Utilities.cpp in Sources */,
 				BE8C566C23181424007C18BA /* AppDelegate.swift in Sources */,

@@ -21,13 +21,13 @@ enum CameraMode {
   }
 }
 
-protocol CameraViewControllerDelegate: class {
+protocol LiveImageViewControllerDelegate: class {
   func didCancelScanning()
   func didFinishScanning()
   func useImageGallery()
 }
 
-class CameraViewController: UIViewController {
+class LiveImageViewController: UIViewController {
   
   // MARK: - IBOutlets
   
@@ -42,7 +42,7 @@ class CameraViewController: UIViewController {
   
   // MARK: - Properties
   
-  weak var delegate: CameraViewControllerDelegate?
+  weak var delegate: LiveImageViewControllerDelegate?
   var selectedScannerLibrary: ScannerLibrary!
   
   private var cameraScanner: CameraScanner!
@@ -119,7 +119,7 @@ class CameraViewController: UIViewController {
   }
 }
 
-extension CameraViewController: CameraScannerDelegate {
+extension LiveImageViewController: CameraScannerDelegate {
   
   func updateEdgesOverlay(with image: UIImage) {
     DispatchQueue.main.async {

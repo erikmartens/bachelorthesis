@@ -58,7 +58,7 @@ class MainTableViewController: UITableViewController {
   // MARK: - Functions
   
   private func presentCameraViewController(for scannerLibrary: ScannerLibrary) {
-    let viewController = R.storyboard.camera().instantiateInitialViewController() as! CameraViewController
+    let viewController = R.storyboard.camera().instantiateInitialViewController() as! LiveImageViewController
     viewController.selectedScannerLibrary = scannerLibrary
     viewController.delegate = self
     let navigstionController = UINavigationController(rootViewController: viewController)
@@ -144,7 +144,7 @@ class MainTableViewController: UITableViewController {
   }
 }
 
-extension MainTableViewController: CameraViewControllerDelegate {
+extension MainTableViewController: LiveImageViewControllerDelegate {
   
   func didCancelScanning() {
     navigationController?.presentedViewController?.dismiss(animated: true, completion: nil)
