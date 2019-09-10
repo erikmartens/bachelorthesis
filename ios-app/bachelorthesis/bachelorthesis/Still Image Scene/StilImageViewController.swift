@@ -1,5 +1,5 @@
 //
-//  ImagePickerViewController.swift
+//  StillImageViewController.swift
 //  bachelorthesis
 //
 //  Created by  Erik Maximilian Martens on 04.09.19.
@@ -17,8 +17,12 @@ class StillImageViewController: UIViewController {
   
   // MARK: - IBOutlets
   
-  @IBOutlet weak var inputImageView: UIImageView!
+  @IBOutlet weak var sourceImageView: UIImageView!
   @IBOutlet weak var resultImageView: UIImageView!
+  
+  @IBOutlet weak var sourceOpacityControlsContainer: UIStackView!
+  @IBOutlet weak var sourceOpacityDescriptionLabel: UILabel!
+  @IBOutlet weak var sourceOpacitySlider: UISlider!
   
   @IBOutlet weak var resultOpacityControlsContainer: UIStackView!
   @IBOutlet weak var resultOpacityDescriptionLabel: UILabel!
@@ -43,7 +47,7 @@ class StillImageViewController: UIViewController {
       guard let image = selectedImage else {
         return
       }
-      inputImageView.image = image
+      sourceImageView.image = image
     }
   }
   
@@ -51,6 +55,7 @@ class StillImageViewController: UIViewController {
     didSet {
       defer {
         resultImageView.isHidden = processedImage == nil
+        sourceOpacityControlsContainer.isHidden = processedImage == nil
         resultOpacityControlsContainer.isHidden = processedImage == nil
       }
       guard let image = processedImage else { return }
@@ -74,6 +79,7 @@ class StillImageViewController: UIViewController {
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
                                                         target: self,
                                                         action: #selector(cancelStillImageController(_:)))
+    sourceOpacityControlsContainer.isHidden = true
     resultOpacityControlsContainer.isHidden = true
     
     resultOpacityDescriptionLabel.text = R.string.localizable.result_image_opacity()
@@ -88,8 +94,40 @@ class StillImageViewController: UIViewController {
   
   // MARK: - IBActions
   
+  @IBAction func hideSourceImageButtonPressed(_ sender: UIButton) {
+    UIView.animate(withDuration: 0.5) {
+      self.sourceOpacitySlider.value = 0.0
+      self.sourceImageView.alpha = 0.0
+    }
+  }
+  
+  @IBAction func showSourceImageButtonPressed(_ sender: UIButton) {
+    UIView.animate(withDuration: 0.5) {
+      self.sourceOpacitySlider.value = 1.0
+      self.sourceImageView.alpha = 1.0
+    }
+  }
+  
+  @IBAction func hideResultImageButtonPressed(_ sender: UIButton) {
+    UIView.animate(withDuration: 0.5) {
+      self.resultOpacitySlider.value = 0.0
+      self.resultImageView.alpha = 0.0
+    }
+  }
+  
+  @IBAction func showResultImageButtonPressed(_ sender: Any) {
+    UIView.animate(withDuration: 0.5) {
+      self.resultOpacitySlider.value = 1.0
+      self.resultImageView.alpha = 1.0
+    }
+  }
+  
   @IBAction func resultOpacitySliderValueChanged(_ sender: UISlider) {
     resultImageView.alpha = CGFloat(sender.value)
+  }
+  
+  @IBAction func sourceOpacitySliderValueChanged(_ sender: UISlider) {
+    sourceImageView.alpha = CGFloat(sender.value)
   }
  
   @IBAction func didPressSelectImageButton(_ sender: FramedButton) {

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		09788B4B081A8DD0344C867D /* libPods-bachelorthesis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F225A9213DECDD6F21AF5C3F /* libPods-bachelorthesis.a */; };
 		BE6C3F2E231FC09F00EA116A /* LoyaltyCardDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */; };
-		BE89ABFC231FCFF300E17C36 /* ImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE89ABFB231FCFF300E17C36 /* ImagePicker.storyboard */; };
+		BE89ABFC231FCFF300E17C36 /* StillImage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE89ABFB231FCFF300E17C36 /* StillImage.storyboard */; };
 		BE89ABFE231FD03200E17C36 /* StilImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89ABFD231FD03200E17C36 /* StilImageViewController.swift */; };
 		BE89AC00231FD87000E17C36 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89ABFF231FD87000E17C36 /* ImagePicker.swift */; };
 		BE89AC012320044A00E17C36 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BEDB8F7D2319093600C71D71 /* Localizable.strings */; };
@@ -38,7 +38,7 @@
 		57CEAB3AC275B3184F9C2306 /* Pods-bachelorthesis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.release.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.release.xcconfig"; sourceTree = "<group>"; };
 		BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = LoyaltyCardDetector.cpp; sourceTree = "<group>"; };
 		BE6C3F2D231FC09F00EA116A /* LoyaltyCardDetector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LoyaltyCardDetector.hpp; sourceTree = "<group>"; };
-		BE89ABFB231FCFF300E17C36 /* ImagePicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImagePicker.storyboard; sourceTree = "<group>"; };
+		BE89ABFB231FCFF300E17C36 /* StillImage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = StillImage.storyboard; sourceTree = "<group>"; };
 		BE89ABFD231FD03200E17C36 /* StilImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StilImageViewController.swift; sourceTree = "<group>"; };
 		BE89ABFF231FD87000E17C36 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		BE8C566823181424007C18BA /* bachelorthesis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bachelorthesis.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,7 +105,7 @@
 		BE89ABFA231FCFC600E17C36 /* Still Image Scene */ = {
 			isa = PBXGroup;
 			children = (
-				BE89ABFB231FCFF300E17C36 /* ImagePicker.storyboard */,
+				BE89ABFB231FCFF300E17C36 /* StillImage.storyboard */,
 				BE89ABFD231FD03200E17C36 /* StilImageViewController.swift */,
 				BE89ABFF231FD87000E17C36 /* ImagePicker.swift */,
 			);
@@ -319,7 +319,7 @@
 			files = (
 				BE8C567623181425007C18BA /* LaunchScreen.storyboard in Resources */,
 				BE89AC012320044A00E17C36 /* Localizable.strings in Resources */,
-				BE89ABFC231FCFF300E17C36 /* ImagePicker.storyboard in Resources */,
+				BE89ABFC231FCFF300E17C36 /* StillImage.storyboard in Resources */,
 				BE8C567323181425007C18BA /* Assets.xcassets in Resources */,
 				BE8C567123181424007C18BA /* Main.storyboard in Resources */,
 				BEDB8F9423192F7900C71D71 /* Camera.storyboard in Resources */,

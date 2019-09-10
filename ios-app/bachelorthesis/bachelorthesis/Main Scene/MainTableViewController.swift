@@ -66,7 +66,7 @@ class MainTableViewController: UITableViewController {
   }
   
   private func presentStillImageViewController(for scannerLibrary: ScannerLibrary) {
-    let viewController = R.storyboard.imagePicker().instantiateInitialViewController() as! StillImageViewController
+    let viewController = R.storyboard.stillImage().instantiateInitialViewController() as! StillImageViewController
     let navigstionController = UINavigationController(rootViewController: viewController)
     viewController.selectedScannerLibrary = scannerLibrary
     viewController.delegate = self
@@ -105,12 +105,7 @@ class MainTableViewController: UITableViewController {
     
     if scanner.inputOptions.contains(.gallery) {
       actions[ImageInputOption.gallery.title] = { [weak self] _ in
-        switch scanner.scannerLibrary {
-        case .weScan:
-          self?.presentWeScanScannerViewController()
-        case .openCV, .gpuImage:
-          self?.presentStillImageViewController(for: scanner.scannerLibrary)
-        }
+        self?.presentStillImageViewController(for: scanner.scannerLibrary)
       }
     }
     

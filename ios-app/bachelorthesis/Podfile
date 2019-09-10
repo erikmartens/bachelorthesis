@@ -7,6 +7,7 @@ def bachelorthesis_pods
   pod 'OpenCV2', '~> 4.1.0'
   pod 'GPUImage', '~> 0.1.7'
   #pod 'GPUImage2', :podspec => './Podspecs/GPUImage2.podspec'
+  #pod 'GPUImage3', :git => 'https://github.com/BradLarson/GPUImage3.git', :branch => 'master'
   pod 'WeScan', :git => 'https://github.com/erikmartens/WeScan.git', :branch => 'develop'
 
 

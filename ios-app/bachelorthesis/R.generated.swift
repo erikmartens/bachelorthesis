@@ -16,10 +16,24 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.image` struct is generated, and contains static references to 1 images.
+  /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
+    /// Image `eye_crossed_out`.
+    static let eye_crossed_out = Rswift.ImageResource(bundle: R.hostingBundle, name: "eye_crossed_out")
+    /// Image `eye`.
+    static let eye = Rswift.ImageResource(bundle: R.hostingBundle, name: "eye")
     /// Image `noimage`.
     static let noimage = Rswift.ImageResource(bundle: R.hostingBundle, name: "noimage")
+    
+    /// `UIImage(named: "eye", bundle: ..., traitCollection: ...)`
+    static func eye(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.eye, compatibleWith: traitCollection)
+    }
+    
+    /// `UIImage(named: "eye_crossed_out", bundle: ..., traitCollection: ...)`
+    static func eye_crossed_out(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.eye_crossed_out, compatibleWith: traitCollection)
+    }
     
     /// `UIImage(named: "noimage", bundle: ..., traitCollection: ...)`
     static func noimage(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
@@ -41,21 +55,16 @@ struct R: Rswift.Validatable {
   struct storyboard {
     /// Storyboard `Camera`.
     static let camera = _R.storyboard.camera()
-    /// Storyboard `ImagePicker`.
-    static let imagePicker = _R.storyboard.imagePicker()
     /// Storyboard `LaunchScreen`.
     static let launchScreen = _R.storyboard.launchScreen()
     /// Storyboard `Main`.
     static let main = _R.storyboard.main()
+    /// Storyboard `StillImage`.
+    static let stillImage = _R.storyboard.stillImage()
     
     /// `UIStoryboard(name: "Camera", bundle: ...)`
     static func camera(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.camera)
-    }
-    
-    /// `UIStoryboard(name: "ImagePicker", bundle: ...)`
-    static func imagePicker(_: Void = ()) -> UIKit.UIStoryboard {
-      return UIKit.UIStoryboard(resource: R.storyboard.imagePicker)
     }
     
     /// `UIStoryboard(name: "LaunchScreen", bundle: ...)`
@@ -66,6 +75,11 @@ struct R: Rswift.Validatable {
     /// `UIStoryboard(name: "Main", bundle: ...)`
     static func main(_: Void = ()) -> UIKit.UIStoryboard {
       return UIKit.UIStoryboard(resource: R.storyboard.main)
+    }
+    
+    /// `UIStoryboard(name: "StillImage", bundle: ...)`
+    static func stillImage(_: Void = ()) -> UIKit.UIStoryboard {
+      return UIKit.UIStoryboard(resource: R.storyboard.stillImage)
     }
     
     fileprivate init() {}
@@ -372,9 +386,9 @@ struct _R: Rswift.Validatable {
   struct storyboard: Rswift.Validatable {
     static func validate() throws {
       try camera.validate()
-      try imagePicker.validate()
       try launchScreen.validate()
       try main.validate()
+      try stillImage.validate()
     }
     
     struct camera: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
@@ -384,21 +398,6 @@ struct _R: Rswift.Validatable {
       let name = "Camera"
       
       static func validate() throws {
-        if #available(iOS 11.0, *) {
-        }
-      }
-      
-      fileprivate init() {}
-    }
-    
-    struct imagePicker: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = StillImageViewController
-      
-      let bundle = R.hostingBundle
-      let name = "ImagePicker"
-      
-      static func validate() throws {
-        if UIKit.UIImage(named: "noimage", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'noimage' is used in storyboard 'ImagePicker', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
       }
@@ -427,6 +426,23 @@ struct _R: Rswift.Validatable {
       let name = "Main"
       
       static func validate() throws {
+        if #available(iOS 11.0, *) {
+        }
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct stillImage: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
+      typealias InitialController = StillImageViewController
+      
+      let bundle = R.hostingBundle
+      let name = "StillImage"
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "eye", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'eye' is used in storyboard 'StillImage', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "eye_crossed_out", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'eye_crossed_out' is used in storyboard 'StillImage', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "noimage", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'noimage' is used in storyboard 'StillImage', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
       }
