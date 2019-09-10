@@ -68,6 +68,10 @@
 		BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDeviceOrientation->AVCaptureVideoOrientation.swift"; sourceTree = "<group>"; };
 		E73072C1FD3C7682B6003F27 /* Pods-bachelorthesis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bachelorthesis.debug.xcconfig"; path = "Target Support Files/Pods-bachelorthesis/Pods-bachelorthesis.debug.xcconfig"; sourceTree = "<group>"; };
 		F22181A1232049A9006C5D67 /* UIColor+Inverted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Inverted.swift"; sourceTree = "<group>"; };
+		F22181A62327B1DA006C5D67 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		F22181A82327B1F4006C5D67 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		F22181AA2327B202006C5D67 /* MetalPerformanceShaders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalPerformanceShaders.framework; path = System/Library/Frameworks/MetalPerformanceShaders.framework; sourceTree = SDKROOT; };
+		F22181AC2327B2B7006C5D67 /* libGPUImage3.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGPUImage3.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F225A9213DECDD6F21AF5C3F /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utilities.hpp; sourceTree = "<group>"; };
@@ -88,6 +92,10 @@
 		42FB913EFE1DE55B6B8A6BB4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F22181AC2327B2B7006C5D67 /* libGPUImage3.a */,
+				F22181AA2327B202006C5D67 /* MetalPerformanceShaders.framework */,
+				F22181A82327B1F4006C5D67 /* MetalKit.framework */,
+				F22181A62327B1DA006C5D67 /* Metal.framework */,
 				F225A9213DECDD6F21AF5C3F /* libPods-bachelorthesis.a */,
 			);
 			name = Frameworks;
@@ -419,7 +427,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
