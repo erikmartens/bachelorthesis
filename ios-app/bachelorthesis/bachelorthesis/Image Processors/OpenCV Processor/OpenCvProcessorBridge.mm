@@ -40,8 +40,12 @@
   
   UIImageToMat(image, sourceImageMat);
   UIImageToMat(image, outputImageMat);
-  LoyaltyCardDetector::extract_card_from(sourceImageMat, outputImageMat);
-  return MatToUIImage(outputImageMat);
+  bool success = LoyaltyCardDetector::extract_card_from(sourceImageMat, outputImageMat);
+  if (success)
+  {
+    return MatToUIImage(outputImageMat);
+  }
+  return nil;
 }
 
 - (UIImage *)liveExtractEdgesFrom:(CMSampleBufferRef)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation
