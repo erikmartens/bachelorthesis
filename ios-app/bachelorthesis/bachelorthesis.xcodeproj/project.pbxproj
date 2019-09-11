@@ -153,8 +153,8 @@
 				BE89ABFA231FCFC600E17C36 /* Still Image Scene */,
 				BEDB8F9023192F3F00C71D71 /* Live Image Scene */,
 				BEDB8F9A231D096100C71D71 /* Image Processors */,
-				BEDB8F8323191F4F00C71D71 /* Resources */,
 				BEDB8F8A2319260200C71D71 /* Helpers */,
+				BEDB8F8323191F4F00C71D71 /* Resources */,
 			);
 			path = bachelorthesis;
 			sourceTree = "<group>";
@@ -427,7 +427,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

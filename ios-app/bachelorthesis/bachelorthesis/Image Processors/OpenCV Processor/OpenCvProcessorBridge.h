@@ -15,12 +15,10 @@
 
 @interface OpenCvProcessorBridge : NSObject
 
-+ (NSString * _Nonnull)openCVVersionString;
-
 - (UIImage * _Nullable)extractLoyaltyCardImage:(UIImage * _Nonnull)image;
 
-- (UIImage * _Nonnull)extractSquaresFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation;
-- (UIImage * _Nonnull)extractEdgesFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation;
+- (UIImage * _Nullable)liveExtractEdgesFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation;
+- (UIImage * _Nullable)liveExtractHoughLinesFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation;
 
 @end
 

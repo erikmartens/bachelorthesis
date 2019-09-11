@@ -29,60 +29,22 @@
   return self;
 }
 
-# pragma mark Static Functions
-
-+ (NSString *)openCVVersionString
-{
-  return [NSString stringWithFormat:@"OpenCV Version %s",  CV_VERSION];
-}
-
 # pragma mark Functions
 
 - (UIImage * _Nullable)extractLoyaltyCardImage:(UIImage * _Nonnull)image
 {
   int imageHeight = (int) image.size.height;
   int imageWidth = (int) image.size.width;
-  cv::Mat imageMat {imageHeight, imageWidth, CV_8UC4};
+  cv::Mat sourceImageMat {imageHeight, imageWidth, CV_8UC4};
+  cv::Mat outputImageMat {imageHeight, imageWidth, CV_8UC4};
   
-  UIImageToMat(image, imageMat);
-//  LoyaltyCardDetector::extract_loyalty_card_from(imageMat);
-  LoyaltyCardDetector::extract_card_from(imageMat);
-  return MatToUIImage(imageMat);
+  UIImageToMat(image, sourceImageMat);
+  UIImageToMat(image, outputImageMat);
+  LoyaltyCardDetector::extract_card_from(sourceImageMat, outputImageMat);
+  return MatToUIImage(outputImageMat);
 }
 
-- (UIImage * _Nonnull)extractSquaresFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation
-{
-  CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-  CVPixelBufferLockBaseAddress(imageBuffer, 0);
-  int bufferHeight = (int) CVPixelBufferGetHeight(imageBuffer);
-  int bufferWidth = (int) CVPixelBufferGetWidth(imageBuffer);
-  void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
-  size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-  cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
-  
-  LoyaltyCardDetector::detect_squares(image);
-  
-  cv::Mat image_flipped;
-  switch (imageOrientation)
-  {
-    case AVCaptureVideoOrientationPortrait:
-      cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
-      break;
-    case AVCaptureVideoOrientationPortraitUpsideDown:
-      cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
-      break;
-    case AVCaptureVideoOrientationLandscapeRight:
-      cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
-      break;
-    case AVCaptureVideoOrientationLandscapeLeft:
-      cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
-      break;
-  }
-  
-  return MatToUIImage(image_flipped);
-}
-
-- (UIImage * _Nonnull)extractEdgesFrom:(CMSampleBufferRef _Nonnull)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation
+- (UIImage *)liveExtractEdgesFrom:(CMSampleBufferRef)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation
 {
   CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
   CVPixelBufferLockBaseAddress(imageBuffer, 0);
@@ -93,7 +55,7 @@
   
   cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
   
-  // downscale image to reduce compute time
+  /// downscale image to reduce compute time
   const int scaleFactor = 2;
   Utilities::downscale_image_by_factor(scaleFactor, image);
   
@@ -120,6 +82,39 @@
   
   Utilities::upscale_image_by_factor(scaleFactor, edges_flipped);
   return MatToUIImage(edges_flipped);
+}
+
+// TODO Finish
+- (UIImage *)liveExtractHoughLinesFrom:(CMSampleBufferRef)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation;
+{
+  CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+  CVPixelBufferLockBaseAddress(imageBuffer, 0);
+  int bufferHeight = (int) CVPixelBufferGetHeight(imageBuffer);
+  int bufferWidth = (int) CVPixelBufferGetWidth(imageBuffer);
+  void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
+  size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+  cv::Mat image {bufferHeight, bufferWidth, CV_8UC4, (void *)baseAddress, bytesPerRow};
+  
+//  LoyaltyCardDetector::detect_squares(image); // TODO
+  
+  cv::Mat image_flipped;
+  switch (imageOrientation)
+  {
+    case AVCaptureVideoOrientationPortrait:
+      cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
+      break;
+    case AVCaptureVideoOrientationPortraitUpsideDown:
+      cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
+      break;
+    case AVCaptureVideoOrientationLandscapeRight:
+      cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
+      break;
+    case AVCaptureVideoOrientationLandscapeLeft:
+      cv::rotate(image, image_flipped, cv::ROTATE_90_CLOCKWISE);
+      break;
+  }
+  
+  return MatToUIImage(image_flipped);
 }
 
 @end

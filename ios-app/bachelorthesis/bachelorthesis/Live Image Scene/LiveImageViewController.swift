@@ -99,8 +99,6 @@ class LiveImageViewController: UIViewController {
     cameraModeButton.setTitle(CameraMode.edges.title,
                                 for: UIControl.State())
     
-    versionLabel.text = OpenCvProcessorBridge.openCVVersionString()
-    
     edgesOverlayImageView.layer.opacity = 0.5
     squaresOverlayImageView.layer.opacity = 1.0
   }

@@ -90,23 +90,25 @@ class CameraScanner: NSObject {
     case .gpuImage:
       break
     case .openCV:
-      let resultImage = openCvProcessor.extractEdges(from: sampleBuffer, with: currentOrientation)
+      guard let resultImage = openCvProcessor.liveExtractEdges(from: sampleBuffer, with: currentOrientation) else {
+        return
+      }
       cameraScannerDelegate?.updateEdgesOverlay(with: resultImage)
     
     }
   }
   
-  private func processSquares(_ sampleBuffer: CMSampleBuffer) {
-    switch scannerLibrary {
-    case .weScan:
-      break
-    case .gpuImage:
-      break
-    case .openCV:
-      let resultImage = openCvProcessor.extractSquares(from: sampleBuffer, with: currentOrientation)
-      cameraScannerDelegate?.updateSquaresOverlay(with: resultImage)
-    }
-  }
+//  private func processSquares(_ sampleBuffer: CMSampleBuffer) {
+//    switch scannerLibrary {
+//    case .weScan:
+//      break
+//    case .gpuImage:
+//      break
+//    case .openCV:
+//      let resultImage = openCvProcessor.extractSquares(from: sampleBuffer, with: currentOrientation)
+//      cameraScannerDelegate?.updateSquaresOverlay(with: resultImage)
+//    }
+//  }
 }
 
 extension CameraScanner: AVCaptureVideoDataOutputSampleBufferDelegate {
@@ -114,7 +116,7 @@ extension CameraScanner: AVCaptureVideoDataOutputSampleBufferDelegate {
   func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
     switch cameraMode {
     case .edges: processEdges(sampleBuffer)
-    case .quadrangles: processSquares(sampleBuffer)
+    case .quadrangles: break //processSquares(sampleBuffer) // TODO
     }
   }
   
