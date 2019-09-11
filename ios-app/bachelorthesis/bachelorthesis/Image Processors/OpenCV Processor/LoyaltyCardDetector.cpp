@@ -79,7 +79,7 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage)
 
 # pragma mark Private
 
-double LoyaltyCardDetector::toleranceThreshold = 0.90;
+double LoyaltyCardDetector::toleranceThreshold = 0.95;
 
 # pragma mark Detection
 
@@ -249,17 +249,21 @@ void LoyaltyCardDetector::find_best_matching_quadrangle_from_quadrangles(vector<
     double slopeLeftVerticalLine = line_slope(leftVerticalLine);
     double slopeRightVerticalLine = line_slope(rightVerticalLine);
     
-    bool slopesTopBottomAreSimilar = slopeBottomHorizontalLine*toleranceThreshold <= slopeTopHorizontalLine <= slopeBottomHorizontalLine || slopeTopHorizontalLine*toleranceThreshold <= slopeBottomHorizontalLine <= slopeTopHorizontalLine;
-    bool slopesLeftRightAreSimilar = slopeRightVerticalLine*toleranceThreshold <= slopeLeftVerticalLine <= slopeRightVerticalLine || slopeLeftVerticalLine*toleranceThreshold <= slopeRightVerticalLine <= slopeLeftVerticalLine;
+    bool slopesTopBottomAreSimilar = ((slopeTopHorizontalLine >= 0.0 && slopeBottomHorizontalLine >= 0.0) || (slopeTopHorizontalLine <= 0.0 && slopeBottomHorizontalLine <= 0.0)) && (slopeBottomHorizontalLine*toleranceThreshold <= slopeTopHorizontalLine <= slopeBottomHorizontalLine || slopeTopHorizontalLine*toleranceThreshold <= slopeBottomHorizontalLine <= slopeTopHorizontalLine);
+    bool slopesLeftRightAreSimilar = ((slopeLeftVerticalLine >= 0.0 && slopeRightVerticalLine >= 0.0) || (slopeLeftVerticalLine <= 0.0 && slopeRightVerticalLine <= 0.0)) && (slopeRightVerticalLine*toleranceThreshold <= slopeLeftVerticalLine <= slopeRightVerticalLine || slopeLeftVerticalLine*toleranceThreshold <= slopeRightVerticalLine <= slopeLeftVerticalLine);
     
     bool slopesTopBottomAreOpposite = ((slopeTopHorizontalLine >= 0.0 && slopeBottomHorizontalLine < 0.0) || (slopeTopHorizontalLine < 0.0 && slopeBottomHorizontalLine >= 0.0)) && (fabs(slopeBottomHorizontalLine)*toleranceThreshold <= fabs(slopeTopHorizontalLine) <= fabs(slopeBottomHorizontalLine) || fabs(slopeTopHorizontalLine)*toleranceThreshold <= fabs(slopeBottomHorizontalLine) <= fabs(slopeTopHorizontalLine));
     bool slopesLeftRightAreOpposite = ((slopeLeftVerticalLine >= 0.0 && slopeRightVerticalLine < 0.0) || (slopeLeftVerticalLine < 0.0 && slopeRightVerticalLine >= 0.0)) && (fabs(slopeRightVerticalLine)*toleranceThreshold <= fabs(slopeLeftVerticalLine) <= fabs(slopeRightVerticalLine) || fabs(slopeLeftVerticalLine)*toleranceThreshold <= fabs(slopeRightVerticalLine) <= fabs(slopeLeftVerticalLine));
     
     vector<double> angle_cosines;
-    for (int j = 2; j < 5; j++)
-    {
-     angle_cosines.push_back(fabs(angle(quadrangle[j%4], quadrangle[j-2], quadrangle[j-1])));
-    }
+//    angle_cosines.push_back(fabs(angle(quadrangle[2], quadrangle[0], quadrangle[1])));
+//    angle_cosines.push_back(fabs(angle(quadrangle[3], quadrangle[1], quadrangle[2])));
+//    angle_cosines.push_back(fabs(angle(quadrangle[0], quadrangle[2], quadrangle[3])));
+//    angle_cosines.push_back(fabs(angle(quadrangle[1], quadrangle[0], quadrangle[3])));
+    angle_cosines.push_back(fabs(angle(quadrangle[1], quadrangle[2], quadrangle[0])));
+    angle_cosines.push_back(fabs(angle(quadrangle[0], quadrangle[3], quadrangle[1])));
+    angle_cosines.push_back(fabs(angle(quadrangle[0], quadrangle[3], quadrangle[2])));
+    angle_cosines.push_back(fabs(angle(quadrangle[1], quadrangle[2], quadrangle[3])));
     
     /// sorting into groups
     /// group 0 - 2x parallel sides, 4x 90° corner angles
