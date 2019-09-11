@@ -79,7 +79,7 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage)
 
 # pragma mark Private
 
-double LoyaltyCardDetector::toleranceThreshold = 0.98;
+double LoyaltyCardDetector::toleranceThreshold = 0.90;
 
 # pragma mark Detection
 
@@ -249,11 +249,11 @@ void LoyaltyCardDetector::find_best_matching_quadrangle_from_quadrangles(vector<
     double slopeLeftVerticalLine = line_slope(leftVerticalLine);
     double slopeRightVerticalLine = line_slope(rightVerticalLine);
     
-    bool slopesTopBottomAreSimilar = slopeTopHorizontalLine >= slopeBottomHorizontalLine*toleranceThreshold && slopeTopHorizontalLine <= slopeBottomHorizontalLine;
-    bool slopesLeftRightAreSimilar = slopeLeftVerticalLine >= slopeRightVerticalLine*toleranceThreshold && slopeLeftVerticalLine <= slopeRightVerticalLine;
+    bool slopesTopBottomAreSimilar = slopeBottomHorizontalLine*toleranceThreshold <= slopeTopHorizontalLine <= slopeBottomHorizontalLine || slopeTopHorizontalLine*toleranceThreshold <= slopeBottomHorizontalLine <= slopeTopHorizontalLine;
+    bool slopesLeftRightAreSimilar = slopeRightVerticalLine*toleranceThreshold <= slopeLeftVerticalLine <= slopeRightVerticalLine || slopeLeftVerticalLine*toleranceThreshold <= slopeRightVerticalLine <= slopeLeftVerticalLine;
     
-    bool slopesTopBottomAreOpposite = ((slopeTopHorizontalLine >= 0.0 && slopeBottomHorizontalLine < 0.0) || (slopeTopHorizontalLine < 0.0 && slopeBottomHorizontalLine >= 0.0)) && fabs(slopeTopHorizontalLine) >= fabs(slopeBottomHorizontalLine)*toleranceThreshold && fabs(slopeTopHorizontalLine) <= fabs(slopeBottomHorizontalLine);
-    bool slopesLeftRightAreOpposite = ((slopeLeftVerticalLine >= 0.0 && slopeRightVerticalLine < 0.0) || (slopeLeftVerticalLine < 0.0 && slopeRightVerticalLine >= 0.0)) && fabs(slopeLeftVerticalLine) >= fabs(slopeRightVerticalLine)*toleranceThreshold && fabs(slopeLeftVerticalLine) <= fabs(slopeRightVerticalLine);
+    bool slopesTopBottomAreOpposite = ((slopeTopHorizontalLine >= 0.0 && slopeBottomHorizontalLine < 0.0) || (slopeTopHorizontalLine < 0.0 && slopeBottomHorizontalLine >= 0.0)) && (fabs(slopeBottomHorizontalLine)*toleranceThreshold <= fabs(slopeTopHorizontalLine) <= fabs(slopeBottomHorizontalLine) || fabs(slopeTopHorizontalLine)*toleranceThreshold <= fabs(slopeBottomHorizontalLine) <= fabs(slopeTopHorizontalLine));
+    bool slopesLeftRightAreOpposite = ((slopeLeftVerticalLine >= 0.0 && slopeRightVerticalLine < 0.0) || (slopeLeftVerticalLine < 0.0 && slopeRightVerticalLine >= 0.0)) && (fabs(slopeRightVerticalLine)*toleranceThreshold <= fabs(slopeLeftVerticalLine) <= fabs(slopeRightVerticalLine) || fabs(slopeLeftVerticalLine)*toleranceThreshold <= fabs(slopeRightVerticalLine) <= fabs(slopeLeftVerticalLine));
     
     vector<double> angle_cosines;
     for (int j = 2; j < 5; j++)
@@ -311,33 +311,6 @@ void LoyaltyCardDetector::find_best_matching_quadrangle_from_quadrangles(vector<
   {
     bestQudrangle = currentBestQuadrangleGroup3[0];
   }
-}
-
-bool LoyaltyCardDetector::two_times_same_corner_angles(vector<double> &cosines)
-{
-  /// only calculate if we have 4 corner angles
-  if (cosines.size() != 4)
-  {
-    return false;
-  }
-  
-  int count = 0;
-  for (int i = 0; i < 4; i++)
-  {
-    double consine = cosines[i];
-    for (int j = 0; j < 4; j++)
-    {
-      if (consine >= cosines[i]*toleranceThreshold && consine <= cosines[i])
-      {
-        count++;
-      }
-    }
-  }
-  if (count != 2)
-  {
-    return false;
-  }
-  return true;
 }
 
 # pragma mark Detection Helpers
@@ -530,6 +503,34 @@ void LoyaltyCardDetector::filter_intersections_for_vertices(vector<Point> &inter
   }
   
   // find closest actual points
+}
+
+bool LoyaltyCardDetector::two_times_same_corner_angles(vector<double> &cosines)
+{
+  /// only calculate if we have 4 corner angles
+  if (cosines.size() != 4)
+  {
+    return false;
+  }
+  
+  int count = 0;
+  for (int i = 0; i < 4; i++)
+  {
+    double cosine = cosines[i];
+    for (int j = 0; j < 4; j++)
+    {
+      if ((cosines[i]*toleranceThreshold <= cosine <= cosines[i] || cosine*toleranceThreshold <= cosines[i] <= cosine)
+          && cosine <= cosines[i])
+      {
+        count++;
+      }
+    }
+  }
+  if (count != 2)
+  {
+    return false;
+  }
+  return true;
 }
 
 //void LoyaltyCardDetector::filter_largest_square(const vector<vector<Point> >& squares, vector<Point>& biggest_square)
