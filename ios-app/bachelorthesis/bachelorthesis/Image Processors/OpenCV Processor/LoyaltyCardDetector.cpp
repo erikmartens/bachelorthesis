@@ -478,11 +478,17 @@ array<int, 3> LoyaltyCardDetector::cross(const array<int, 3> &a, const array<int
 
 void LoyaltyCardDetector::filter_intersections_for_vertices(vector<Point> &intersections, vector<Point> &vertices)
 {
+  /// not enough intersections found
+  if (intersections.size() < 4)
+  {
+    return;
+  }
+  
   /// remove duplicates
   auto iterator = unique(intersections.begin(), intersections.end(), [](const Point& lhsP, const Point& rhsP) {
     return lhsP.x == rhsP.x && lhsP.y == rhsP.y;
   });
-  intersections.erase( iterator, intersections.end() );
+  intersections.erase(iterator, intersections.end());
   
   /// find cluster centers
   vector<Point2f> intersections2f;
