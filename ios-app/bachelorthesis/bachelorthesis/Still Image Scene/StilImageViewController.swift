@@ -212,6 +212,9 @@ class StillImageViewController: UIViewController {
     if let countoursImage = processingResult?.contoursImage {
       imagePicker.saveToCameraRoll(countoursImage)
     }
+    if let houghLinesImage = processingResult?.houghLinesImage {
+      imagePicker.saveToCameraRoll(houghLinesImage)
+    }
     if let intersectionsImage = processingResult?.intersectionsImage {
       imagePicker.saveToCameraRoll(intersectionsImage)
     }
