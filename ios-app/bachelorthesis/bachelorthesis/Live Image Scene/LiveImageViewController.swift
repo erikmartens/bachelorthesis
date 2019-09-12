@@ -87,6 +87,7 @@ class LiveImageViewController: UIViewController {
   
   private func setupUserInterface() {
     navigationController?.navigationBar.barStyle = .blackTranslucent
+    navigationController?.navigationBar.tintColor = .white
     navigationController?.navigationBar.barTintColor = .clear
     navigationController?.navigationBar.isTranslucent = true
     
