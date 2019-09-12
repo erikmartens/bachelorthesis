@@ -3,3 +3,4 @@
 //
 
 #import "OpenCvProcessorBridge.h"
+#import "BuildEnvironment.h"

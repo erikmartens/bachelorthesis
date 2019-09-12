@@ -10,12 +10,17 @@ import UIKit
 import WeScan
 
 class MainTableViewController: UITableViewController {
-
+  
+  // MARK: - IBOutlets
+  
+  @IBOutlet weak var buildEnvironmentLabel: UILabel!
+  
   // MARK: - ViewController LifeCycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
     navigationItem.title = R.string.localizable.select_a_library()
+    buildEnvironmentLabel.text = BuildEnvironment.isReleaseEvironment() ? "RELEASE MODE" : "DEBUG MODE"
   }
   
   // MARK: - TableView Delegate

@@ -17,9 +17,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="hOb-Hu-1Xq">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9RJ-YP-BTc">
+                                    <rect key="frame" x="16" y="8" width="382" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="gPP-V0-1eH"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="9RJ-YP-BTc" secondAttribute="bottom" constant="8" id="HGy-cR-rNr"/>
+                                <constraint firstItem="9RJ-YP-BTc" firstAttribute="top" secondItem="hOb-Hu-1Xq" secondAttribute="top" constant="8" id="ZQF-4e-Tpv"/>
+                                <constraint firstAttribute="trailing" secondItem="9RJ-YP-BTc" secondAttribute="trailing" constant="16" id="gT8-3l-lsK"/>
+                                <constraint firstItem="9RJ-YP-BTc" firstAttribute="leading" secondItem="hOb-Hu-1Xq" secondAttribute="leading" constant="16" id="lwr-Pt-Xzf"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="MainTableViewCell" textLabel="mwi-pn-RSU" style="IBUITableViewCellStyleDefault" id="moQ-jN-leK" customClass="MainTableViewCell" customModule="bachelorthesis" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="95.5" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="moQ-jN-leK" id="m20-hd-j1X">
                                     <rect key="frame" x="0.0" y="0.0" width="362" height="43.5"/>
@@ -45,6 +67,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="9hn-M2-F8I"/>
+                    <connections>
+                        <outlet property="buildEnvironmentLabel" destination="9RJ-YP-BTc" id="7Zh-6B-rh1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wJe-6m-Cil" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

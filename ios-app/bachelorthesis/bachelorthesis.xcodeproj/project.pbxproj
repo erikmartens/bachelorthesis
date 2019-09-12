@@ -32,6 +32,7 @@
 		BEDB8FAA231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */; };
 		F22181A2232049A9006C5D67 /* UIColor+Inverted.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22181A1232049A9006C5D67 /* UIColor+Inverted.swift */; };
 		F22181AF232A9798006C5D67 /* ImageProcessingResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F22181AE232A9798006C5D67 /* ImageProcessingResult.m */; };
+		F22181B2232ADD6C006C5D67 /* BuildEnvironment.m in Sources */ = {isa = PBXBuildFile; fileRef = F22181B1232ADD6C006C5D67 /* BuildEnvironment.m */; };
 		F2BEC80D231E6CDE0053C9C2 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,8 @@
 		F22181AC2327B2B7006C5D67 /* libGPUImage3.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGPUImage3.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F22181AE232A9798006C5D67 /* ImageProcessingResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageProcessingResult.m; sourceTree = "<group>"; };
 		F22181B0232A97A8006C5D67 /* ImageProcessingResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageProcessingResult.h; sourceTree = "<group>"; };
+		F22181B1232ADD6C006C5D67 /* BuildEnvironment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BuildEnvironment.m; sourceTree = "<group>"; };
+		F22181B3232ADD79006C5D67 /* BuildEnvironment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BuildEnvironment.h; sourceTree = "<group>"; };
 		F225A9213DECDD6F21AF5C3F /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utilities.hpp; sourceTree = "<group>"; };
@@ -199,6 +202,8 @@
 		BEDB8F8A2319260200C71D71 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F22181B3232ADD79006C5D67 /* BuildEnvironment.h */,
+				F22181B1232ADD6C006C5D67 /* BuildEnvironment.m */,
 				BEDB8FA8231D5A0100C71D71 /* Converters */,
 				BEDB8F8B2319261000C71D71 /* Extensions */,
 				BEDB8F97231BD35700C71D71 /* IBDesignables */,
@@ -469,6 +474,7 @@
 				BE89AC00231FD87000E17C36 /* ImagePicker.swift in Sources */,
 				BE89ABFE231FD03200E17C36 /* StilImageViewController.swift in Sources */,
 				BE8C566E23181424007C18BA /* MainTableViewController.swift in Sources */,
+				F22181B2232ADD6C006C5D67 /* BuildEnvironment.m in Sources */,
 				BEDB8F8F231926FB00C71D71 /* UIViewController+PresentUIAlertController.swift in Sources */,
 				BEDB8F9223192F6300C71D71 /* LiveImageViewController.swift in Sources */,
 				F22181A2232049A9006C5D67 /* UIColor+Inverted.swift in Sources */,
