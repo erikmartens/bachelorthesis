@@ -16,10 +16,12 @@
 
 @property UIImage * _Nullable croppedImage;
 @property UIImage * _Nullable contoursImage;
+@property UIImage * _Nullable houghLinesImage;
 @property UIImage * _Nullable intersectionsImage;
 
 - (instancetype _Nonnull)initWithCroppedImage:(UIImage * _Nullable)croppedImage
                                 contoursImage:(UIImage * _Nullable)countoursImage
+                              houghLinesImage:(UIImage * _Nullable)houghLinesImage
                            intersectionsImage:(UIImage * _Nullable)intersectionsImage;
 
 - (BOOL)hasContent;

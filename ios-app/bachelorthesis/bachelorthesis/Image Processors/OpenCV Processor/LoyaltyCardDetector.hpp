@@ -23,7 +23,7 @@ class LoyaltyCardDetector
 {
 public:
   
-  static bool extract_card_from(Mat &sourceImage, Mat &outputImage, Mat &debugContoursImage, Mat &debugIntersectionsImage);
+  static bool extract_card_from(Mat &sourceImage, Mat &outputImage, Mat &debugContoursImage, Mat &debugHoughLinesImage, Mat &debugIntersectionsImage);
   
 private:
   
@@ -32,7 +32,7 @@ private:
 # pragma mark Detection
   
   static void find_potential_card_contours(Mat& image, vector<vector<cv::Point> >& contours);
-  static void identify_quadrangle_from_contour(vector<cv::Point> &contour, vector<cv::Point> &vertices, int imageWidth, int imageHeight, Mat &debugIntersectionsOutput, Mat &debugLinesOutput);
+  static void identify_quadrangle_from_contour(vector<cv::Point> &contour, vector<cv::Point> &vertices, int imageWidth, int imageHeight, Mat &debugIntersectionsOutput, Mat &debugHoughLinesOutput);
   
 # pragma mark Detection Helpers
   
@@ -57,9 +57,8 @@ private:
   
 # pragma mark Drawing
   
-  static void draw_square( const Mat& image, const vector<cv::Point>& square );
-  static void draw_squares( const Mat& image, const vector<vector<cv::Point> >& squares );
-  static void draw_lines(vector<Vec4i> &lines, Mat &destination);
+  static void draw_square(const Mat& image, const vector<cv::Point>& square);
+  static void draw_vectors(vector<Vec4i> &lines, Mat &destination);
   static void draw_points(vector<cv::Point> &points, Mat &destination);
 };
 

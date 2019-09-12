@@ -13,7 +13,7 @@ using namespace std;
 
 # pragma mark Public
 
-bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, Mat &debugContoursImage, Mat &debugIntersectionsImage)
+bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, Mat &debugContoursImage, Mat &debugHoughLinesImage, Mat &debugIntersectionsImage)
 {
   /// identify contours in image
   vector<vector<Point>> contours;
@@ -30,22 +30,33 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, 
     && contourArea(contours[lhs]) > contourArea(contours[rhs]);
   });
   
+  /// debug
+  if (contours.size() > 0)
+  {
+    Mat debugContoursMat(sourceImage.rows, sourceImage.cols, CV_8UC1);
+    debugContoursMat = Scalar(0);
+    draw_points(contours[0], debugContoursMat);
+    debugContoursImage = debugContoursMat;
+  }
+  
   /// identify quadrangles from contours
   vector<Mat> intersectionPointsOutputs;
+  vector<Mat> houghLinesOutputs;
   vector<vector<Point> > potentialCardVertices;
   for (int i = 0; i < contours.size(); i++)
   {
     Mat intersectionPointsOutput(sourceImage.rows, sourceImage.cols, CV_8UC4);
     intersectionPointsOutput = Scalar(0);
-    Mat linesOutput(sourceImage.rows, sourceImage.cols, CV_8UC4);
-    linesOutput = Scalar(0);
+    Mat houghLinesOutput(sourceImage.rows, sourceImage.cols, CV_8UC4);
+    houghLinesOutput = Scalar(0);
     
     vector<Point> quadrangle;
     quadrangle.clear();
     
-    identify_quadrangle_from_contour(contours[indices[i]], quadrangle, sourceImage.cols, sourceImage.rows, intersectionPointsOutput, linesOutput);
+    identify_quadrangle_from_contour(contours[indices[i]], quadrangle, sourceImage.cols, sourceImage.rows, intersectionPointsOutput, houghLinesOutput);
     
     intersectionPointsOutputs.push_back(intersectionPointsOutput);
+    houghLinesOutputs.push_back(houghLinesOutput);
     if (quadrangle.size() == 4)
     {
       potentialCardVertices.push_back(quadrangle);
@@ -57,7 +68,9 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, 
     return false;
   }
   
-  debugIntersectionsImage = intersectionPointsOutputs[0];
+  /// debug
+  if (intersectionPointsOutputs.size() > 0) debugHoughLinesImage = houghLinesOutputs[0];
+  if (intersectionPointsOutputs.size() > 0) debugIntersectionsImage = intersectionPointsOutputs[0];
   
   /// find best matching quadrangle
   vector<Point> bestQuadrangle;
@@ -191,7 +204,7 @@ void LoyaltyCardDetector::find_potential_card_contours(Mat& image, vector<vector
   }
 }
 
-void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contour, vector<Point> &vertices, int imageWidth, int imageHeight, Mat &debugIntersectionsOutput, Mat &debugLinesOutput)
+void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contour, vector<Point> &vertices, int imageWidth, int imageHeight, Mat &debugIntersectionsOutput, Mat &debugHoughLinesOutput)
 {
   /// Find the convex hull object
   Mat convexHull_mask(imageHeight, imageWidth, CV_8UC1);
@@ -205,10 +218,10 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   HoughLinesP(convexHull_mask, lines, 1, CV_PI / 80, 100, 30, 10);
   
   /// debug
-  Mat intersectionsOutput(imageHeight, imageWidth, CV_8UC1);
-  intersectionsOutput = Scalar(0);
-  draw_lines(lines, intersectionsOutput);
-  debugIntersectionsOutput = intersectionsOutput;
+  Mat linesOutput(imageHeight, imageWidth, CV_8UC1);
+  linesOutput = Scalar(0);
+  draw_vectors(lines, linesOutput);
+  debugHoughLinesOutput = linesOutput;
   
   // find intersection points of all lines
   vector<Point> intersections;
@@ -219,10 +232,10 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   filter_intersections_for_vertices(intersections, finalVertices, imageWidth, imageHeight);
   
   /// debug
-  Mat linesOutput(imageHeight, imageWidth, CV_8UC1);
-  linesOutput = Scalar(0);
-  draw_points(intersections, linesOutput);
-  debugLinesOutput = linesOutput;
+  Mat intersectionsOutput(imageHeight, imageWidth, CV_8UC1);
+  intersectionsOutput = Scalar(0);
+  draw_points(intersections, intersectionsOutput);
+  debugIntersectionsOutput = intersectionsOutput;
   
   if (finalVertices.size() == 4) // we have the 4 final corners
   {
@@ -553,25 +566,15 @@ void LoyaltyCardDetector::draw_square( const Mat& image, const vector<Point>& sq
 {
   const Point* p = &square[0];
   int n = (int) square.size();
-  polylines(image, &p, &n, 1, true, Scalar(0,0,255), 1, LINE_AA);
+  polylines(image, &p, &n, 1, true, Scalar(0,0,255), 5, LINE_AA);
 }
 
-void LoyaltyCardDetector::draw_squares( const Mat& image, const vector<vector<Point> >& squares )
-{
-  for( size_t i = 0; i < squares.size(); i++ )
-  {
-    const Point* p = &squares[i][0];
-    int n = (int) squares[i].size();
-    polylines(image, &p, &n, 1, true, Scalar(0,0,255), 1, LINE_AA);
-  }
-}
-
-void LoyaltyCardDetector::draw_lines(vector<Vec4i> &lines, Mat &destination)
+void LoyaltyCardDetector::draw_vectors(vector<Vec4i> &lines, Mat &destination)
 {
   for (size_t i = 0; i < lines.size(); i++)
   {
     Vec4i l = lines[i];
-    line(destination, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255), 3, LINE_8);
+    line(destination, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255), 5, LINE_8);
   }
 }
 
@@ -579,6 +582,6 @@ void LoyaltyCardDetector::draw_points(vector<Point> &points, Mat &destination)
 {
   for (size_t i = 0; i < points.size(); i++)
   {
-    circle(destination, points[i], 20, Scalar(255), 20);
+    circle(destination, points[i], 20, Scalar(255), 5);
   }
 }

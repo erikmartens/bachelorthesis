@@ -72,15 +72,19 @@ class StillImageViewController: UIViewController {
       } else if let contoursImage = processingResult?.contoursImage {
         resultImageView.image = contoursImage
         resultTypeSegmentedControl.selectedSegmentIndex = 1
+      }else if let houghLinesImage = processingResult?.houghLinesImage {
+        resultImageView.image = houghLinesImage
+        resultTypeSegmentedControl.selectedSegmentIndex = 2
       } else if let intersectionsImage = processingResult?.intersectionsImage {
         resultImageView.image = intersectionsImage
-        resultTypeSegmentedControl.selectedSegmentIndex = 2
+        resultTypeSegmentedControl.selectedSegmentIndex = 3
       }
       
-      resultTypeSegmentedControl.isHidden = processingResult?.contoursImage == nil && processingResult?.intersectionsImage == nil
+      resultTypeSegmentedControl.isHidden = processingResult?.contoursImage == nil && processingResult?.houghLinesImage == nil && processingResult?.intersectionsImage == nil
       resultTypeSegmentedControl.setEnabled(processingResult?.croppedImage != nil, forSegmentAt: 0)
       resultTypeSegmentedControl.setEnabled(processingResult?.contoursImage != nil, forSegmentAt: 1)
-      resultTypeSegmentedControl.setEnabled(processingResult?.intersectionsImage != nil, forSegmentAt: 2)
+      resultTypeSegmentedControl.setEnabled(processingResult?.houghLinesImage != nil, forSegmentAt: 1)
+      resultTypeSegmentedControl.setEnabled(processingResult?.intersectionsImage != nil, forSegmentAt: 3)
     }
   }
   
@@ -106,7 +110,8 @@ class StillImageViewController: UIViewController {
     resultTypeSegmentedControl.removeAllSegments()
     resultTypeSegmentedControl.insertSegment(withTitle: R.string.localizable.cropped_image().capitalized, at: 0, animated: false)
     resultTypeSegmentedControl.insertSegment(withTitle: R.string.localizable.contour_image().capitalized, at: 1, animated: false)
-    resultTypeSegmentedControl.insertSegment(withTitle: R.string.localizable.intersection_image().capitalized, at: 2, animated: false)
+    resultTypeSegmentedControl.insertSegment(withTitle: R.string.localizable.hough_line_image().capitalized, at: 2, animated: false)
+    resultTypeSegmentedControl.insertSegment(withTitle: R.string.localizable.intersection_image().capitalized, at: 3, animated: false)
     
     resultOpacityDescriptionLabel.text = R.string.localizable.result_image_opacity()
     selectImageButton.setTitle(R.string.localizable.select_image(), for: UIControl.State())
@@ -167,6 +172,10 @@ class StillImageViewController: UIViewController {
         resultImageView.image = contoursImage
       }
     case let index where index == 2:
+      if let houghLinesImage = processingResult?.houghLinesImage {
+        resultImageView.image = houghLinesImage
+      }
+    case let index where index == 3:
       if let intersectionsImage = processingResult?.intersectionsImage {
         resultImageView.image = intersectionsImage
       }
@@ -223,7 +232,7 @@ extension StillImageViewController: ImageScannerControllerDelegate {
   }
   
   func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
-    self.processingResult = ImageProcessingResult(croppedImage: results.croppedScan.image, contoursImage: nil, intersectionsImage: nil)
+    self.processingResult = ImageProcessingResult(croppedImage: results.croppedScan.image, contoursImage: nil, houghLinesImage: nil, intersectionsImage: nil)
     dismissImageScannerController()
   }
   

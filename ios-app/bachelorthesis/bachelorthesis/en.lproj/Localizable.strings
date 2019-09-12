@@ -26,6 +26,7 @@
 "result_image_opacity" = "Result Image Opacity";
 "cropped_image" = "cropped";
 "contour_image" = "contours";
+"hough_line_image" = "hough lines";
 "intersection_image" = "intersections";
 
 // WeScan

@@ -17,11 +17,13 @@
 
 - (instancetype)initWithCroppedImage:(UIImage *)croppedImage
                        contoursImage:(UIImage *)contoursImage
+                     houghLinesImage:(UIImage *)houghLinesImage
                   intersectionsImage:(UIImage *)intersectionsImage {
   self = [super init];
   if (self) {
     _croppedImage = croppedImage;
     _contoursImage = contoursImage;
+    _houghLinesImage = houghLinesImage;
     _intersectionsImage = intersectionsImage;
   }
   return self;
@@ -29,7 +31,7 @@
 
 -(BOOL)hasContent
 {
-  return !(!self.croppedImage && !self.contoursImage && !self.intersectionsImage);
+  return !(!self.croppedImage && !self.contoursImage && !self.intersectionsImage && !self.houghLinesImage);
 }
 
 @end
