@@ -547,32 +547,6 @@ bool LoyaltyCardDetector::two_times_same_corner_angles(vector<double> &cosines)
   return true;
 }
 
-//void LoyaltyCardDetector::filter_largest_square(const vector<vector<Point> >& squares, vector<Point>& biggest_square)
-//{
-//  if (!squares.size()){
-//    // no squares detected
-//    return;
-//  }
-//
-//  double maxArea = 0;
-//  int largestIndex = -1;
-//
-//  for ( int i = 0; i < squares.size(); i++)
-//  {
-//    vector<Point> square = squares[i];
-//    double area = contourArea(Mat(square));
-//    if ( area >= maxArea)
-//    {
-//      largestIndex = i;
-//      maxArea = area;
-//    }
-//  }
-//  if ( largestIndex >= 0 && largestIndex < squares.size() )
-//  {
-//    biggest_square = squares[largestIndex];
-//  }
-//}
-
 # pragma mark Drawing
 
 void LoyaltyCardDetector::draw_square( const Mat& image, const vector<Point>& square )
