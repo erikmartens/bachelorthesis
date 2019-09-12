@@ -238,6 +238,8 @@
 		BEDB8F9A231D096100C71D71 /* Image Processors */ = {
 			isa = PBXGroup;
 			children = (
+				F22181B0232A97A8006C5D67 /* ImageProcessingResult.h */,
+				F22181AE232A9798006C5D67 /* ImageProcessingResult.m */,
 				BEDB8F9B231D096F00C71D71 /* OpenCV Processor */,
 			);
 			path = "Image Processors";
@@ -252,8 +254,6 @@
 				BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */,
 				F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */,
 				F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */,
-				F22181B0232A97A8006C5D67 /* ImageProcessingResult.h */,
-				F22181AE232A9798006C5D67 /* ImageProcessingResult.m */,
 			);
 			path = "OpenCV Processor";
 			sourceTree = "<group>";

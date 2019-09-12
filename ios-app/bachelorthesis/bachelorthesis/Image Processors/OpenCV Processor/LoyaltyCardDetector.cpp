@@ -30,35 +30,30 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, 
     && contourArea(contours[lhs]) > contourArea(contours[rhs]);
   });
   
-  /// debug
-  if (contours.size() > 0)
-  {
-    Mat debugContoursMat(sourceImage.rows, sourceImage.cols, CV_8UC1);
-    debugContoursMat = Scalar(0);
-    draw_points(contours[0], debugContoursMat);
-    debugContoursImage = debugContoursMat;
-  }
-  
   /// identify quadrangles from contours
-  vector<Mat> intersectionPointsOutputs;
-  vector<Mat> houghLinesOutputs;
+  vector<Mat> debugContoursOutputs;
+  vector<Mat> debugIntersectionPointsOutputs;
+  vector<Mat> debugHoughLinesOutputs;
+ 
   vector<vector<Point> > potentialCardVertices;
+  
   for (int i = 0; i < contours.size(); i++)
   {
-    Mat intersectionPointsOutput(sourceImage.rows, sourceImage.cols, CV_8UC4);
-    intersectionPointsOutput = Scalar(0);
-    Mat houghLinesOutput(sourceImage.rows, sourceImage.cols, CV_8UC4);
-    houghLinesOutput = Scalar(0);
+    Mat debugContoursOutput;
+    Mat debugIntersectionPointsOutput;
+    Mat debugHoughLinesOutput;
     
     vector<Point> quadrangle;
     quadrangle.clear();
     
-    identify_quadrangle_from_contour(contours[indices[i]], quadrangle, sourceImage.cols, sourceImage.rows, intersectionPointsOutput, houghLinesOutput);
+    identify_quadrangle_from_contour(contours[indices[i]], quadrangle, sourceImage.cols, sourceImage.rows, debugContoursOutput, debugIntersectionPointsOutput, debugHoughLinesOutput);
     
-    intersectionPointsOutputs.push_back(intersectionPointsOutput);
-    houghLinesOutputs.push_back(houghLinesOutput);
     if (quadrangle.size() == 4)
     {
+      debugContoursOutputs.push_back(debugContoursOutput);
+      debugIntersectionPointsOutputs.push_back(debugIntersectionPointsOutput);
+      debugHoughLinesOutputs.push_back(debugHoughLinesOutput);
+      
       potentialCardVertices.push_back(quadrangle);
     }
   }
@@ -68,28 +63,26 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, 
     return false;
   }
   
-  /// debug
-  if (intersectionPointsOutputs.size() > 0) debugHoughLinesImage = houghLinesOutputs[0];
-  if (intersectionPointsOutputs.size() > 0) debugIntersectionsImage = intersectionPointsOutputs[0];
-  
   /// find best matching quadrangle
   vector<Point> bestQuadrangle;
-  find_best_matching_quadrangle_from_quadrangles(potentialCardVertices, bestQuadrangle);
+  int selectedIndex = find_best_matching_quadrangle_from_quadrangles(potentialCardVertices, bestQuadrangle);
   
   // best effort quadrangle is used
   if (bestQuadrangle.size() == 0) {
+    selectedIndex = 0;
     bestQuadrangle = potentialCardVertices[0];
   }
   
-  //  Mat warpedCard;
-  //  if (card_corners.size() == 4)
-  //  {
-  //    Mat homography = findHomography(card_corners, vector<Point>{Point(warpedCard.cols, 0), Point(warpedCard.cols, warpedCard.rows), Point(0,0) , Point(0, warpedCard.rows)});
-  //    warpPerspective(image, warpedCard, homography, Size(image.cols, image.rows));
-  //  }
-  //  image = warpedCard;
+  /// DEBUG
+  if (selectedIndex != -1)
+  {
+    if (debugContoursOutputs.size() > selectedIndex) debugHoughLinesImage = debugContoursOutputs[selectedIndex];
+    if (debugIntersectionPointsOutputs.size() > selectedIndex) debugIntersectionsImage = debugIntersectionPointsOutputs[selectedIndex];
+    if (debugHoughLinesOutputs.size() > selectedIndex) debugIntersectionsImage = debugHoughLinesOutputs[selectedIndex];
+  }
   
-  // TODO add homography
+  // TODO homography
+  // We don't need to find homography since we know the 4 vertices and the original aspect ratio
   four_points_transform(outputImage, bestQuadrangle);
   return true;
 }
@@ -204,7 +197,7 @@ void LoyaltyCardDetector::find_potential_card_contours(Mat& image, vector<vector
   }
 }
 
-void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contour, vector<Point> &vertices, int imageWidth, int imageHeight, Mat &debugIntersectionsOutput, Mat &debugHoughLinesOutput)
+void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contour, vector<Point> &vertices, int imageWidth, int imageHeight, Mat &debugContoursOutput, Mat &debugIntersectionsOutput, Mat &debugHoughLinesOutput)
 {
   /// Find the convex hull object
   Mat convexHull_mask(imageHeight, imageWidth, CV_8UC1);
@@ -217,34 +210,47 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   drawContours(convexHull_mask, hull, 0, Scalar(255), 5, LINE_AA);
   HoughLinesP(convexHull_mask, lines, 1, CV_PI / 80, 100, 30, 10);
   
-  /// debug
+  /// find intersection points of all lines
+  vector<Point> intersections;
+  get_intersections(lines, intersections, imageWidth, imageHeight);
+  
+  /// filter down to 4 cornerpoints of quadrangle
+  vector<Point> finalVertices;
+  filter_intersections_for_vertices(intersections, finalVertices, imageWidth, imageHeight);
+  
+  /// only return results if we have exactly corner points
+  if (finalVertices.size() == 4)
+  {
+    vertices = finalVertices;
+  }
+  
+#if DEBUG==1
+  /// DEBUG
+  Mat contoursOutput(imageHeight, imageWidth, CV_8UC1);
+  contoursOutput = Scalar(0);
+  draw_points(contour, contoursOutput);
+  debugContoursOutput = contoursOutput;
+  
   Mat linesOutput(imageHeight, imageWidth, CV_8UC1);
   linesOutput = Scalar(0);
   draw_vectors(lines, linesOutput);
   debugHoughLinesOutput = linesOutput;
   
-  // find intersection points of all lines
-  vector<Point> intersections;
-  get_intersections(lines, intersections, imageWidth, imageHeight);
-  
-  // filter down to 4 cornerpoints of quadrangle
-  vector<Point> finalVertices;
-  filter_intersections_for_vertices(intersections, finalVertices, imageWidth, imageHeight);
-  
-  /// debug
   Mat intersectionsOutput(imageHeight, imageWidth, CV_8UC1);
   intersectionsOutput = Scalar(0);
   draw_points(intersections, intersectionsOutput);
   debugIntersectionsOutput = intersectionsOutput;
-  
-  if (finalVertices.size() == 4) // we have the 4 final corners
-  {
-    vertices = finalVertices;
-  }
+#endif
+
 }
 
-void LoyaltyCardDetector::find_best_matching_quadrangle_from_quadrangles(vector<vector<Point> > &quadrangles, vector<Point> &bestQudrangle)
+int LoyaltyCardDetector::find_best_matching_quadrangle_from_quadrangles(vector<vector<Point> > &quadrangles, vector<Point> &bestQudrangle)
 {
+  int selectedIndexForGroup0 = -1;
+  int selectedIndexForGroup1 = -1;
+  int selectedIndexForGroup2 = -1;
+  int selectedIndexForGroup3 = -1;
+  
   vector<vector<Point>> currentBestQuadrangleGroup0;
   vector<vector<Point>> currentBestQuadrangleGroup1;
   vector<vector<Point>> currentBestQuadrangleGroup2;
@@ -291,6 +297,7 @@ void LoyaltyCardDetector::find_best_matching_quadrangle_from_quadrangles(vector<
         && fabs(angle_cosines[2]) < 0.075
         && fabs(angle_cosines[3]) < 0.075)
     {
+      if (selectedIndexForGroup0 != -1) selectedIndexForGroup0 = i;
       currentBestQuadrangleGroup0.push_back(quadrangle);
     }
     /// group 1 - 1x parallel sides, 1x opposite slope sides, 2x same corner angle
@@ -298,6 +305,7 @@ void LoyaltyCardDetector::find_best_matching_quadrangle_from_quadrangles(vector<
         || (slopesLeftRightAreSimilar && slopesTopBottomAreOpposite))
         && two_times_same_corner_angles(angle_cosines))
     {
+      if (selectedIndexForGroup1 != -1) selectedIndexForGroup1 = i;
       currentBestQuadrangleGroup1.push_back(quadrangle);
     }
     /// group 2 - 2x parallel sides, 2x same corner angle
@@ -305,12 +313,14 @@ void LoyaltyCardDetector::find_best_matching_quadrangle_from_quadrangles(vector<
              && slopesLeftRightAreSimilar
              && two_times_same_corner_angles(angle_cosines))
     {
+      if (selectedIndexForGroup2 != -1) selectedIndexForGroup2 = i;
       currentBestQuadrangleGroup2.push_back(quadrangle);
     }
     /// group 3 - 1x parallel sides
     else if (slopesTopBottomAreSimilar
              || slopesLeftRightAreSimilar)
     {
+      if (selectedIndexForGroup3 != -1) selectedIndexForGroup3 = i;
       currentBestQuadrangleGroup3.push_back(quadrangle);
     }
   }
@@ -319,19 +329,24 @@ void LoyaltyCardDetector::find_best_matching_quadrangle_from_quadrangles(vector<
   if (currentBestQuadrangleGroup0.size() > 0)
   {
     bestQudrangle = currentBestQuadrangleGroup0[0];
+    return selectedIndexForGroup0;
   }
   else if (currentBestQuadrangleGroup1.size() > 0)
   {
     bestQudrangle = currentBestQuadrangleGroup1[0];
+    return selectedIndexForGroup1;
   }
   else if (currentBestQuadrangleGroup2.size() > 0)
   {
     bestQudrangle = currentBestQuadrangleGroup2[0];
+    return selectedIndexForGroup2;
   }
   else if (currentBestQuadrangleGroup3.size() > 0)
   {
     bestQudrangle = currentBestQuadrangleGroup3[0];
+    return selectedIndexForGroup3;
   }
+  return -1;
 }
 
 # pragma mark Detection Helpers
@@ -349,22 +364,22 @@ double LoyaltyCardDetector::max_epsilon_factor(double arclength, double cornerRa
 
 # pragma mark Warping
 
-void LoyaltyCardDetector::four_points_transform(Mat &image, vector<Point> corners)
+void LoyaltyCardDetector::four_points_transform(Mat &image, vector<Point> vertices)
 {
-  Point2f points[4];
-  vector<Point> pv = order_points(corners);
-  std::copy(pv.begin(), pv.end(), points);
-  Point tl = points[0];
-  Point tr = points[1];
-  Point bl = points[2];
-  Point br = points[3];
+  Point2f currentVertices2f[4];
+  vector<Point> verticesOrdered = order_points(vertices);
+  std::copy(verticesOrdered.begin(), verticesOrdered.end(), currentVertices2f);
+  Point tl = currentVertices2f[0];
+  Point tr = currentVertices2f[1];
+  Point bl = currentVertices2f[2];
+  Point br = currentVertices2f[3];
+  
+  float widthA, widthB, maxWidth;
+  float heightA, heightB, maxHeight;
   
   // compute the width of the new image, which will be the
   // maximum distance between bottom-right and bottom-left
   // x-coordiates or the top-right and top-left x-coordinates
-  float widthA, widthB, maxWidth;
-  float heightA, heightB, maxHeight;
-  
   widthA = sqrt((pow((br.x - bl.x), 2)) + (pow((br.y - bl.y), 2)));
   widthB = sqrt((pow((tr.x - tl.x), 2)) + (pow((tr.y - tl.y), 2)));
   maxWidth = max(int(widthA), int(widthB));
@@ -377,17 +392,13 @@ void LoyaltyCardDetector::four_points_transform(Mat &image, vector<Point> corner
   maxHeight = max(int(heightA), int(heightB));
   maxHeight = (5398.0f/8560.0f) * maxWidth; // override for card aspect ratio
   
-  // now that we have the dimensions of the new image, construct
-  // the set of destination points to obtain a "birds eye view",
-  // (i.e. top-down view) of the image, again specifying points
-  // in the top-left, top-right, bottom-right, and bottom-left order
-  Point2f dts[4];
-  dts[0] = Point(0,0);
-  dts[1] = Point(maxWidth-1,0);
-  dts[2] = Point(0, maxHeight-1);
-  dts[3] = Point(maxWidth-1,maxHeight-1);
+  Point2f destinationVertices[4];
+  destinationVertices[0] = Point(0,0);
+  destinationVertices[1] = Point(maxWidth-1,0);
+  destinationVertices[2] = Point(0, maxHeight-1);
+  destinationVertices[3] = Point(maxWidth-1,maxHeight-1);
   
-  Mat warpMatrix = getPerspectiveTransform(points, dts);
+  Mat warpMatrix = getPerspectiveTransform(currentVertices2f, destinationVertices);
   
   Mat rotated;
   Size size(maxWidth, maxHeight);

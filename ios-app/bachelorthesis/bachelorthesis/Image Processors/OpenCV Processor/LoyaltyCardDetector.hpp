@@ -32,17 +32,17 @@ private:
 # pragma mark Detection
   
   static void find_potential_card_contours(Mat& image, vector<vector<cv::Point> >& contours);
-  static void identify_quadrangle_from_contour(vector<cv::Point> &contour, vector<cv::Point> &vertices, int imageWidth, int imageHeight, Mat &debugIntersectionsOutput, Mat &debugHoughLinesOutput);
+  static void identify_quadrangle_from_contour(vector<cv::Point> &contour, vector<cv::Point> &vertices, int imageWidth, int imageHeight, Mat &debugContoursOutput, Mat &debugIntersectionsOutput, Mat &debugHoughLinesOutput);
   
 # pragma mark Detection Helpers
   
   static double loyalty_card_corner_radius(double arclength);
   static double max_epsilon_factor(double arclength, double cornerRadius);
-  static void find_best_matching_quadrangle_from_quadrangles(vector<vector<cv::Point> > &quadrangles, vector<cv::Point> &bestQudrangle);
+  static int find_best_matching_quadrangle_from_quadrangles(vector<vector<cv::Point> > &quadrangles, vector<cv::Point> &bestQudrangle);
   
 # pragma mark Warping
   
-  static void four_points_transform(Mat &image, vector<cv::Point> corners);
+  static void four_points_transform(Mat &image, vector<cv::Point> vertices);
   
 # pragma mark Utilities
   
