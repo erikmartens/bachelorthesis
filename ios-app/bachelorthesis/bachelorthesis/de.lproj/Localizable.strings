@@ -24,6 +24,9 @@
 "process_image" = "Bild Verarbeiten";
 "save_image" = "Bild Speichern";
 "result_image_opacity" = "Ergebnis-Bild Deckkraft";
+"cropped_image" = "Ausgeschnitten";
+"contour_image" = "Konturen";
+"intersection_image" = "Schnittpunkte";
 
 // WeScan
 

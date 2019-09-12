@@ -20,32 +20,29 @@
 
 - (id)init
 {
-  self = [super init];
-  
-  if (self)
-  {
-    
-  }
-  return self;
+  return [super init];
 }
 
 # pragma mark Functions
 
-- (UIImage * _Nullable)extractLoyaltyCardImage:(UIImage * _Nonnull)image
+- (ImageProcessingResult *)extractLoyaltyCardImage:(UIImage * _Nonnull)image
 {
   int imageHeight = (int) image.size.height;
   int imageWidth = (int) image.size.width;
   cv::Mat sourceImageMat {imageHeight, imageWidth, CV_8UC4};
   cv::Mat outputImageMat {imageHeight, imageWidth, CV_8UC4};
   
+  cv::Mat debugContoursMat {imageHeight, imageWidth, CV_8UC4};
+  cv::Mat debugIntersectionsMat {imageHeight, imageWidth, CV_8UC4};
+  
   UIImageToMat(image, sourceImageMat);
   UIImageToMat(image, outputImageMat);
-  bool success = LoyaltyCardDetector::extract_card_from(sourceImageMat, outputImageMat);
-  if (success)
-  {
-    return MatToUIImage(outputImageMat);
-  }
-  return nil;
+  bool success = LoyaltyCardDetector::extract_card_from(sourceImageMat, outputImageMat, debugContoursMat, debugIntersectionsMat);
+  
+  ImageProcessingResult* results = [[ImageProcessingResult alloc] initWithCroppedImage: success ? MatToUIImage(outputImageMat) : nil
+                                                                         contoursImage: MatToUIImage(debugContoursMat)
+                                                                    intersectionsImage: MatToUIImage(debugIntersectionsMat)];  
+  return results;
 }
 
 - (UIImage *)liveExtractEdgesFrom:(CMSampleBufferRef)sampleBuffer withOrientation:(AVCaptureVideoOrientation)imageOrientation

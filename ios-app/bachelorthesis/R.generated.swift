@@ -92,7 +92,7 @@ struct R: Rswift.Validatable {
       fileprivate init() {}
     }
     
-    /// This `R.string.localizable` struct is generated, and contains static references to 24 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 27 localization keys.
     struct localizable {
       /// en translation: Additional Information
       /// 
@@ -190,6 +190,18 @@ struct R: Rswift.Validatable {
       /// 
       /// Locales: en, de
       static let website = Rswift.StringResource(key: "website", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: contours
+      /// 
+      /// Locales: en, de
+      static let contour_image = Rswift.StringResource(key: "contour_image", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: cropped
+      /// 
+      /// Locales: en, de
+      static let cropped_image = Rswift.StringResource(key: "cropped_image", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: intersections
+      /// 
+      /// Locales: en, de
+      static let intersection_image = Rswift.StringResource(key: "intersection_image", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       
       /// en translation: Additional Information
       /// 
@@ -357,6 +369,27 @@ struct R: Rswift.Validatable {
       /// Locales: en, de
       static func website(_: Void = ()) -> String {
         return NSLocalizedString("website", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: contours
+      /// 
+      /// Locales: en, de
+      static func contour_image(_: Void = ()) -> String {
+        return NSLocalizedString("contour_image", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: cropped
+      /// 
+      /// Locales: en, de
+      static func cropped_image(_: Void = ()) -> String {
+        return NSLocalizedString("cropped_image", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: intersections
+      /// 
+      /// Locales: en, de
+      static func intersection_image(_: Void = ()) -> String {
+        return NSLocalizedString("intersection_image", bundle: R.hostingBundle, comment: "")
       }
       
       fileprivate init() {}

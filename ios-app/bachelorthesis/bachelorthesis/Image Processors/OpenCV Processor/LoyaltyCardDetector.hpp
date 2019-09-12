@@ -22,7 +22,8 @@ using namespace std;
 class LoyaltyCardDetector
 {
 public:
-  static bool extract_card_from(Mat &sourceImage, Mat &outputImage);
+  
+  static bool extract_card_from(Mat &sourceImage, Mat &outputImage, Mat &debugContoursImage, Mat &debugIntersectionsImage);
   
 private:
   
@@ -51,8 +52,9 @@ private:
   static void get_intersections(vector<Vec4i> &lines, vector<cv::Point> &intersections, int imageWidth, int imageHeight);
   static bool get_intersection(const Vec4i &line_a, const Vec4i &line_b, cv::Point &intersection);
   static array<int, 3> cross(const array<int, 3> &a, const array<int, 3> &b);
-  static void filter_intersections_for_vertices(vector<cv::Point> &intersections, vector<cv::Point> &corners);
+  static void filter_intersections_for_vertices(vector<cv::Point> &intersections, vector<cv::Point> &corners, int imageWidth, int imageHeight);
   static bool two_times_same_corner_angles(vector<double> &cosines);
+  static void sort_by_neighbor_count(vector<cv::Point> &points, vector<int> &indices, int maxDistance, int imageWidth, int imageHeight);
 //  static void filter_largest_square(const vector<vector<cv::Point> >& squares, vector<cv::Point>& biggest_square );
   
 # pragma mark Drawing

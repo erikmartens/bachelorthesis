@@ -24,6 +24,9 @@
 "process_image" = "Process Image";
 "save_image" = "Save Image";
 "result_image_opacity" = "Result Image Opacity";
+"cropped_image" = "cropped";
+"contour_image" = "contours";
+"intersection_image" = "intersections";
 
 // WeScan
 

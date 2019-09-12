@@ -13,7 +13,7 @@ using namespace std;
 
 # pragma mark Public
 
-bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage)
+bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, Mat &debugContoursImage, Mat &debugIntersectionsImage)
 {
   /// identify contours in image
   vector<vector<Point>> contours;
@@ -35,8 +35,11 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage)
   vector<vector<Point> > potentialCardVertices;
   for (int i = 0; i < contours.size(); i++)
   {
-    Mat intersectionPointsOutput;
-    Mat linesOutput;
+    Mat intersectionPointsOutput(sourceImage.rows, sourceImage.cols, CV_8UC4);
+    intersectionPointsOutput = Scalar(0);
+    Mat linesOutput(sourceImage.rows, sourceImage.cols, CV_8UC4);
+    linesOutput = Scalar(0);
+    
     vector<Point> quadrangle;
     quadrangle.clear();
     
@@ -54,6 +57,8 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage)
     return false;
   }
   
+  debugIntersectionsImage = intersectionPointsOutputs[0];
+  
   /// find best matching quadrangle
   vector<Point> bestQuadrangle;
   find_best_matching_quadrangle_from_quadrangles(potentialCardVertices, bestQuadrangle);
@@ -61,7 +66,6 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage)
   // best effort quadrangle is used
   if (bestQuadrangle.size() == 0) {
     bestQuadrangle = potentialCardVertices[0];
-//    return false;
   }
   
   //  Mat warpedCard;
@@ -197,7 +201,7 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   
   /// find hough lines of convex hull
   vector<Vec4i> lines;
-  drawContours(convexHull_mask, hull, 0, Scalar(255), 2, LINE_AA);
+  drawContours(convexHull_mask, hull, 0, Scalar(255), 5, LINE_AA);
   HoughLinesP(convexHull_mask, lines, 1, CV_PI / 80, 100, 30, 10);
   
   /// debug
@@ -212,7 +216,7 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   
   // filter down to 4 cornerpoints of quadrangle
   vector<Point> finalVertices;
-  filter_intersections_for_vertices(intersections, finalVertices);
+  filter_intersections_for_vertices(intersections, finalVertices, imageWidth, imageHeight);
   
   /// debug
   Mat linesOutput(imageHeight, imageWidth, CV_8UC1);
@@ -480,7 +484,7 @@ array<int, 3> LoyaltyCardDetector::cross(const array<int, 3> &a, const array<int
   return result;
 }
 
-void LoyaltyCardDetector::filter_intersections_for_vertices(vector<Point> &intersections, vector<Point> &vertices)
+void LoyaltyCardDetector::filter_intersections_for_vertices(vector<Point> &intersections, vector<Point> &vertices, int imageWidth, int imageHeight)
 {
   /// not enough intersections found
   if (intersections.size() < 4)
@@ -512,6 +516,18 @@ void LoyaltyCardDetector::filter_intersections_for_vertices(vector<Point> &inter
     vertices.push_back(results2f[i]);
   }
   
+  /// EXPERIMENTAL
+//  vector<int> indices(intersections.size());
+//  sort_by_neighbor_count(intersections, indices, 10, imageWidth, imageHeight);
+//
+//  if (indices.size() >= 4)
+//  {
+//    vertices.push_back(intersections[0]);
+//    vertices.push_back(intersections[1]);
+//    vertices.push_back(intersections[2]);
+//    vertices.push_back(intersections[3]);
+//  }
+  
   // find closest actual points
 }
 
@@ -541,6 +557,59 @@ bool LoyaltyCardDetector::two_times_same_corner_angles(vector<double> &cosines)
     return false;
   }
   return true;
+}
+
+void LoyaltyCardDetector::sort_by_neighbor_count(vector<Point> &points, vector<int> &indices, int maxDistance, int imageWidth, int imageHeight)
+{
+  int neighborCount;
+  vector<int> neighborCounts;
+  
+  /// calculate number of close neighbors for each point
+  for (int i = 0; i < points.size(); i++)
+  {
+    neighborCount = 0;
+    Point currentPoint = points[i];
+    for (int j = 0; j < points.size(); j++)
+    {
+      if (i == j) continue;
+      if (abs(currentPoint.x - points[j].x) <= maxDistance
+          && abs(currentPoint.y - points[j].y) <= maxDistance) neighborCount++;
+    }
+    neighborCounts.push_back(neighborCount);
+  }
+  
+  /// sort by number of neighbors
+  for ( int i = 0; i < points.size(); i++ )
+  {
+    indices[i] = i;
+  }
+  sort(indices.begin(), indices.end(), [&neighborCounts](int lhs, int rhs) {
+    return neighborCounts[lhs] > neighborCounts[rhs];
+  });
+  
+  /// remove points in similar regions to prevent mutual referencing
+//  auto iterator = unique(indices.begin(), indices.end(), [&points](int lhs, int rhs) {
+//    return abs(points[lhs].x - points[rhs].x) < 100 && abs(points[lhs].y - points[rhs].y) < 100;
+//  });
+//  indices.erase(iterator, indices.end());
+  
+  int tl = -1;
+  int tr = -1;
+  int bl = -1;
+  int br = -1;
+  for (int i = 0; i < indices.size(); i++)
+  {
+    if (tl == -1 && points[indices[i]].x <= imageWidth/2 && points[indices[i]].y <= imageHeight/2) tl = indices[i];
+    if (tr == -1 && points[indices[i]].x > imageWidth/2 && points[indices[i]].y <= imageHeight/2) tr = indices[i];
+    if (bl == -1 && points[indices[i]].x <= imageWidth/2 && points[indices[i]].y > imageHeight/2) bl = indices[i];
+    if (br == -1 && points[indices[i]].x > imageWidth/2 && points[indices[i]].y > imageHeight/2) br = indices[i];
+  }
+  
+  indices.clear();
+  indices.push_back(tl);
+  indices.push_back(tr);
+  indices.push_back(bl);
+  indices.push_back(br);
 }
 
 //void LoyaltyCardDetector::filter_largest_square(const vector<vector<Point> >& squares, vector<Point>& biggest_square)

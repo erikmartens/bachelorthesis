@@ -31,6 +31,7 @@
 		BEDB8FA4231D190F00C71D71 /* CameraScannerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA3231D190F00C71D71 /* CameraScannerProtocol.swift */; };
 		BEDB8FAA231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDB8FA9231D5A6700C71D71 /* UIDeviceOrientation->AVCaptureVideoOrientation.swift */; };
 		F22181A2232049A9006C5D67 /* UIColor+Inverted.swift in Sources */ = {isa = PBXBuildFile; fileRef = F22181A1232049A9006C5D67 /* UIColor+Inverted.swift */; };
+		F22181AF232A9798006C5D67 /* ImageProcessingResult.m in Sources */ = {isa = PBXBuildFile; fileRef = F22181AE232A9798006C5D67 /* ImageProcessingResult.m */; };
 		F2BEC80D231E6CDE0053C9C2 /* Utilities.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,8 @@
 		F22181A82327B1F4006C5D67 /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
 		F22181AA2327B202006C5D67 /* MetalPerformanceShaders.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalPerformanceShaders.framework; path = System/Library/Frameworks/MetalPerformanceShaders.framework; sourceTree = SDKROOT; };
 		F22181AC2327B2B7006C5D67 /* libGPUImage3.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libGPUImage3.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F22181AE232A9798006C5D67 /* ImageProcessingResult.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageProcessingResult.m; sourceTree = "<group>"; };
+		F22181B0232A97A8006C5D67 /* ImageProcessingResult.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageProcessingResult.h; sourceTree = "<group>"; };
 		F225A9213DECDD6F21AF5C3F /* libPods-bachelorthesis.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bachelorthesis.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utilities.cpp; sourceTree = "<group>"; };
 		F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utilities.hpp; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				BE6C3F2C231FC09F00EA116A /* LoyaltyCardDetector.cpp */,
 				F2BEC80C231E6CDD0053C9C2 /* Utilities.hpp */,
 				F2BEC80B231E6CDD0053C9C2 /* Utilities.cpp */,
+				F22181B0232A97A8006C5D67 /* ImageProcessingResult.h */,
+				F22181AE232A9798006C5D67 /* ImageProcessingResult.m */,
 			);
 			path = "OpenCV Processor";
 			sourceTree = "<group>";
@@ -475,6 +480,7 @@
 				BEDB8F9F231D0B9200C71D71 /* OpenCvProcessorBridge.mm in Sources */,
 				BEDB8FA4231D190F00C71D71 /* CameraScannerProtocol.swift in Sources */,
 				BEDB8F8D2319264500C71D71 /* UIViewController+PresentSafariViewController.swift in Sources */,
+				F22181AF232A9798006C5D67 /* ImageProcessingResult.m in Sources */,
 				BEDB8F96231BC7FD00C71D71 /* CameraScanner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

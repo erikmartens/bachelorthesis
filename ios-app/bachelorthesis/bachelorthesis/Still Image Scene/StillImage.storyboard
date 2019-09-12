@@ -31,7 +31,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="nmw-zE-6z0">
-                                <rect key="frame" x="16" y="485" width="382" height="345"/>
+                                <rect key="frame" x="16" y="413" width="382" height="417"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ish-Du-FVF">
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="58.5"/>
@@ -76,7 +76,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="baS-GZ-mqG">
-                                        <rect key="frame" x="0.0" y="74.5" width="382" height="58.5"/>
+                                        <rect key="frame" x="0.0" y="74.5" width="382" height="94.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result Image Opacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VK2-14-o6e">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="20.5"/>
@@ -115,10 +115,20 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="W2b-Ij-1Nk">
+                                                <rect key="frame" x="0.0" y="66.5" width="382" height="29"/>
+                                                <segments>
+                                                    <segment title="First"/>
+                                                    <segment title="Second"/>
+                                                </segments>
+                                                <connections>
+                                                    <action selector="didSelectResultTypeSegmentedControlIndex:" destination="Zar-X4-d1D" eventType="valueChanged" id="vai-uy-ZOg"/>
+                                                </connections>
+                                            </segmentedControl>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aia-cc-eAz" customClass="FramedButton" customModule="bachelorthesis" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="160" width="382" height="36"/>
+                                        <rect key="frame" x="0.0" y="196" width="382" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="ogm-F9-9k6"/>
                                         </constraints>
@@ -136,7 +146,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ibj-iD-hHP" customClass="FramedButton" customModule="bachelorthesis" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="234.5" width="382" height="36"/>
+                                        <rect key="frame" x="0.0" y="288.5" width="382" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="Er1-Ib-sox"/>
                                         </constraints>
@@ -154,7 +164,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kze-qe-K0q" customClass="FramedButton" customModule="bachelorthesis" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="309" width="382" height="36"/>
+                                        <rect key="frame" x="0.0" y="381" width="382" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="8rm-r8-Jrz"/>
                                         </constraints>
@@ -196,6 +206,7 @@
                         <outlet property="resultOpacityControlsContainer" destination="baS-GZ-mqG" id="I8a-OL-PG2"/>
                         <outlet property="resultOpacityDescriptionLabel" destination="VK2-14-o6e" id="ZdD-hl-OmE"/>
                         <outlet property="resultOpacitySlider" destination="gVK-tO-v15" id="crd-Rv-Bjd"/>
+                        <outlet property="resultTypeSegmentedControl" destination="W2b-Ij-1Nk" id="5J7-3n-Cz8"/>
                         <outlet property="saveImageButton" destination="Kze-qe-K0q" id="fV7-io-Siv"/>
                         <outlet property="selectImageButton" destination="Aia-cc-eAz" id="rs0-a5-Gpb"/>
                         <outlet property="sourceImageView" destination="Qpa-IA-3as" id="GYm-ja-Ij8"/>

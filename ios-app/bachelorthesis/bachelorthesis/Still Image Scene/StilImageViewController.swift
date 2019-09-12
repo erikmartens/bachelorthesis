@@ -27,6 +27,7 @@ class StillImageViewController: UIViewController {
   @IBOutlet weak var resultOpacityControlsContainer: UIStackView!
   @IBOutlet weak var resultOpacityDescriptionLabel: UILabel!
   @IBOutlet weak var resultOpacitySlider: UISlider!
+  @IBOutlet weak var resultTypeSegmentedControl: UISegmentedControl!
   
   @IBOutlet weak var selectImageButton: FramedButton!
   @IBOutlet weak var processImageButton: FramedButton!
@@ -38,12 +39,17 @@ class StillImageViewController: UIViewController {
     return ImagePicker(presentationController: self, delegate: self)
   }()
   
-  private lazy var openCvProcessor: OpenCvProcessorBridge = {
+  private lazy var openCvProcessorBridge: OpenCvProcessorBridge = {
     return OpenCvProcessorBridge()
   }()
   
   private var selectedImage: UIImage? {
     didSet {
+      defer {
+        resultImageView.isHidden = true
+        sourceOpacityControlsContainer.isHidden = true
+        resultOpacityControlsContainer.isHidden = true
+      }
       guard let image = selectedImage else {
         return
       }
@@ -51,15 +57,30 @@ class StillImageViewController: UIViewController {
     }
   }
   
-  private var processedImage: UIImage? {
+  private var processingResult: ImageProcessingResult? {
     didSet {
       defer {
-        resultImageView.isHidden = processedImage == nil
-        sourceOpacityControlsContainer.isHidden = processedImage == nil
-        resultOpacityControlsContainer.isHidden = processedImage == nil
+        let shouldHide = !(processingResult?.hasContent() ?? false)
+        resultImageView.isHidden = shouldHide
+        sourceOpacityControlsContainer.isHidden = shouldHide
+        resultOpacityControlsContainer.isHidden = shouldHide
       }
-      guard let image = processedImage else { return }
-      resultImageView.image = image
+      
+      if let croppedImage = processingResult?.croppedImage {
+        resultImageView.image = croppedImage
+        resultTypeSegmentedControl.selectedSegmentIndex = 0
+      } else if let contoursImage = processingResult?.contoursImage {
+        resultImageView.image = contoursImage
+        resultTypeSegmentedControl.selectedSegmentIndex = 1
+      } else if let intersectionsImage = processingResult?.intersectionsImage {
+        resultImageView.image = intersectionsImage
+        resultTypeSegmentedControl.selectedSegmentIndex = 2
+      }
+      
+      resultTypeSegmentedControl.isHidden = processingResult?.contoursImage == nil && processingResult?.intersectionsImage == nil
+      resultTypeSegmentedControl.setEnabled(processingResult?.croppedImage != nil, forSegmentAt: 0)
+      resultTypeSegmentedControl.setEnabled(processingResult?.contoursImage != nil, forSegmentAt: 1)
+      resultTypeSegmentedControl.setEnabled(processingResult?.intersectionsImage != nil, forSegmentAt: 2)
     }
   }
   
@@ -81,6 +102,11 @@ class StillImageViewController: UIViewController {
                                                         action: #selector(cancelStillImageController(_:)))
     sourceOpacityControlsContainer.isHidden = true
     resultOpacityControlsContainer.isHidden = true
+    
+    resultTypeSegmentedControl.removeAllSegments()
+    resultTypeSegmentedControl.insertSegment(withTitle: R.string.localizable.cropped_image().capitalized, at: 0, animated: false)
+    resultTypeSegmentedControl.insertSegment(withTitle: R.string.localizable.contour_image().capitalized, at: 1, animated: false)
+    resultTypeSegmentedControl.insertSegment(withTitle: R.string.localizable.intersection_image().capitalized, at: 2, animated: false)
     
     resultOpacityDescriptionLabel.text = R.string.localizable.result_image_opacity()
     selectImageButton.setTitle(R.string.localizable.select_image(), for: UIControl.State())
@@ -130,6 +156,25 @@ class StillImageViewController: UIViewController {
     sourceImageView.alpha = CGFloat(sender.value)
   }
  
+  @IBAction func didSelectResultTypeSegmentedControlIndex(_ sender: UISegmentedControl) {
+    switch sender.selectedSegmentIndex {
+    case let index where index == 0:
+      if let croppedImage = processingResult?.croppedImage {
+        resultImageView.image = croppedImage
+      }
+    case let index where index == 1:
+      if let contoursImage = processingResult?.contoursImage {
+        resultImageView.image = contoursImage
+      }
+    case let index where index == 2:
+      if let intersectionsImage = processingResult?.intersectionsImage {
+        resultImageView.image = intersectionsImage
+      }
+    default:
+      break
+    }
+  }
+  
   @IBAction func didPressSelectImageButton(_ sender: FramedButton) {
     self.imagePicker.present(from: sender)
   }
@@ -147,15 +192,20 @@ class StillImageViewController: UIViewController {
     case .gpuImage:
       break
     case .openCV:
-      processedImage = openCvProcessor.extractLoyaltyCardImage(selectedImage)
+      processingResult = openCvProcessorBridge.extractLoyaltyCardImage(selectedImage)
     }
   }
   
   @IBAction func didPressSaveImageButton(_ sender: FramedButton) {
-    guard let processedImage = processedImage else {
-      return
+    if let croppedImage = processingResult?.croppedImage {
+      imagePicker.saveToCameraRoll(croppedImage)
     }
-    imagePicker.saveToCameraRoll(processedImage)
+    if let countoursImage = processingResult?.contoursImage {
+      imagePicker.saveToCameraRoll(countoursImage)
+    }
+    if let intersectionsImage = processingResult?.intersectionsImage {
+      imagePicker.saveToCameraRoll(intersectionsImage)
+    }
   }
 }
 
@@ -173,7 +223,7 @@ extension StillImageViewController: ImageScannerControllerDelegate {
   }
   
   func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
-    processedImage = results.croppedScan.image
+    self.processingResult = ImageProcessingResult(croppedImage: results.croppedScan.image, contoursImage: nil, intersectionsImage: nil)
     dismissImageScannerController()
   }
   
