@@ -279,17 +279,14 @@ int LoyaltyCardDetector::find_best_matching_quadrangle_from_quadrangles(vector<v
     bool slopesLeftRightAreOpposite = ((slopeLeftVerticalLine >= 0.0 && slopeRightVerticalLine < 0.0) || (slopeLeftVerticalLine < 0.0 && slopeRightVerticalLine >= 0.0)) && (fabs(slopeRightVerticalLine)*toleranceThreshold <= fabs(slopeLeftVerticalLine) <= fabs(slopeRightVerticalLine) || fabs(slopeLeftVerticalLine)*toleranceThreshold <= fabs(slopeRightVerticalLine) <= fabs(slopeLeftVerticalLine));
     
     vector<double> angle_cosines;
-//    angle_cosines.push_back(fabs(angle(quadrangle[2], quadrangle[0], quadrangle[1])));
-//    angle_cosines.push_back(fabs(angle(quadrangle[3], quadrangle[1], quadrangle[2])));
-//    angle_cosines.push_back(fabs(angle(quadrangle[0], quadrangle[2], quadrangle[3])));
-//    angle_cosines.push_back(fabs(angle(quadrangle[1], quadrangle[0], quadrangle[3])));
-    angle_cosines.push_back(fabs(angle(quadrangle[1], quadrangle[2], quadrangle[0])));
-    angle_cosines.push_back(fabs(angle(quadrangle[0], quadrangle[3], quadrangle[1])));
-    angle_cosines.push_back(fabs(angle(quadrangle[0], quadrangle[3], quadrangle[2])));
-    angle_cosines.push_back(fabs(angle(quadrangle[1], quadrangle[2], quadrangle[3])));
+    angle_cosines.push_back(fabs(angle(quadrangle[2], quadrangle[0], quadrangle[1])));
+    angle_cosines.push_back(fabs(angle(quadrangle[3], quadrangle[1], quadrangle[2])));
+    angle_cosines.push_back(fabs(angle(quadrangle[0], quadrangle[2], quadrangle[3])));
+    angle_cosines.push_back(fabs(angle(quadrangle[1], quadrangle[0], quadrangle[3])));
     
     /// sorting into groups
     /// group 0 - 2x parallel sides, 4x 90° corner angles
+    /// cos(90) = 0, cos(85) ~ 0.087, cos(95) ~ -0.87
     if (slopesTopBottomAreSimilar
         && slopesLeftRightAreSimilar
         && fabs(angle_cosines[0]) < 0.075
