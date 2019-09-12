@@ -76,9 +76,9 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, 
   /// DEBUG
   if (selectedIndex != -1)
   {
-    if (debugContoursOutputs.size() > selectedIndex) debugHoughLinesImage = debugContoursOutputs[selectedIndex];
+    if (debugContoursOutputs.size() > selectedIndex) debugContoursImage = debugContoursOutputs[selectedIndex];
+    if (debugHoughLinesOutputs.size() > selectedIndex) debugHoughLinesImage = debugHoughLinesOutputs[selectedIndex];
     if (debugIntersectionPointsOutputs.size() > selectedIndex) debugIntersectionsImage = debugIntersectionPointsOutputs[selectedIndex];
-    if (debugHoughLinesOutputs.size() > selectedIndex) debugIntersectionsImage = debugHoughLinesOutputs[selectedIndex];
   }
   
   // TODO homography
@@ -297,7 +297,7 @@ int LoyaltyCardDetector::find_best_matching_quadrangle_from_quadrangles(vector<v
         && fabs(angle_cosines[2]) < 0.075
         && fabs(angle_cosines[3]) < 0.075)
     {
-      if (selectedIndexForGroup0 != -1) selectedIndexForGroup0 = i;
+      if (selectedIndexForGroup0 == -1) selectedIndexForGroup0 = i;
       currentBestQuadrangleGroup0.push_back(quadrangle);
     }
     /// group 1 - 1x parallel sides, 1x opposite slope sides, 2x same corner angle
@@ -305,7 +305,7 @@ int LoyaltyCardDetector::find_best_matching_quadrangle_from_quadrangles(vector<v
         || (slopesLeftRightAreSimilar && slopesTopBottomAreOpposite))
         && two_times_same_corner_angles(angle_cosines))
     {
-      if (selectedIndexForGroup1 != -1) selectedIndexForGroup1 = i;
+      if (selectedIndexForGroup1 == -1) selectedIndexForGroup1 = i;
       currentBestQuadrangleGroup1.push_back(quadrangle);
     }
     /// group 2 - 2x parallel sides, 2x same corner angle
@@ -313,14 +313,14 @@ int LoyaltyCardDetector::find_best_matching_quadrangle_from_quadrangles(vector<v
              && slopesLeftRightAreSimilar
              && two_times_same_corner_angles(angle_cosines))
     {
-      if (selectedIndexForGroup2 != -1) selectedIndexForGroup2 = i;
+      if (selectedIndexForGroup2 == -1) selectedIndexForGroup2 = i;
       currentBestQuadrangleGroup2.push_back(quadrangle);
     }
     /// group 3 - 1x parallel sides
     else if (slopesTopBottomAreSimilar
              || slopesLeftRightAreSimilar)
     {
-      if (selectedIndexForGroup3 != -1) selectedIndexForGroup3 = i;
+      if (selectedIndexForGroup3 == -1) selectedIndexForGroup3 = i;
       currentBestQuadrangleGroup3.push_back(quadrangle);
     }
   }
