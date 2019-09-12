@@ -13,7 +13,7 @@ using namespace std;
 
 # pragma mark Public
 
-bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, Mat &debugContoursImage, Mat &debugHoughLinesImage, Mat &debugIntersectionsImage)
+bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, Mat &debugContoursImage, Mat &debugHoughLinesImage, Mat &debugIntersectionsImage,  Mat &debugVerticesImage)
 {
   /// identify contours in image
   vector<vector<Point>> contours;
@@ -34,6 +34,7 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, 
   vector<Mat> debugContoursOutputs;
   vector<Mat> debugIntersectionPointsOutputs;
   vector<Mat> debugHoughLinesOutputs;
+  vector<Mat> debugVerticesOutputs;
  
   vector<vector<Point> > potentialCardVertices;
   
@@ -42,11 +43,12 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, 
     Mat debugContoursOutput;
     Mat debugIntersectionPointsOutput;
     Mat debugHoughLinesOutput;
+    Mat debugVerticesOutput;
     
     vector<Point> quadrangle;
     quadrangle.clear();
     
-    identify_quadrangle_from_contour(contours[indices[i]], quadrangle, sourceImage.cols, sourceImage.rows, debugContoursOutput, debugIntersectionPointsOutput, debugHoughLinesOutput);
+    identify_quadrangle_from_contour(contours[indices[i]], quadrangle, sourceImage.cols, sourceImage.rows, debugContoursOutput, debugIntersectionPointsOutput, debugHoughLinesOutput, debugVerticesOutput);
     
     if (quadrangle.size() == 4)
     {
@@ -73,13 +75,16 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, 
     bestQuadrangle = potentialCardVertices[0];
   }
   
-  /// DEBUG
+#if DEBUG==1
+
   if (selectedIndex != -1)
   {
     if (debugContoursOutputs.size() > selectedIndex) debugContoursImage = debugContoursOutputs[selectedIndex];
     if (debugHoughLinesOutputs.size() > selectedIndex) debugHoughLinesImage = debugHoughLinesOutputs[selectedIndex];
     if (debugIntersectionPointsOutputs.size() > selectedIndex) debugIntersectionsImage = debugIntersectionPointsOutputs[selectedIndex];
+    if (debugVerticesOutputs.size() > selectedIndex) debugVerticesImage = debugVerticesOutputs[selectedIndex];
   }
+#endif
   
   // TODO homography
   // We don't need to find homography since we know the 4 vertices and the original aspect ratio
@@ -197,7 +202,7 @@ void LoyaltyCardDetector::find_potential_card_contours(Mat& image, vector<vector
   }
 }
 
-void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contour, vector<Point> &vertices, int imageWidth, int imageHeight, Mat &debugContoursOutput, Mat &debugIntersectionsOutput, Mat &debugHoughLinesOutput)
+void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contour, vector<Point> &vertices, int imageWidth, int imageHeight, Mat &debugContoursOutput, Mat &debugIntersectionsOutput, Mat &debugHoughLinesOutput, Mat &debugVerticesOutput)
 {
   /// Find the convex hull object
   Mat convexHull_mask(imageHeight, imageWidth, CV_8UC1);
@@ -240,6 +245,11 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   intersectionsOutput = Scalar(0);
   draw_points(intersections, intersectionsOutput);
   debugIntersectionsOutput = intersectionsOutput;
+  
+  Mat verticesOutput(imageHeight, imageWidth, CV_8UC1);
+  verticesOutput = Scalar(0);
+  draw_points(finalVertices, verticesOutput);
+  debugVerticesOutput = verticesOutput;
 #endif
 
 }

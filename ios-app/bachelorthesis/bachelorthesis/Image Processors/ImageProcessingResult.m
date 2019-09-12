@@ -18,20 +18,26 @@
 - (instancetype)initWithCroppedImage:(UIImage *)croppedImage
                        contoursImage:(UIImage *)contoursImage
                      houghLinesImage:(UIImage *)houghLinesImage
-                  intersectionsImage:(UIImage *)intersectionsImage {
+                  intersectionsImage:(UIImage *)intersectionsImage
+                       verticesImage:(UIImage * _Nullable)verticesImage {
   self = [super init];
   if (self) {
     _croppedImage = croppedImage;
     _contoursImage = contoursImage;
     _houghLinesImage = houghLinesImage;
     _intersectionsImage = intersectionsImage;
+    _verticesImage = verticesImage;
   }
   return self;
 }
 
 -(BOOL)hasContent
 {
-  return !(!self.croppedImage && !self.contoursImage && !self.intersectionsImage && !self.houghLinesImage);
+  return !(!self.croppedImage
+           && !self.contoursImage
+           && !self.intersectionsImage
+           && !self.houghLinesImage
+           && !self.verticesImage);
 }
 
 @end

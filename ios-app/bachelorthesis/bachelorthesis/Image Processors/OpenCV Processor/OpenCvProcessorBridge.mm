@@ -35,15 +35,17 @@
   cv::Mat debugContoursMat {imageHeight, imageWidth, CV_8UC4};
   cv::Mat debugHoughLinesMat {imageHeight, imageWidth, CV_8UC4};
   cv::Mat debugIntersectionsMat {imageHeight, imageWidth, CV_8UC4};
+  cv::Mat debugVerticesMat {imageHeight, imageWidth, CV_8UC4};
   
   UIImageToMat(image, sourceImageMat);
   UIImageToMat(image, outputImageMat);
-  bool success = LoyaltyCardDetector::extract_card_from(sourceImageMat, outputImageMat, debugContoursMat, debugHoughLinesMat, debugIntersectionsMat);
+  bool success = LoyaltyCardDetector::extract_card_from(sourceImageMat, outputImageMat, debugContoursMat, debugHoughLinesMat, debugIntersectionsMat, debugVerticesMat);
   
   ImageProcessingResult* results = [[ImageProcessingResult alloc] initWithCroppedImage: success ? MatToUIImage(outputImageMat) : nil
                                                                          contoursImage: MatToUIImage(debugContoursMat)
                                                                        houghLinesImage: MatToUIImage(debugHoughLinesMat)
-                                                                    intersectionsImage: MatToUIImage(debugIntersectionsMat)];
+                                                                    intersectionsImage: MatToUIImage(debugIntersectionsMat)
+                                                                         verticesImage: MatToUIImage(debugVerticesMat)];
   return results;
 }
 

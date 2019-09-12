@@ -78,13 +78,17 @@ class StillImageViewController: UIViewController {
       } else if let intersectionsImage = processingResult?.intersectionsImage {
         resultImageView.image = intersectionsImage
         resultTypeSegmentedControl.selectedSegmentIndex = 3
+      } else if let verticesImage = processingResult?.verticesImage {
+        resultImageView.image = verticesImage
+        resultTypeSegmentedControl.selectedSegmentIndex = 4
       }
       
-      resultTypeSegmentedControl.isHidden = processingResult?.contoursImage == nil && processingResult?.houghLinesImage == nil && processingResult?.intersectionsImage == nil
+      resultTypeSegmentedControl.isHidden = processingResult?.contoursImage == nil && processingResult?.houghLinesImage == nil && processingResult?.intersectionsImage == nil && processingResult?.verticesImage == nil
       resultTypeSegmentedControl.setEnabled(processingResult?.croppedImage != nil, forSegmentAt: 0)
       resultTypeSegmentedControl.setEnabled(processingResult?.contoursImage != nil, forSegmentAt: 1)
       resultTypeSegmentedControl.setEnabled(processingResult?.houghLinesImage != nil, forSegmentAt: 1)
       resultTypeSegmentedControl.setEnabled(processingResult?.intersectionsImage != nil, forSegmentAt: 3)
+      resultTypeSegmentedControl.setEnabled(processingResult?.verticesImage != nil, forSegmentAt: 4)
     }
   }
   
@@ -113,6 +117,7 @@ class StillImageViewController: UIViewController {
     resultTypeSegmentedControl.insertSegment(withTitle: R.string.localizable.contour_image().capitalized, at: 1, animated: false)
     resultTypeSegmentedControl.insertSegment(withTitle: R.string.localizable.hough_line_image().capitalized, at: 2, animated: false)
     resultTypeSegmentedControl.insertSegment(withTitle: R.string.localizable.intersection_image().capitalized, at: 3, animated: false)
+    resultTypeSegmentedControl.insertSegment(withTitle: R.string.localizable.vertices_image().capitalized, at: 4, animated: false)
     
     resultOpacityDescriptionLabel.text = R.string.localizable.result_image_opacity()
     selectImageButton.setTitle(R.string.localizable.select_image(), for: UIControl.State())
@@ -180,6 +185,10 @@ class StillImageViewController: UIViewController {
       if let intersectionsImage = processingResult?.intersectionsImage {
         resultImageView.image = intersectionsImage
       }
+    case let index where index == 4:
+      if let verticesImage = processingResult?.verticesImage {
+        resultImageView.image = verticesImage
+      }
     default:
       break
     }
@@ -219,6 +228,9 @@ class StillImageViewController: UIViewController {
     if let intersectionsImage = processingResult?.intersectionsImage {
       imagePicker.saveToCameraRoll(intersectionsImage)
     }
+    if let verticesImage = processingResult?.verticesImage {
+      imagePicker.saveToCameraRoll(verticesImage)
+    }
   }
 }
 
@@ -236,7 +248,11 @@ extension StillImageViewController: ImageScannerControllerDelegate {
   }
   
   func imageScannerController(_ scanner: ImageScannerController, didFinishScanningWithResults results: ImageScannerResults) {
-    self.processingResult = ImageProcessingResult(croppedImage: results.croppedScan.image, contoursImage: nil, houghLinesImage: nil, intersectionsImage: nil)
+    self.processingResult = ImageProcessingResult(croppedImage: results.croppedScan.image,
+                                                  contoursImage: nil,
+                                                  houghLinesImage: nil,
+                                                  intersectionsImage: nil,
+                                                  verticesImage: nil)
     dismissImageScannerController()
   }
   

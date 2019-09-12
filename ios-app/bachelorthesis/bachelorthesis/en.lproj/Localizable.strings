@@ -28,6 +28,7 @@
 "contour_image" = "contours";
 "hough_line_image" = "hough lines";
 "intersection_image" = "intersections";
+"vertices_image" = "corners";
 
 // WeScan
 

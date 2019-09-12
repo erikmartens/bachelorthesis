@@ -28,6 +28,7 @@
 "contour_image" = "Konturen";
 "hough_line_image" = "Hough Linien";
 "intersection_image" = "Schnittpunkte";
+"vertices_image" = "Ecken";
 
 // WeScan
 

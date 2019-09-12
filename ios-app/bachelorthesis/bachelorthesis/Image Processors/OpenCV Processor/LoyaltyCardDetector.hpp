@@ -23,7 +23,7 @@ class LoyaltyCardDetector
 {
 public:
   
-  static bool extract_card_from(Mat &sourceImage, Mat &outputImage, Mat &debugContoursImage, Mat &debugHoughLinesImage, Mat &debugIntersectionsImage);
+  static bool extract_card_from(Mat &sourceImage, Mat &outputImage, Mat &debugContoursImage, Mat &debugHoughLinesImage, Mat &debugIntersectionsImage, Mat &debugVerticesImage);
   
 private:
   
@@ -32,7 +32,7 @@ private:
 # pragma mark Detection
   
   static void find_potential_card_contours(Mat& image, vector<vector<cv::Point> >& contours);
-  static void identify_quadrangle_from_contour(vector<cv::Point> &contour, vector<cv::Point> &vertices, int imageWidth, int imageHeight, Mat &debugContoursOutput, Mat &debugIntersectionsOutput, Mat &debugHoughLinesOutput);
+  static void identify_quadrangle_from_contour(vector<cv::Point> &contour, vector<cv::Point> &vertices, int imageWidth, int imageHeight, Mat &debugContoursOutput, Mat &debugIntersectionsOutput, Mat &debugHoughLinesOutput, Mat &debugVerticesOutput);
   
 # pragma mark Detection Helpers
   
