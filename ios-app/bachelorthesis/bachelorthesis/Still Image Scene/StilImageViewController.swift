@@ -101,6 +101,7 @@ class StillImageViewController: UIViewController {
   // MARK: - Private Functions
   
   private func setupUserInterface() {
+    navigationItem.title = R.string.localizable.picture_from_gallery()
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
                                                         target: self,
                                                         action: #selector(cancelStillImageController(_:)))
@@ -195,8 +196,8 @@ class StillImageViewController: UIViewController {
     }
     switch selectedScannerLibrary {
     case .weScan:
-      let scannerViewController = ImageScannerController(image: selectedImage)
-      scannerViewController.imageScannerDelegate = self
+      // TODO modify pod so that option to show edit can be chosen
+      let scannerViewController = ImageScannerController(image: selectedImage, delegate: self)
       present(scannerViewController, animated: true)
     case .gpuImage:
       break

@@ -91,6 +91,8 @@ class LiveImageViewController: UIViewController {
     navigationController?.navigationBar.barTintColor = .clear
     navigationController?.navigationBar.isTranslucent = true
     
+    navigationItem.title = R.string.localizable.picture_from_camera()
+    
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
                                                         target: self,
                                                         action: #selector(cancelLiveImageController(_:)))
