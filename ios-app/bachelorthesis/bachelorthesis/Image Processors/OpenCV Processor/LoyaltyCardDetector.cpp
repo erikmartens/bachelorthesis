@@ -516,18 +516,6 @@ void LoyaltyCardDetector::filter_intersections_for_vertices(vector<Point> &inter
     vertices.push_back(results2f[i]);
   }
   
-  /// EXPERIMENTAL
-//  vector<int> indices(intersections.size());
-//  sort_by_neighbor_count(intersections, indices, 10, imageWidth, imageHeight);
-//
-//  if (indices.size() >= 4)
-//  {
-//    vertices.push_back(intersections[0]);
-//    vertices.push_back(intersections[1]);
-//    vertices.push_back(intersections[2]);
-//    vertices.push_back(intersections[3]);
-//  }
-  
   // find closest actual points
 }
 
@@ -557,59 +545,6 @@ bool LoyaltyCardDetector::two_times_same_corner_angles(vector<double> &cosines)
     return false;
   }
   return true;
-}
-
-void LoyaltyCardDetector::sort_by_neighbor_count(vector<Point> &points, vector<int> &indices, int maxDistance, int imageWidth, int imageHeight)
-{
-  int neighborCount;
-  vector<int> neighborCounts;
-  
-  /// calculate number of close neighbors for each point
-  for (int i = 0; i < points.size(); i++)
-  {
-    neighborCount = 0;
-    Point currentPoint = points[i];
-    for (int j = 0; j < points.size(); j++)
-    {
-      if (i == j) continue;
-      if (abs(currentPoint.x - points[j].x) <= maxDistance
-          && abs(currentPoint.y - points[j].y) <= maxDistance) neighborCount++;
-    }
-    neighborCounts.push_back(neighborCount);
-  }
-  
-  /// sort by number of neighbors
-  for ( int i = 0; i < points.size(); i++ )
-  {
-    indices[i] = i;
-  }
-  sort(indices.begin(), indices.end(), [&neighborCounts](int lhs, int rhs) {
-    return neighborCounts[lhs] > neighborCounts[rhs];
-  });
-  
-  /// remove points in similar regions to prevent mutual referencing
-//  auto iterator = unique(indices.begin(), indices.end(), [&points](int lhs, int rhs) {
-//    return abs(points[lhs].x - points[rhs].x) < 100 && abs(points[lhs].y - points[rhs].y) < 100;
-//  });
-//  indices.erase(iterator, indices.end());
-  
-  int tl = -1;
-  int tr = -1;
-  int bl = -1;
-  int br = -1;
-  for (int i = 0; i < indices.size(); i++)
-  {
-    if (tl == -1 && points[indices[i]].x <= imageWidth/2 && points[indices[i]].y <= imageHeight/2) tl = indices[i];
-    if (tr == -1 && points[indices[i]].x > imageWidth/2 && points[indices[i]].y <= imageHeight/2) tr = indices[i];
-    if (bl == -1 && points[indices[i]].x <= imageWidth/2 && points[indices[i]].y > imageHeight/2) bl = indices[i];
-    if (br == -1 && points[indices[i]].x > imageWidth/2 && points[indices[i]].y > imageHeight/2) br = indices[i];
-  }
-  
-  indices.clear();
-  indices.push_back(tl);
-  indices.push_back(tr);
-  indices.push_back(bl);
-  indices.push_back(br);
 }
 
 //void LoyaltyCardDetector::filter_largest_square(const vector<vector<Point> >& squares, vector<Point>& biggest_square)
