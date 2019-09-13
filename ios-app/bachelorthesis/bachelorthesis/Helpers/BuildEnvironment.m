@@ -12,10 +12,10 @@
 
 + (BOOL)isReleaseEvironment
 {
-#if RELEASE==1
-  return YES;
-#else
+#if DEBUG==1
   return NO;
+#else
+  return YES;
 #endif
 }
 

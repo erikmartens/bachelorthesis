@@ -205,9 +205,12 @@ class StillImageViewController: UIViewController {
     }
     switch selectedScannerLibrary {
     case .weScan:
-      // TODO modify pod so that option to show edit can be chosen
-      let scannerViewController = ImageScannerController(image: selectedImage, delegate: self)
-      present(scannerViewController, animated: true)
+      if BuildEnvironment.isReleaseEvironment() {
+        _ = ImageScannerController(image: selectedImage, showEdit: false, delegate: self)
+      } else {
+        let scannerViewController = ImageScannerController(image: selectedImage, delegate: self)
+        present(scannerViewController, animated: true)
+      }
     case .gpuImage:
       break
     case .openCV:
