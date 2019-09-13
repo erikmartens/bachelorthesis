@@ -72,7 +72,7 @@ class StillImageViewController: UIViewController {
       } else if let contoursImage = processingResult?.contoursImage {
         resultImageView.image = contoursImage
         resultTypeSegmentedControl.selectedSegmentIndex = 1
-      }else if let houghLinesImage = processingResult?.houghLinesImage {
+      } else if let houghLinesImage = processingResult?.houghLinesImage {
         resultImageView.image = houghLinesImage
         resultTypeSegmentedControl.selectedSegmentIndex = 2
       } else if let intersectionsImage = processingResult?.intersectionsImage {
@@ -86,7 +86,7 @@ class StillImageViewController: UIViewController {
       resultTypeSegmentedControl.isHidden = processingResult?.contoursImage == nil && processingResult?.houghLinesImage == nil && processingResult?.intersectionsImage == nil && processingResult?.verticesImage == nil
       resultTypeSegmentedControl.setEnabled(processingResult?.croppedImage != nil, forSegmentAt: 0)
       resultTypeSegmentedControl.setEnabled(processingResult?.contoursImage != nil, forSegmentAt: 1)
-      resultTypeSegmentedControl.setEnabled(processingResult?.houghLinesImage != nil, forSegmentAt: 1)
+      resultTypeSegmentedControl.setEnabled(processingResult?.houghLinesImage != nil, forSegmentAt: 2)
       resultTypeSegmentedControl.setEnabled(processingResult?.intersectionsImage != nil, forSegmentAt: 3)
       resultTypeSegmentedControl.setEnabled(processingResult?.verticesImage != nil, forSegmentAt: 4)
     }

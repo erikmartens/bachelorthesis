@@ -55,6 +55,7 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, 
       debugContoursOutputs.push_back(debugContoursOutput);
       debugIntersectionPointsOutputs.push_back(debugIntersectionPointsOutput);
       debugHoughLinesOutputs.push_back(debugHoughLinesOutput);
+      debugVerticesOutputs.push_back(debugVerticesOutput);
       
       potentialCardVertices.push_back(quadrangle);
     }
@@ -76,7 +77,6 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, 
   }
   
 #if DEBUG==1
-
   if (selectedIndex != -1)
   {
     if (debugContoursOutputs.size() > selectedIndex) debugContoursImage = debugContoursOutputs[selectedIndex];
