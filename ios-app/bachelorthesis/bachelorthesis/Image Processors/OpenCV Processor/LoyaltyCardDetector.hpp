@@ -50,9 +50,6 @@ private:
   static vector<cv::Point> order_points(vector<cv::Point> points);
   static float line_slope(Vec4i line);
   static float line_slope_4f(Vec4f line);
-  static void get_intersections(vector<Vec4i> &lines, vector<cv::Point> &intersections, int imageWidth, int imageHeight);
-  static bool get_intersection(const Vec4i &line_a, const Vec4i &line_b, cv::Point &intersection);
-  static array<int, 3> cross(const array<int, 3> &a, const array<int, 3> &b);
   static void filter_intersections_for_vertices(vector<cv::Point> &intersections, vector<cv::Point> &corners, int imageWidth, int imageHeight);
   static bool two_times_same_corner_angles(vector<double> &cosines);
   static double line_length(Vec4i &line);

@@ -8,6 +8,8 @@
 
 #include "LoyaltyCardDetector.hpp"
 
+//#define EROSION_APPROACH
+
 using namespace cv;
 using namespace std;
 
@@ -71,7 +73,7 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, 
   int selectedIndex = find_best_matching_quadrangle_from_quadrangles(potentialCardVertices, bestQuadrangle);
   
   // best effort quadrangle is used
-  if (bestQuadrangle.size() == 0) {
+  if (selectedIndex == -1) {
     selectedIndex = 0;
     bestQuadrangle = potentialCardVertices[0];
   }
@@ -211,7 +213,7 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   convexHull(Mat(contour), hull[0], false);
   
   /// find hough lines of convex hull
-  vector<Vec4i> lines;
+  vector<Vec4f> lines;
   drawContours(convexHull_mask, hull, 0, Scalar(255), 5, LINE_AA);
   HoughLinesP(convexHull_mask, lines, 1, CV_PI / 80, 100, 30, 10);
 
@@ -219,7 +221,6 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   vector<Point> finalVertices;
   vector<Vec4i> finalLines;
 
-#define EROSION_APPROACH
 #ifdef EROSION_APPROACH
   Mat linesErodeInput(imageHeight, imageWidth, CV_8UC1);
   linesErodeInput = Scalar(0);
@@ -237,12 +238,12 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   convert_contours_to_lines(erodedContours, linesFromContours, imageWidth, imageHeight);
   convert_lines4f_to_lines4i(linesFromContours, finalLines); // convert for debug output
   
-//  get_intersections(finalLines, intersections, imageWidth, imageHeight);
   line_intersections(linesFromContours, intersections, imageWidth, imageHeight);
   finalVertices = intersections;
 #else // KMEAN_APPROACH
   /// find intersection points of all lines
-  get_intersections(lines, intersections, imageWidth, imageHeight);
+  line_intersections(lines, intersections, imageWidth, imageHeight);
+  convert_lines4f_to_lines4i(lines, finalLines);
   /// filter down to 4 cornerpoints of quadrangle
   filter_intersections_for_vertices(intersections, finalVertices, imageWidth, imageHeight);
 #endif
@@ -259,17 +260,10 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   draw_points(contour, contoursOutput);
   debugContoursOutput = contoursOutput;
   
-#ifdef EROSION_APPROACH
   Mat linesOutput(imageHeight, imageWidth, CV_8UC1);
   linesOutput = Scalar(0);
   draw_vectors(finalLines, linesOutput);
   debugHoughLinesOutput = linesOutput;
-#else // KMEAN_APPROACH
-  Mat linesOutput(imageHeight, imageWidth, CV_8UC1);
-  linesOutput = Scalar(0);
-  draw_vectors(lines, linesOutput);
-  debugHoughLinesOutput = linesOutput;
-#endif
   
   Mat intersectionsOutput(imageHeight, imageWidth, CV_8UC1);
   intersectionsOutput = Scalar(0);
@@ -491,67 +485,6 @@ float LoyaltyCardDetector::line_slope(Vec4i line)
 float LoyaltyCardDetector::line_slope_4f(Vec4f line)
 {
   return (line[3] - line[1]) / (line[2] - line[0]);
-}
-
-void LoyaltyCardDetector::get_intersections(vector<Vec4i> &lines, vector<Point> &intersections, int imageWidth, int imageHeight)
-{
-  for (int i = 0; i < lines.size(); i++)
-  {
-    for (int j = i; j < lines.size(); j++)
-    {
-      Point intersection;
-      bool intersects = get_intersection(lines[i], lines[j], intersection);
-      
-      if (intersects && (intersection.x >= 0) && (intersection.y >= 0) && (intersection.x < imageWidth) && (intersection.y < imageHeight))
-      {
-        intersections.push_back(intersection);
-      }
-    }
-  }
-}
-
-bool LoyaltyCardDetector::get_intersection(const Vec4i &line_a, const Vec4i &line_b, Point &intersection)
-{
-  array<int, 3> pa{ { line_a[0], line_a[1], 1 } };
-  array<int, 3> pb{ { line_a[2], line_a[3], 1 } };
-  array<int, 3> la = cross(pa, pb);
-  pa[0] = line_b[0];
-  pa[1] = line_b[1];
-  pa[2] = 1;
-  
-  pb[0] = line_b[2];
-  pb[1] = line_b[3];
-  pb[2] = 1;
-  
-  array<int, 3> lb = cross(pa, pb);
-  array<int, 3> inter = cross(la, lb);
-  
-  double slopeA = line_slope(line_a);
-  double slopeB = line_slope(line_b);
-  
-  if (inter[2] == 0) // ||
-  {
-    return false; // two lines are parallel
-  }
-  else if (fabs(fabs(slopeA) - fabs(slopeB)) < 5.0)
-  {
-    return false; // two lines have a very similar slope
-  }
-  else
-  {
-    intersection.x = inter[0] / inter[2];
-    intersection.y = inter[1] / inter[2];
-    return true;
-  }
-}
-
-array<int, 3> LoyaltyCardDetector::cross(const array<int, 3> &a, const array<int, 3> &b)
-{
-  array<int, 3> result;
-  result[0] = a[1] * b[2] - a[2] * b[1];
-  result[1] = a[2] * b[0] - a[0] * b[2];
-  result[2] = a[0] * b[1] - a[1] * b[0];
-  return result;
 }
 
 void LoyaltyCardDetector::filter_intersections_for_vertices(vector<Point> &intersections, vector<Point> &vertices, int imageWidth, int imageHeight)
