@@ -214,14 +214,38 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   vector<Vec4i> lines;
   drawContours(convexHull_mask, hull, 0, Scalar(255), 5, LINE_AA);
   HoughLinesP(convexHull_mask, lines, 1, CV_PI / 80, 100, 30, 10);
-  
-  /// find intersection points of all lines
+
   vector<Point> intersections;
-  get_intersections(lines, intersections, imageWidth, imageHeight);
-  
-  /// filter down to 4 cornerpoints of quadrangle
   vector<Point> finalVertices;
+  vector<Vec4i> finalLines;
+
+#define EROSION_APPROACH
+#ifdef EROSION_APPROACH
+  Mat linesErodeInput(imageHeight, imageWidth, CV_8UC1);
+  linesErodeInput = Scalar(0);
+  Mat linesErodeOutput(imageHeight, imageWidth, CV_8UC1);
+  linesErodeOutput = Scalar(0);
+
+  draw_vectors(lines, linesErodeInput);
+  Mat erodeKernel = getStructuringElement(MORPH_RECT, Size(7, 7));
+  erode(linesErodeInput, linesErodeOutput, erodeKernel);
+  
+  vector<vector<Point>> erodedContours;
+  findContours(linesErodeOutput, erodedContours, RETR_LIST, CHAIN_APPROX_SIMPLE);
+  
+  vector<Vec4f> linesFromContours;
+  convert_contours_to_lines(erodedContours, linesFromContours, imageWidth, imageHeight);
+  convert_lines4f_to_lines4i(linesFromContours, finalLines); // convert for debug output
+  
+//  get_intersections(finalLines, intersections, imageWidth, imageHeight);
+  line_intersections(linesFromContours, intersections, imageWidth, imageHeight);
+  finalVertices = intersections;
+#else // KMEAN_APPROACH
+  /// find intersection points of all lines
+  get_intersections(lines, intersections, imageWidth, imageHeight);
+  /// filter down to 4 cornerpoints of quadrangle
   filter_intersections_for_vertices(intersections, finalVertices, imageWidth, imageHeight);
+#endif
   
   /// only return results if we have exactly corner points
   if (finalVertices.size() == 4)
@@ -230,22 +254,28 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   }
   
 #if DEBUG==1
-  /// DEBUG
   Mat contoursOutput(imageHeight, imageWidth, CV_8UC1);
   contoursOutput = Scalar(0);
   draw_points(contour, contoursOutput);
   debugContoursOutput = contoursOutput;
   
+#ifdef EROSION_APPROACH
+  Mat linesOutput(imageHeight, imageWidth, CV_8UC1);
+  linesOutput = Scalar(0);
+  draw_vectors(finalLines, linesOutput);
+  debugHoughLinesOutput = linesOutput;
+#else // KMEAN_APPROACH
   Mat linesOutput(imageHeight, imageWidth, CV_8UC1);
   linesOutput = Scalar(0);
   draw_vectors(lines, linesOutput);
   debugHoughLinesOutput = linesOutput;
+#endif
   
   Mat intersectionsOutput(imageHeight, imageWidth, CV_8UC1);
   intersectionsOutput = Scalar(0);
   draw_points(intersections, intersectionsOutput);
   debugIntersectionsOutput = intersectionsOutput;
-  
+
   Mat verticesOutput(imageHeight, imageWidth, CV_8UC1);
   verticesOutput = Scalar(0);
   draw_points(finalVertices, verticesOutput);
@@ -453,9 +483,14 @@ vector<Point> LoyaltyCardDetector::order_points(vector<Point> points)
   return order;
 }
 
-double LoyaltyCardDetector::line_slope(Vec4i line)
+float LoyaltyCardDetector::line_slope(Vec4i line)
 {
-  return ( (double) line[3] - (double) line[1] ) / ( (double) line[2] - (double) line[0] );
+  return ((float) line[3] - (float) line[1]) / ((float) line[2] - (float) line[0]);
+}
+
+float LoyaltyCardDetector::line_slope_4f(Vec4f line)
+{
+  return (line[3] - line[1]) / (line[2] - line[0]);
 }
 
 void LoyaltyCardDetector::get_intersections(vector<Vec4i> &lines, vector<Point> &intersections, int imageWidth, int imageHeight)
@@ -467,7 +502,7 @@ void LoyaltyCardDetector::get_intersections(vector<Vec4i> &lines, vector<Point> 
       Point intersection;
       bool intersects = get_intersection(lines[i], lines[j], intersection);
       
-      if ( intersects && (intersection.x > 0) && (intersection.y > 0) && (intersection.x < imageWidth) && (intersection.y < imageHeight) )
+      if (intersects && (intersection.x >= 0) && (intersection.y >= 0) && (intersection.x < imageWidth) && (intersection.y < imageHeight))
       {
         intersections.push_back(intersection);
       }
@@ -494,9 +529,13 @@ bool LoyaltyCardDetector::get_intersection(const Vec4i &line_a, const Vec4i &lin
   double slopeA = line_slope(line_a);
   double slopeB = line_slope(line_b);
   
-  if (inter[2] == 0 || fabs(fabs(slopeA) - fabs(slopeB)) < 5.0 )
+  if (inter[2] == 0) // ||
   {
     return false; // two lines are parallel
+  }
+  else if (fabs(fabs(slopeA) - fabs(slopeB)) < 5.0)
+  {
+    return false; // two lines have a very similar slope
   }
   else
   {
@@ -546,8 +585,6 @@ void LoyaltyCardDetector::filter_intersections_for_vertices(vector<Point> &inter
   {
     vertices.push_back(results2f[i]);
   }
-  
-  // find closest actual points
 }
 
 bool LoyaltyCardDetector::two_times_same_corner_angles(vector<double> &cosines)
@@ -578,6 +615,95 @@ bool LoyaltyCardDetector::two_times_same_corner_angles(vector<double> &cosines)
   return true;
 }
 
+double LoyaltyCardDetector::line_length(Vec4i &line)
+{
+  return sqrt(static_cast<double>((line[0] - line[2]) * (line[0] - line[2]) + (line[1] - line[3]) * (line[1] - line[3])));
+}
+
+void LoyaltyCardDetector::line_intersections(vector<Vec4f> &lines, vector<Point> &intersections, int imageWidth, int imageHeight)
+{
+  for (int i = 0; i < lines.size(); i++)
+  {
+    float slope1 = line_slope_4f(lines[i]);
+    float coefficient1 = lines[i][1] - slope1 * lines[i][0];
+    
+    for (int j = i; j < lines.size(); j++)
+    {
+      if (i == j) continue; // skip line comparison to itself
+      
+      float slope2 = line_slope_4f(lines[j]);
+      float coefficient2 = lines[j][1] - slope2 * lines[j][0];
+      
+      if (slope1 == slope2) continue; // lines are parallel
+      
+      float intersectionX = (coefficient1 - coefficient2) / (slope2 - slope1);
+      float intersectionY = slope1 * intersectionX + coefficient1;
+      
+      if (intersectionX < 0.0f || intersectionY < 0.0 || intersectionX >= (float) imageWidth || intersectionY >= (float) imageHeight) continue;
+      
+      Point intersectionPoint = Point((int) intersectionX, (int) intersectionY);
+      intersections.push_back(intersectionPoint);
+    }
+  }
+}
+
+void LoyaltyCardDetector::convert_contours_to_lines(vector<vector<Point>> &contours, vector<Vec4f> &lines, int imageWidth, int imageHeight)
+{
+  /// cycle through all contours
+  for (int i = 0; i < contours.size(); i++)
+  {
+    Vec4f result;
+    fitLine(contours[i], result, DIST_L1, 1, 0.001, 0.001);
+    
+    int x0, y0, x1, y1;
+    x0 = (float) imageWidth - 1;
+    y0 = (-result[2] * (result[1] / result[0])) + result[3];
+    x1 = 0.0f;
+    y1 = ((imageWidth - result[2]) * (result[1] / result[0])) + result[3];
+    
+    Vec4f line(x0, y0, x1, y1);
+    
+//    /// Points with negative components
+//    /// The only 2 possibilities are:
+//    /// - to cross the y-axis in a negative point and cross the y-axis defined by the imageWidth - 1 in a positive point (positive slope)
+//    /// - to cross the y-axis in a positive point and cross the y-axis defined by the imageWidth - 1 in a negative point (negative slope)
+//    /// Otherwise the line wouldn't pass through the image matrix
+//    if (line[1] < 0)
+//    {
+//      /// find 2 new points that are defined within the image space
+//      int slope = (int) line_slope(line);
+//      int xNew0, yNew0;
+//      xNew0 = 0;
+//      yNew0 = -y1 / slope;
+//
+//      line[0] = xNew0;
+//      line[1] = yNew0;
+//    }
+//    else if (line[3] < 0)
+//    {
+//      /// find 2 new points that are defined within the image space
+//      int slope = (int) line_slope(line);
+//      int xNew1, yNew1;
+//      xNew1 = (imageHeight - 1 - y1) / slope;
+//      yNew1 = imageHeight - 1;
+//
+//      line[2] = xNew1;
+//      line[3] = yNew1;
+//    }
+    
+    lines.push_back(line);
+  }
+}
+
+void LoyaltyCardDetector::convert_lines4f_to_lines4i(vector<Vec4f> &lines4f, vector<Vec4i> &lines)
+{
+  for (int i = 0; i < lines4f.size(); i++)
+  {
+    Vec4i line = Vec4i(lines4f[i][0], lines4f[i][1], lines4f[i][2], lines4f[i][3]);
+    lines.push_back(line);
+  }
+}
+
 # pragma mark Drawing
 
 void LoyaltyCardDetector::draw_square( const Mat& image, const vector<Point>& square )
@@ -589,7 +715,7 @@ void LoyaltyCardDetector::draw_square( const Mat& image, const vector<Point>& sq
 
 void LoyaltyCardDetector::draw_vectors(vector<Vec4i> &lines, Mat &destination)
 {
-  for (size_t i = 0; i < lines.size(); i++)
+  for (int i = 0; i < lines.size(); i++)
   {
     Vec4i l = lines[i];
     line(destination, Point(l[0], l[1]), Point(l[2], l[3]), Scalar(255), 5, LINE_8);
@@ -598,7 +724,7 @@ void LoyaltyCardDetector::draw_vectors(vector<Vec4i> &lines, Mat &destination)
 
 void LoyaltyCardDetector::draw_points(vector<Point> &points, Mat &destination)
 {
-  for (size_t i = 0; i < points.size(); i++)
+  for (int i = 0; i < points.size(); i++)
   {
     circle(destination, points[i], 20, Scalar(255), 5);
   }
