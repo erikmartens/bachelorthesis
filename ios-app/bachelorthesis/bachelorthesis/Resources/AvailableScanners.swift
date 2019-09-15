@@ -45,7 +45,7 @@ let availableScanners = [
              github: URL(string: "https://github.com/opencv"),
              scannerLibrary: .openCV,
              inputOptions: [.camera, .gallery]),
-  ScannerDTO(title: "WeScan",
+  ScannerDTO(title: "CIDetector/Vision with WeScan",
              website: URL(string: "https://wetransfer.com/"),
              github: URL(string: "https://github.com/WeTransfer/WeScan"),
              scannerLibrary: .weScan,
