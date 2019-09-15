@@ -9,6 +9,10 @@
 #include "LoyaltyCardDetector.hpp"
 
 //#define EROSION_APPROACH
+#define VECTOR_EQUIVALENCY_GROUPS_APPROACH
+//#define KMEAN_APPRAOCH
+
+#define TOLERANCE_THRESHOLD 0.95f
 
 using namespace cv;
 using namespace std;
@@ -23,7 +27,7 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, 
   
   /// sort most promising contours to top
   vector<int> indices(contours.size());
-  for ( int i = 0; i < contours.size(); i++ )
+  for (int i = 0; i < contours.size(); i++)
   {
     indices[i] = i;
   }
@@ -95,8 +99,6 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, 
 }
 
 # pragma mark Private
-
-double LoyaltyCardDetector::toleranceThreshold = 0.95;
 
 # pragma mark Detection
 
@@ -209,7 +211,7 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   /// Find the convex hull object
   Mat convexHull_mask(imageHeight, imageWidth, CV_8UC1);
   convexHull_mask = Scalar(0);
-  vector<vector<Point> >hull(1);
+  vector<vector<Point>> hull(1);
   convexHull(Mat(contour), hull[0], false);
   
   /// find hough lines of convex hull
@@ -222,30 +224,106 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   vector<Vec4i> finalLines;
 
 #ifdef EROSION_APPROACH
-  Mat linesErodeInput(imageHeight, imageWidth, CV_8UC1);
-  linesErodeInput = Scalar(0);
-  Mat linesErodeOutput(imageHeight, imageWidth, CV_8UC1);
-  linesErodeOutput = Scalar(0);
-
-  draw_vectors(lines, linesErodeInput);
-  Mat erodeKernel = getStructuringElement(MORPH_RECT, Size(7, 7));
-  erode(linesErodeInput, linesErodeOutput, erodeKernel);
+  
+  Mat linesErodedMat(imageHeight, imageWidth, CV_8UC1);
+  linesErodedMat = Scalar(0);
+  draw_vectors_4f(lines, linesErodedMat);
+  
+  Mat erodeKernel = getStructuringElement(MORPH_RECT, Size(3, 3));
+  erode(linesErodedMat, linesErodedMat, erodeKernel);
   
   vector<vector<Point>> erodedContours;
-  findContours(linesErodeOutput, erodedContours, RETR_LIST, CHAIN_APPROX_SIMPLE);
+  findContours(linesErodedMat, erodedContours, RETR_LIST, CHAIN_APPROX_SIMPLE);
   
-  vector<Vec4f> linesFromContours;
-  convert_contours_to_lines(erodedContours, linesFromContours, imageWidth, imageHeight);
-  convert_lines4f_to_lines4i(linesFromContours, finalLines); // convert for debug output
+  // find all the lines define by contours
+  vector<Vec4f> linesFromErodedContours;
+  convert_contours_to_lines(erodedContours, linesFromErodedContours, imageWidth, imageHeight);
+  convert_lines4f_to_lines4i(linesFromErodedContours, finalLines); // convert for debug output
   
-  line_intersections(linesFromContours, intersections, imageWidth, imageHeight);
+  line_intersections(linesFromErodedContours, intersections, imageWidth, imageHeight);
   finalVertices = intersections;
-#else // KMEAN_APPROACH
+#endif
+  
+#ifdef VECTOR_EQUIVALENCY_GROUPS_APPROACH
+  
+  /// partition lines into equivalency groups
+  vector<int> labels;
+  int numberOfLines = partition(lines, labels, is_equal_vector_4f);
+  
+  /// find the max label
+  int maxElement = -1;
+  for (int i = 0; i < labels.size(); i++)
+  {
+    if (maxElement == -1) maxElement = labels[i];
+    if (maxElement < labels[i]) maxElement = labels[i];
+  }
+  
+  /// count occurances for each label up to the max label
+  vector<int> labelCounts;
+  for (int i = 0; i <= maxElement; i++)
+  {
+    int currentLabelCount = 0;
+    for (int j = 0; j <= labels.size(); j++)
+    {
+      if (labels[j] == i) currentLabelCount++;
+    }
+    labelCounts.push_back(currentLabelCount);
+  }
+  
+  /// sort the labels by number of occurances
+  vector<int> indices(labelCounts.size());
+  for (int i = 0; i < labelCounts.size(); i++)
+  {
+    indices[i] = i;
+  }
+  sort(indices.begin(), indices.end(), [&labelCounts](int lhs, int rhs) {
+    return labelCounts[lhs] > labelCounts[rhs];
+  });
+  
+  /// the top 4 labels should be the predominent equivalency groups
+  vector<vector<Vec4f>> topHoughLines;
+  for (int i = 0; i < 4; i++)
+  {
+    int label = indices[i];
+    vector<Vec4f> currentEquivalencyClass;
+    for (int j = 0; j < labels.size(); i++)
+    {
+      if (labels[j] == label) currentEquivalencyClass.push_back(lines[j]);
+    }
+    topHoughLines.push_back(currentEquivalencyClass);
+  }
+  
+  /// draw the top lines into a matrix each, find their contours and draw a line through the contour:
+  /// this line represents the edge
+  vector<Vec4f> topLines;
+  vector<vector<Point>> houghLineContours;
+  
+  Mat topHoughLinesMat(imageHeight, imageWidth, CV_8UC1);
+  topHoughLinesMat = Scalar(0);
+  
+  for (int i = 0; i < topHoughLines.size(); i++)
+  {
+    draw_vectors_4f(topHoughLines[i], topHoughLinesMat);
+  }
+  findContours(topHoughLinesMat, houghLineContours, RETR_LIST, CHAIN_APPROX_SIMPLE);
+  convert_contours_to_lines(houghLineContours, topLines, imageWidth, imageHeight);
+  
+  convert_lines4f_to_lines4i(topLines, finalLines); // convert for debug output
+  
+  line_intersections(topLines, intersections, imageWidth, imageHeight);
+  finalVertices = intersections;
+
+#endif
+  
+#ifdef KMEAN_APPROACH
+  
   /// find intersection points of all lines
   line_intersections(lines, intersections, imageWidth, imageHeight);
-  convert_lines4f_to_lines4i(lines, finalLines);
+  convert_lines4f_to_lines4i(lines, finalLines); // convert for debug output
+  
   /// filter down to 4 cornerpoints of quadrangle
   filter_intersections_for_vertices(intersections, finalVertices, imageWidth, imageHeight);
+
 #endif
   
   /// only return results if we have exactly corner points
@@ -260,9 +338,10 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   draw_points(contour, contoursOutput);
   debugContoursOutput = contoursOutput;
   
+  
   Mat linesOutput(imageHeight, imageWidth, CV_8UC1);
   linesOutput = Scalar(0);
-  draw_vectors(finalLines, linesOutput);
+  draw_vectors_4i(finalLines, linesOutput);
   debugHoughLinesOutput = linesOutput;
   
   Mat intersectionsOutput(imageHeight, imageWidth, CV_8UC1);
@@ -306,11 +385,11 @@ int LoyaltyCardDetector::find_best_matching_quadrangle_from_quadrangles(vector<v
     double slopeLeftVerticalLine = line_slope(leftVerticalLine);
     double slopeRightVerticalLine = line_slope(rightVerticalLine);
     
-    bool slopesTopBottomAreSimilar = ((slopeTopHorizontalLine >= 0.0 && slopeBottomHorizontalLine >= 0.0) || (slopeTopHorizontalLine <= 0.0 && slopeBottomHorizontalLine <= 0.0)) && (slopeBottomHorizontalLine*toleranceThreshold <= slopeTopHorizontalLine <= slopeBottomHorizontalLine || slopeTopHorizontalLine*toleranceThreshold <= slopeBottomHorizontalLine <= slopeTopHorizontalLine);
-    bool slopesLeftRightAreSimilar = ((slopeLeftVerticalLine >= 0.0 && slopeRightVerticalLine >= 0.0) || (slopeLeftVerticalLine <= 0.0 && slopeRightVerticalLine <= 0.0)) && (slopeRightVerticalLine*toleranceThreshold <= slopeLeftVerticalLine <= slopeRightVerticalLine || slopeLeftVerticalLine*toleranceThreshold <= slopeRightVerticalLine <= slopeLeftVerticalLine);
+    bool slopesTopBottomAreSimilar = ((slopeTopHorizontalLine >= 0.0 && slopeBottomHorizontalLine >= 0.0) || (slopeTopHorizontalLine <= 0.0 && slopeBottomHorizontalLine <= 0.0)) && ((slopeBottomHorizontalLine*TOLERANCE_THRESHOLD <= slopeTopHorizontalLine && slopeTopHorizontalLine <= slopeBottomHorizontalLine) || (slopeTopHorizontalLine*TOLERANCE_THRESHOLD <= slopeBottomHorizontalLine && slopeBottomHorizontalLine <= slopeTopHorizontalLine));
+    bool slopesLeftRightAreSimilar = ((slopeLeftVerticalLine >= 0.0 && slopeRightVerticalLine >= 0.0) || (slopeLeftVerticalLine <= 0.0 && slopeRightVerticalLine <= 0.0)) && ((slopeRightVerticalLine*TOLERANCE_THRESHOLD <= slopeLeftVerticalLine && slopeLeftVerticalLine <= slopeRightVerticalLine) || (slopeLeftVerticalLine*TOLERANCE_THRESHOLD <= slopeRightVerticalLine && slopeRightVerticalLine <= slopeLeftVerticalLine));
     
-    bool slopesTopBottomAreOpposite = ((slopeTopHorizontalLine >= 0.0 && slopeBottomHorizontalLine < 0.0) || (slopeTopHorizontalLine < 0.0 && slopeBottomHorizontalLine >= 0.0)) && (fabs(slopeBottomHorizontalLine)*toleranceThreshold <= fabs(slopeTopHorizontalLine) <= fabs(slopeBottomHorizontalLine) || fabs(slopeTopHorizontalLine)*toleranceThreshold <= fabs(slopeBottomHorizontalLine) <= fabs(slopeTopHorizontalLine));
-    bool slopesLeftRightAreOpposite = ((slopeLeftVerticalLine >= 0.0 && slopeRightVerticalLine < 0.0) || (slopeLeftVerticalLine < 0.0 && slopeRightVerticalLine >= 0.0)) && (fabs(slopeRightVerticalLine)*toleranceThreshold <= fabs(slopeLeftVerticalLine) <= fabs(slopeRightVerticalLine) || fabs(slopeLeftVerticalLine)*toleranceThreshold <= fabs(slopeRightVerticalLine) <= fabs(slopeLeftVerticalLine));
+    bool slopesTopBottomAreOpposite = ((slopeTopHorizontalLine >= 0.0 && slopeBottomHorizontalLine < 0.0) || (slopeTopHorizontalLine < 0.0 && slopeBottomHorizontalLine >= 0.0)) && ((fabs(slopeBottomHorizontalLine)*TOLERANCE_THRESHOLD <= fabs(slopeTopHorizontalLine) && fabs(slopeTopHorizontalLine) <= fabs(slopeBottomHorizontalLine)) || (fabs(slopeTopHorizontalLine)*TOLERANCE_THRESHOLD <= fabs(slopeBottomHorizontalLine) && fabs(slopeBottomHorizontalLine) <= fabs(slopeTopHorizontalLine)));
+    bool slopesLeftRightAreOpposite = ((slopeLeftVerticalLine >= 0.0 && slopeRightVerticalLine < 0.0) || (slopeLeftVerticalLine < 0.0 && slopeRightVerticalLine >= 0.0)) && ((fabs(slopeRightVerticalLine)*TOLERANCE_THRESHOLD <= fabs(slopeLeftVerticalLine) && fabs(slopeLeftVerticalLine) <= fabs(slopeRightVerticalLine)) || (fabs(slopeLeftVerticalLine)*TOLERANCE_THRESHOLD <= fabs(slopeRightVerticalLine) && fabs(slopeRightVerticalLine) <= fabs(slopeLeftVerticalLine)));
     
     vector<double> angle_cosines;
     angle_cosines.push_back(fabs(angle(quadrangle[2], quadrangle[0], quadrangle[1])));
@@ -534,7 +613,7 @@ bool LoyaltyCardDetector::two_times_same_corner_angles(vector<double> &cosines)
     double cosine = cosines[i];
     for (int j = 0; j < 4; j++)
     {
-      if ((cosines[i]*toleranceThreshold <= cosine <= cosines[i] || cosine*toleranceThreshold <= cosines[i] <= cosine)
+      if ((cosines[i]*TOLERANCE_THRESHOLD <= cosine <= cosines[i] || cosine*TOLERANCE_THRESHOLD <= cosines[i] <= cosine)
           && cosine <= cosines[i])
       {
         count++;
@@ -548,9 +627,9 @@ bool LoyaltyCardDetector::two_times_same_corner_angles(vector<double> &cosines)
   return true;
 }
 
-double LoyaltyCardDetector::line_length(Vec4i &line)
+float LoyaltyCardDetector::line_length_4f(Vec4f &line)
 {
-  return sqrt(static_cast<double>((line[0] - line[2]) * (line[0] - line[2]) + (line[1] - line[3]) * (line[1] - line[3])));
+  return sqrt((line[0] - line[2]) * (line[0] - line[2]) + (line[1] - line[3]) * (line[1] - line[3]));
 }
 
 void LoyaltyCardDetector::line_intersections(vector<Vec4f> &lines, vector<Point> &intersections, int imageWidth, int imageHeight)
@@ -637,16 +716,42 @@ void LoyaltyCardDetector::convert_lines4f_to_lines4i(vector<Vec4f> &lines4f, vec
   }
 }
 
+bool LoyaltyCardDetector::is_equal_vector_4f(const Vec4f &lhsLine, const Vec4f &rhsLine)
+{
+  float lhsSlope = line_slope_4f(lhsLine);
+  float rhsSlope = line_slope_4f(rhsLine);
+  
+  bool isSimilarSlope = ((lhsSlope >= 0.0 && rhsSlope >= 0.0) || (lhsSlope <= 0.0 && rhsSlope <= 0.0))
+  && ((rhsSlope*TOLERANCE_THRESHOLD <= lhsSlope && lhsSlope <= rhsSlope) || (lhsSlope*TOLERANCE_THRESHOLD <= rhsSlope && rhsSlope <= lhsSlope));
+  
+  bool isSimilarXCoordinate = (rhsLine[0]*TOLERANCE_THRESHOLD <= lhsLine[0] <= rhsLine[0] || lhsLine[0]*TOLERANCE_THRESHOLD <= rhsLine[0] <= lhsLine[0])
+  && ((rhsLine[2]*TOLERANCE_THRESHOLD <= lhsLine[2] && lhsLine[2] <= rhsLine[2]) || (lhsLine[2]*TOLERANCE_THRESHOLD <= rhsLine[2] && rhsLine[2] <= lhsLine[2]));
+  
+  bool isSimilarYCoordinate = (rhsLine[1]*TOLERANCE_THRESHOLD <= lhsLine[1] <= rhsLine[1] || lhsLine[1]*TOLERANCE_THRESHOLD <= rhsLine[1] <= lhsLine[1])
+  && ((rhsLine[3]*TOLERANCE_THRESHOLD <= lhsLine[3] && lhsLine[3] <= rhsLine[3]) || (lhsLine[3]*TOLERANCE_THRESHOLD <= rhsLine[3] && rhsLine[3] <= lhsLine[3]));
+  
+  return isSimilarSlope && (isSimilarXCoordinate || isSimilarYCoordinate);
+}
+
 # pragma mark Drawing
 
-void LoyaltyCardDetector::draw_square( const Mat& image, const vector<Point>& square )
+void LoyaltyCardDetector::draw_square(const Mat& image, const vector<Point>& square)
 {
   const Point* p = &square[0];
   int n = (int) square.size();
   polylines(image, &p, &n, 1, true, Scalar(0,0,255), 5, LINE_AA);
 }
 
-void LoyaltyCardDetector::draw_vectors(vector<Vec4i> &lines, Mat &destination)
+void LoyaltyCardDetector::draw_vectors_4f(vector<Vec4f> &lines, Mat &destination)
+{
+  for (int i = 0; i < lines.size(); i++)
+  {
+    Vec4f l = lines[i];
+    line(destination, Point((int) l[0], (int) l[1]), Point((int) l[2], (int) l[3]), Scalar(255), 5, LINE_8);
+  }
+}
+
+void LoyaltyCardDetector::draw_vectors_4i(vector<Vec4i> &lines, Mat &destination)
 {
   for (int i = 0; i < lines.size(); i++)
   {

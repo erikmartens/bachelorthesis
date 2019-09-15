@@ -52,15 +52,17 @@ private:
   static float line_slope_4f(Vec4f line);
   static void filter_intersections_for_vertices(vector<cv::Point> &intersections, vector<cv::Point> &corners, int imageWidth, int imageHeight);
   static bool two_times_same_corner_angles(vector<double> &cosines);
-  static double line_length(Vec4i &line);
+  static float line_length_4f(Vec4f &line);
   static void line_intersections(vector<Vec4f> &lines, vector<cv::Point> &intersections, int imageWidth, int imageHeight);
   static void convert_contours_to_lines(vector<vector<cv::Point>> &contours, vector<Vec4f> &lines, int imageWidth, int imageHeight);
   static void convert_lines4f_to_lines4i(vector<Vec4f> &lines4f, vector<Vec4i> &lines);
+  static bool is_equal_vector_4f(const Vec4f &lhsLine, const Vec4f &rhsLine);
   
 # pragma mark Drawing
   
   static void draw_square(const Mat& image, const vector<cv::Point>& square);
-  static void draw_vectors(vector<Vec4i> &lines, Mat &destination);
+  static void draw_vectors_4f(vector<Vec4f> &lines, Mat &destination);
+  static void draw_vectors_4i(vector<Vec4i> &lines, Mat &destination);
   static void draw_points(vector<cv::Point> &points, Mat &destination);
 };
 
