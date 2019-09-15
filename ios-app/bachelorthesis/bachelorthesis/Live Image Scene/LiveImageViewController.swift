@@ -30,8 +30,7 @@ protocol LiveImageViewControllerDelegate: class {
 class LiveImageViewController: UIViewController {
   
   // MARK: - IBOutlets
-  
-  @IBOutlet weak var galleryButton: FramedButton!
+
   @IBOutlet weak var cameraModeButton: FramedButton!
   
   @IBOutlet weak var cameraView: UIView!
@@ -96,9 +95,6 @@ class LiveImageViewController: UIViewController {
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel,
                                                         target: self,
                                                         action: #selector(cancelLiveImageController(_:)))
-    
-    galleryButton.setTitle(R.string.localizable.picture_from_gallery(),
-                           for: UIControl.State())
     cameraModeButton.setTitle(CameraMode.edges.title,
                                 for: UIControl.State())
     
