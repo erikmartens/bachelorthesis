@@ -13,6 +13,7 @@
 //#define KMEAN_APPRAOCH
 
 #define TOLERANCE_THRESHOLD 0.95f
+#define DISTANCE_THRESHOLD 10.0f
 
 using namespace cv;
 using namespace std;
@@ -44,7 +45,7 @@ bool LoyaltyCardDetector::extract_card_from(Mat &sourceImage, Mat &outputImage, 
  
   vector<vector<Point> > potentialCardVertices;
   
-  for (int i = 0; i < contours.size(); i++)
+  for (int i = 0; i < 1 /*contours.size()*/; i++)
   {
     Mat debugContoursOutput;
     Mat debugIntersectionPointsOutput;
@@ -248,7 +249,7 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   
   /// partition lines into equivalency groups
   vector<int> labels;
-  int numberOfLines = partition(lines, labels, is_equal_vector_4f);
+  partition(lines, labels, is_equal_vector_4f);
   
   /// find the max label
   int maxElement = -1;
@@ -281,31 +282,40 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
   });
   
   /// the top 4 labels should be the predominent equivalency groups
-  vector<vector<Vec4f>> topHoughLines;
-  for (int i = 0; i < 4; i++)
+  vector<Vec4f> topHoughLinesGroup1;
+  vector<Vec4f> topHoughLinesGroup2;
+  vector<Vec4f> topHoughLinesGroup3;
+  vector<Vec4f> topHoughLinesGroup4;
+  for (int i = 0; i < labels.size(); i++)
   {
-    int label = indices[i];
-    vector<Vec4f> currentEquivalencyClass;
-    for (int j = 0; j < labels.size(); i++)
-    {
-      if (labels[j] == label) currentEquivalencyClass.push_back(lines[j]);
-    }
-    topHoughLines.push_back(currentEquivalencyClass);
+    if (labels[i] == indices[0]) topHoughLinesGroup1.push_back(lines[i]);
+    if (labels[i] == indices[1]) topHoughLinesGroup2.push_back(lines[i]);
+    if (labels[i] == indices[2]) topHoughLinesGroup3.push_back(lines[i]);
+    if (labels[i] == indices[3]) topHoughLinesGroup4.push_back(lines[i]);
   }
   
-  /// draw the top lines into a matrix each, find their contours and draw a line through the contour:
+  vector<vector<Vec4f>> topHoughLines;
+  topHoughLines.push_back(topHoughLinesGroup1);
+  topHoughLines.push_back(topHoughLinesGroup2);
+  topHoughLines.push_back(topHoughLinesGroup3);
+  topHoughLines.push_back(topHoughLinesGroup4);
+  
+  /// draw each of the the top lines of the different groups into a matrix to unify them,
+  /// find their contours and draw a line through the contour:
   /// this line represents the edge
-  vector<Vec4f> topLines;
   vector<vector<Point>> houghLineContours;
-  
-  Mat topHoughLinesMat(imageHeight, imageWidth, CV_8UC1);
-  topHoughLinesMat = Scalar(0);
-  
   for (int i = 0; i < topHoughLines.size(); i++)
   {
+    vector<vector<Point>> identifiedContours;
+    Mat topHoughLinesMat(imageHeight, imageWidth, CV_8UC1);
+    topHoughLinesMat = Scalar(0);
     draw_vectors_4f(topHoughLines[i], topHoughLinesMat);
+    /// finds 1 contour per loop iteration
+    findContours(topHoughLinesMat, identifiedContours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
+    if (identifiedContours.size() > 0) houghLineContours.push_back(identifiedContours[0]);
   }
-  findContours(topHoughLinesMat, houghLineContours, RETR_LIST, CHAIN_APPROX_SIMPLE);
+  
+  vector<Vec4f> topLines;
   convert_contours_to_lines(houghLineContours, topLines, imageWidth, imageHeight);
   
   convert_lines4f_to_lines4i(topLines, finalLines); // convert for debug output
@@ -613,8 +623,12 @@ bool LoyaltyCardDetector::two_times_same_corner_angles(vector<double> &cosines)
     double cosine = cosines[i];
     for (int j = 0; j < 4; j++)
     {
-      if ((cosines[i]*TOLERANCE_THRESHOLD <= cosine <= cosines[i] || cosine*TOLERANCE_THRESHOLD <= cosines[i] <= cosine)
-          && cosine <= cosines[i])
+      if ((
+            (cosines[i]*TOLERANCE_THRESHOLD <= cosine && cosine <= cosines[i])
+            || (cosine*TOLERANCE_THRESHOLD <= cosines[i] && cosines[i] <= cosine)
+          ) && (
+            cosine <= cosines[i]
+          ))
       {
         count++;
       }
@@ -724,13 +738,38 @@ bool LoyaltyCardDetector::is_equal_vector_4f(const Vec4f &lhsLine, const Vec4f &
   bool isSimilarSlope = ((lhsSlope >= 0.0 && rhsSlope >= 0.0) || (lhsSlope <= 0.0 && rhsSlope <= 0.0))
   && ((rhsSlope*TOLERANCE_THRESHOLD <= lhsSlope && lhsSlope <= rhsSlope) || (lhsSlope*TOLERANCE_THRESHOLD <= rhsSlope && rhsSlope <= lhsSlope));
   
-  bool isSimilarXCoordinate = (rhsLine[0]*TOLERANCE_THRESHOLD <= lhsLine[0] <= rhsLine[0] || lhsLine[0]*TOLERANCE_THRESHOLD <= rhsLine[0] <= lhsLine[0])
-  && ((rhsLine[2]*TOLERANCE_THRESHOLD <= lhsLine[2] && lhsLine[2] <= rhsLine[2]) || (lhsLine[2]*TOLERANCE_THRESHOLD <= rhsLine[2] && rhsLine[2] <= lhsLine[2]));
+  bool slopesBelow1 = fabs(lhsSlope) < 1.0 && fabs(lhsSlope) < 1.0;
+  bool slopesAbove1 = fabs(lhsSlope) >= 1.0 && fabs(lhsSlope) >= 1.0;
   
-  bool isSimilarYCoordinate = (rhsLine[1]*TOLERANCE_THRESHOLD <= lhsLine[1] <= rhsLine[1] || lhsLine[1]*TOLERANCE_THRESHOLD <= rhsLine[1] <= lhsLine[1])
-  && ((rhsLine[3]*TOLERANCE_THRESHOLD <= lhsLine[3] && lhsLine[3] <= rhsLine[3]) || (lhsLine[3]*TOLERANCE_THRESHOLD <= rhsLine[3] && rhsLine[3] <= lhsLine[3]));
+  bool isSimilarXCoordinate = ((
+                                (rhsLine[0] - DISTANCE_THRESHOLD <= lhsLine[0] && lhsLine[0] <= rhsLine[0])
+                                || (lhsLine[0] - DISTANCE_THRESHOLD <= rhsLine[0] && rhsLine[0] <= lhsLine[0])
+                                ) && (
+                                (rhsLine[2] - DISTANCE_THRESHOLD <= lhsLine[2] && lhsLine[2] <= rhsLine[2])
+                                || (lhsLine[2] - DISTANCE_THRESHOLD <= rhsLine[2] && rhsLine[2] <= lhsLine[2])
+                              )) || ((
+                                (rhsLine[0] - DISTANCE_THRESHOLD <= lhsLine[2] && lhsLine[2] <= rhsLine[0])
+                                || (lhsLine[2] - DISTANCE_THRESHOLD <= rhsLine[0] && rhsLine[0] <= lhsLine[2])
+                                ) || (
+                                (rhsLine[2] - DISTANCE_THRESHOLD <= lhsLine[0] && lhsLine[0] <= rhsLine[2])
+                                || (lhsLine[0] - DISTANCE_THRESHOLD <= rhsLine[2] && rhsLine[2] <= lhsLine[0])
+                              ));
   
-  return isSimilarSlope && (isSimilarXCoordinate || isSimilarYCoordinate);
+  bool isSimilarYCoordinate = ((
+                                (rhsLine[1] - DISTANCE_THRESHOLD <= lhsLine[1] && lhsLine[1] <= rhsLine[1])
+                                || (lhsLine[1] - DISTANCE_THRESHOLD <= rhsLine[1] && rhsLine[1] <= lhsLine[1])
+                                ) && (
+                                (rhsLine[3] - DISTANCE_THRESHOLD <= lhsLine[3] && lhsLine[3] <= rhsLine[3])
+                                || (lhsLine[3] - DISTANCE_THRESHOLD <= rhsLine[3] && rhsLine[3] <= lhsLine[3])
+                              )) || ((
+                                (rhsLine[1] - DISTANCE_THRESHOLD <= lhsLine[3] && lhsLine[3] <= rhsLine[1])
+                                || (lhsLine[3] - DISTANCE_THRESHOLD <= rhsLine[1] && rhsLine[1] <= lhsLine[3])
+                                ) || (
+                                (rhsLine[3] - DISTANCE_THRESHOLD <= lhsLine[1] && lhsLine[1] <= rhsLine[3])
+                                || (lhsLine[1] - DISTANCE_THRESHOLD <= rhsLine[3] && rhsLine[3] <= lhsLine[1])
+                              ));
+  
+  return isSimilarSlope && ((isSimilarXCoordinate && slopesAbove1) || (isSimilarYCoordinate && slopesBelow1));
 }
 
 # pragma mark Drawing
