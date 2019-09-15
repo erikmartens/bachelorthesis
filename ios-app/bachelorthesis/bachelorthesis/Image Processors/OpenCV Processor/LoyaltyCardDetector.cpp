@@ -9,10 +9,10 @@
 #include "LoyaltyCardDetector.hpp"
 
 //#define EROSION_APPROACH
-#define VECTOR_EQUIVALENCY_GROUPS_APPROACH
-//#define KMEAN_APPRAOCH
+//#define VECTOR_EQUIVALENCY_GROUPS_APPROACH
+#define KMEAN_APPROACH
 
-#define TOLERANCE_THRESHOLD 0.95f
+#define TOLERANCE_THRESHOLD 0.90f
 #define DISTANCE_THRESHOLD 10.0f
 
 using namespace cv;
@@ -311,7 +311,7 @@ void LoyaltyCardDetector::identify_quadrangle_from_contour(vector<Point> &contou
     topHoughLinesMat = Scalar(0);
     draw_vectors_4f(topHoughLines[i], topHoughLinesMat);
     /// finds 1 contour per loop iteration
-    findContours(topHoughLinesMat, identifiedContours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
+    findContours(topHoughLinesMat, identifiedContours, RETR_LIST, CHAIN_APPROX_NONE);
     if (identifiedContours.size() > 0) houghLineContours.push_back(identifiedContours[0]);
   }
   
@@ -769,7 +769,7 @@ bool LoyaltyCardDetector::is_equal_vector_4f(const Vec4f &lhsLine, const Vec4f &
                                 || (lhsLine[1] - DISTANCE_THRESHOLD <= rhsLine[3] && rhsLine[3] <= lhsLine[1])
                               ));
   
-  return isSimilarSlope && ((isSimilarXCoordinate && slopesAbove1) || (isSimilarYCoordinate && slopesBelow1));
+  return isSimilarSlope && (((isSimilarXCoordinate && slopesAbove1) || (isSimilarYCoordinate && slopesBelow1)) || (isSimilarXCoordinate && isSimilarYCoordinate));
 }
 
 # pragma mark Drawing
