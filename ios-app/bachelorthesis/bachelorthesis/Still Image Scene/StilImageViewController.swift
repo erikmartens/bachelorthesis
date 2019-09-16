@@ -46,6 +46,8 @@ class StillImageViewController: UIViewController {
   private var selectedImage: UIImage? {
     didSet {
       defer {
+        sourceOpacitySlider.value = 1.0
+        sourceImageView.alpha = 1.0
         resultImageView.isHidden = true
         sourceOpacityControlsContainer.isHidden = true
         resultOpacityControlsContainer.isHidden = true
@@ -195,7 +197,7 @@ class StillImageViewController: UIViewController {
   }
   
   @IBAction func didPressSelectImageButton(_ sender: FramedButton) {
-    self.imagePicker.present(from: sender)
+    imagePicker.present(from: sender)
   }
   
   @IBAction func didPressProcessImageButton(_ sender: FramedButton) {
