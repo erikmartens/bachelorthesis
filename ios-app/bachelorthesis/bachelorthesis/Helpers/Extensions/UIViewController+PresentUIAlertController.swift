@@ -15,7 +15,9 @@ extension UIViewController {
                                             message: message,
                                             preferredStyle: style)
     
-    actions.keys.forEach { key in
+    actions.keys
+      .sorted { $0 < $1 }
+      .forEach { key in
       let action = UIAlertAction(title: key,
                                  style: .default,
                                  handler: actions[key])
