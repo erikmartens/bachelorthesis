@@ -4,11 +4,10 @@ platform :ios, '10.3'
 inhibit_all_warnings!
 
 def bachelorthesis_pods
-  pod 'OpenCV2', '~> 4.1.0'
-  pod 'GPUImage', '~> 0.1.7'
+	pod 'WeScan', :git => 'https://github.com/erikmartens/WeScan.git', :branch => 'develop'
+  # pod 'GPUImage', '~> 0.1.7'
   # pod 'GPUImage2', :podspec => './Podspecs/GPUImage2.podspec'
-  pod 'WeScan', :git => 'https://github.com/erikmartens/WeScan.git', :branch => 'develop'
-
+  pod 'OpenCV2', '~> 4.1.0'
 
   pod 'SwiftLint'
   pod 'R.swift', '~> 5.0.0'
