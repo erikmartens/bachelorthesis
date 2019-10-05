@@ -1,0 +1,25 @@
+;Erfolgreich;Nicht Erfolgreich;Total
+Gute Erkennung;18;174;192
+Karte Enthalten;78;114;192
+Viereck Erkannt;105;87;192
+;;;
+;;;
+;;;
+;;;
+;;;
+;;;
+;;;
+;;;
+;;;
+;;;
+;;;
+;;;
+;Gute Erkennung;Keine Gute Erkennung;Total
+Kategorie 8;0;24;24
+Kategorie 7;1;23;24
+Kategorie 6;0;24;24
+Kategorie 5;1;23;24
+Kategorie 4;0;24;24
+Kategorie 3;3;21;24
+Kategorie 2;2;22;24
+Kategorie 1;11;13;24
